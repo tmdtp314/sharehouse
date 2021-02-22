@@ -37,7 +37,7 @@ public class fragment_control extends Fragment {
 
 
     TextView tvAll;
-    private int number = 7;
+    private int number = 6;
     AppCompatImageView img_display, img_bulb, img_plug1, img_plug2, img_plug3, img_lock;
     NeumorphCardView cardView;
     //display,plug1,allOff,plug2,plug3,bulb,lock;
@@ -82,9 +82,9 @@ public class fragment_control extends Fragment {
                 String[] responses = response.split("/");
                 AppCompatImageView imgView = fragment.findViewById(imgID[number - 1]);
                 LottieAnimationView lottieView = fragment.findViewById(lottieID[number - 1]);
-                LottieAnimationView lottieView2=fragment.findViewById(R.id.lottie_all);
+                LottieAnimationView lottieView2 = fragment.findViewById(R.id.lottie_all);
                 NeumorphCardView cardView = fragment.findViewById(cardID[number - 1]);
-                TextView tvAll=fragment.findViewById(R.id.tvAll);
+                TextView tvAll = fragment.findViewById(R.id.tvAll);
 
 
 //                Toast.makeText(getContext(),responses[1],Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class fragment_control extends Fragment {
                     lottieView.setMinAndMaxProgress(0.0f, 1.0f);
                     lottieView.playAnimation();
                     cardView.setShapeType(1);
-                    tvAll.setText(responses[2]+" Devices On..");
+                    tvAll.setText(responses[2] + " Devices On..");
 
 
                 } else if (responses[1].equals("off")) {
@@ -103,17 +103,15 @@ public class fragment_control extends Fragment {
                     lottieView.setMinAndMaxProgress(0.0f, 0.0f);
                     lottieView.playAnimation();
                     cardView.setShapeType(0);
-                    tvAll.setText(responses[2]+" Devices On..");
-                    if(responses[2].equals("0"))
-                    {
+                    tvAll.setText(responses[2] + " Devices On..");
+                    if (responses[2].equals("0")) {
                         tvAll.setText("All OFF");
-                        lottieView2.setMinAndMaxProgress(0.0f,0.0f);
+                        lottieView2.setMinAndMaxProgress(0.0f, 0.0f);
                         lottieView2.playAnimation();
 
-                    }
-                    else{
-                        tvAll.setText(responses[2]+"Devices On...");
-                        lottieView2.setMinAndMaxProgress(0.0f,1.0f);
+                    } else {
+                        tvAll.setText(responses[2] + "Devices On...");
+                        lottieView2.setMinAndMaxProgress(0.0f, 1.0f);
                         lottieView2.playAnimation();
                     }
 
@@ -140,14 +138,15 @@ public class fragment_control extends Fragment {
                 return sensor;
             }
         };
+
         String url2 = "http://172.30.1.49:8083/LoginServer/howMany";
         stringRequest2 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response) { //여기를 개선하자. !!!!!!!!!!!!!!!!
                 int result = Integer.parseInt(response);
                 TextView tvAll = fragment.findViewById(R.id.tvAll);
                 LottieAnimationView lottieView = fragment.findViewById(R.id.lottie_all);
-                if (result>0) {
+                if (result > 0) {
 
                     tvAll.setText(result + " Devices on");
                     tvAll.bringToFront();
@@ -155,7 +154,7 @@ public class fragment_control extends Fragment {
 
                     tvAll.setText("All OFF");
                     tvAll.bringToFront();
-                    lottieView.setMinAndMaxProgress(0.0f,0.0f);
+                    lottieView.setMinAndMaxProgress(0.0f, 0.0f);
                     lottieView.playAnimation();
                 }
 
@@ -179,6 +178,36 @@ public class fragment_control extends Fragment {
 
 
         requestQueue.add(stringRequest2);
+
+        String url3="on인 사람의 sr가지고 오기. ";
+        stringRequest3 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+//                String[] responses = response.split("/");
+//                String sr = responses[0].substring(2);
+//
+//                int result = Integer.parseInt(sr);
+//                NeumorphCardView cardView=fragment.findViewById(cardID[result-1]);
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> sensor = new HashMap<>();
+
+                sensor.put("how", "how");
+
+
+                return sensor;
+            }
+        };
 
 
         for (int i = 0; i < cardID.length; i++) {
@@ -240,7 +269,7 @@ public class fragment_control extends Fragment {
                 }
             });
         }
-
+        requestQueue.add(stringRequest3);
         return fragment;
     }
 }
