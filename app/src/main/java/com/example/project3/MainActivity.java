@@ -1,0 +1,116 @@
+package com.example.project3;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity {
+    EditText edt_id;
+    EditText edt_pw;
+    Button btn_login;
+    RequestQueue requestQueue;
+    StringRequest stringRequest;
+
+    String id;
+    String name; // frag1 사용자정보 이름
+    String tel; // frag1 사용자정보 연락처
+    String room; // frag1,2 사용자정보 방번호
+    String count1; // frag2 기기 sr1
+    String count2; // frag2 기기 sr2
+    String count3; // frag3 기기 sr3
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edt_id = findViewById(R.id.edt_id);
+        edt_pw = findViewById(R.id.edt_pw);
+        btn_login = findViewById(R.id.btn_login);
+
+        requestQueue = Volley.newRequestQueue(this);
+        String url="http://172.30.1.49:8083/LoginServer/AllSelectServlet";
+
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.equals("false")) {
+                    Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                }
+                try {
+
+                    JSONArray array = new JSONArray(response);
+                    name = array.getJSONObject(0).getString("name"); // 필요한 데이터 저장, 필요 데이터 종류에 따라 리스트 생성해주기
+                    name = new String(name.getBytes("8859_1"), "utf-8");
+                    tel = array.getJSONObject(0).getString("tel");
+                    Toast.makeText(MainActivity.this, name + "넘어오니?", Toast.LENGTH_SHORT).show();
+                    room = array.getJSONObject(0).getString("room");
+                    count1 = array.getJSONObject(0).getString("count1");
+                    count2 = array.getJSONObject(0).getString("count2");
+                    count3 = array.getJSONObject(0).getString("count3");
+
+                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("tel", tel);
+                    intent.putExtra("room", room);
+                    intent.putExtra("count1", count1);
+                    intent.putExtra("count2", count2);
+                    intent.putExtra("count3", count3);
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException | UnsupportedEncodingException e) {
+                    e.printStackTrace();
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("id", edt_id.getText().toString());
+                data.put("pw", edt_pw.getText().toString());
+
+                return data;
+            }
+        };
+
+        stringRequest.setTag("MAIN");
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestQueue.add(stringRequest); // requestQueu2 통로로 AllSelect 데이터 요청
+            }
+        });
+
+
+    }
+
+
+    }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab1"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="내정보" />
+    <item
+        android:id="@+id/tab2"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="기기제어" />
+    <item
+        android:id="@+id/tab3"
+        android:icon="@android:drawable/ic_lock_idle_low_battery"
+        android:title="전력량확인" />
+</menu>
