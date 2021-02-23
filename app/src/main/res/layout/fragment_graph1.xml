@@ -8,49 +8,107 @@
     tools:context=".fragment_graph1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-       android:id="@+id/full"
+        android:id="@+id/full"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/linear1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/full">-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/linear1"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/full">-->
 
 
-<!--                <TextView-->
-<!--                    android:elevation="@dimen/_8sdp"-->
-<!--                    android:textStyle="bold"-->
+        <!--                <TextView-->
+        <!--                    android:elevation="@dimen/_8sdp"-->
+        <!--                    android:textStyle="bold"-->
 
-<!--                    android:layout_marginLeft="@dimen/_20sdp"-->
-<!--                    android:layout_marginTop="@dimen/_10sdp"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="월 별 전력 사용량 비율"-->
-<!--                    android:textSize="@dimen/_14sdp"/>-->
+        <!--                    android:layout_marginLeft="@dimen/_20sdp"-->
+        <!--                    android:layout_marginTop="@dimen/_10sdp"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="월 별 전력 사용량 비율"-->
+        <!--                    android:textSize="@dimen/_14sdp"/>-->
 
 
-<!--        </LinearLayout>-->
+        <!--        </LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="350dp"
             android:orientation="vertical"
 
             app:layout_constraintTop_toTopOf="@+id/full">
 
 
-
+            <!--            <soup.neumorphism.NeumorphCardView-->
+            <!--                android:padding="@dimen/_5sdp"-->
+            <!--                android:layout_width="380dp"-->
+            <!--                android:layout_height="340dp"-->
+            <!--                app:neumorph_shapeType="flat"-->
+            <!--                android:layout_margin="@dimen/_5sdp"-->
+            <!--                android:layout_marginTop="0dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" -->
             <soup.neumorphism.NeumorphCardView
-                android:padding="@dimen/_5sdp"
-                android:layout_width="380dp"
-                android:layout_height="340dp"
-                app:neumorph_shapeType="flat"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_marginTop="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@color/background"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
+                app:neumorph_shadowElevation="@dimen/_8sdp"
+
+                >
+
+                <com.hadiidbouk.charts.ChartProgressBar
+                    android:id="@+id/ChartProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    app:hdBarCanBeClick="true"
+                    app:hdBarCanBeToggle="true"
+                    app:hdBarHeight="170dp"
+                    app:hdBarRadius="10dp"
+                    app:hdBarTitleColor="@color/bar_title_color"
+                    app:hdBarTitleMarginTop="9dp"
+                    app:hdBarTitleSelectedColor="@color/white"
+                    app:hdBarTitleTxtSize="15sp"
+                    app:hdBarWidth="@dimen/_20sdp"
+                    app:hdEmptyColor="@color/progress_disable"
+                    app:hdMaxValue="100"
+                    app:hdPinBackgroundColor="@color/pin_background"
+                    app:hdPinDrawable="@drawable/ic_pin"
+                    app:hdPinMarginBottom="20dp"
+                    app:hdPinMarginEnd="30dp"
+                    app:hdPinPaddingBottom="5dp"
+                    app:hdPinTextColor="@color/progress_disable"
+                    app:hdPinTxtSize="16sp"
+                    app:hdProgressClickColor="@color/progress_click"
+                    app:hdProgressColor="@color/primary"
+                    app:hdProgressDisableColor="@color/progress_disable" />
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_margin="@dimen/_3sdp"
+                        android:id="@+id/tv_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(roomA/house 전체)"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+                </soup.neumorphism.NeumorphCardView>
+
+
+            </soup.neumorphism.NeumorphCardView>
+
+
         </LinearLayout>
 
 

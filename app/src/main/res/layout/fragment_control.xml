@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="115dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
+
         android:elevation="10dp"
         android:foregroundGravity="center_vertical|center|center_horizontal"
         android:paddingTop="20dp"
@@ -45,14 +45,14 @@
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="100dp">
 
 
         <androidx.constraintlayout.helper.widget.Flow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+
             android:layout_marginEnd="@dimen/_8sdp"
             app:constraint_referenced_ids="display,bulb,plug1,plug2,plug3,lock"
             app:flow_horizontalGap="@dimen/_3sdp"

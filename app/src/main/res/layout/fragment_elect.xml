@@ -13,7 +13,7 @@
         <FrameLayout
             android:id="@+id/frag_graph2"
             android:layout_width="0dp"
-            android:layout_height="278dp"
+            android:layout_height="280dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +25,7 @@
     android:layout_height="match_parent"
 
     app:neumorph_shapeType="flat"
+    app:neumorph_shadowElevation="@dimen/_7sdp"
 
     >
 <!--<at.grabner.circleprogress.CircleProgressView-->
@@ -50,13 +51,53 @@
 <!--    app:cpv_seekMode="false"-->
 <!--    app:cpv_maxValue="100"-->
 <!--    ></at.grabner.circleprogress.CircleProgressView>-->
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:neumorph_shadowColorDark="@color/dark_shadow"
+        app:neumorph_shadowColorLight="@color/light_shadow"
+        android:background="@color/background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            android:padding="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:text="2월"/>
+
+    </soup.neumorphism.NeumorphCardView>
+    <soup.neumorphism.NeumorphCardView
+        android:layout_marginLeft="265dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:neumorph_shadowColorDark="@color/dark_shadow"
+        app:neumorph_shadowColorLight="@color/light_shadow"
+        android:background="@color/background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            android:padding="@dimen/_2sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:text="room A"/>
+
+    </soup.neumorphism.NeumorphCardView>
+
+
     <com.github.mikephil.charting.charts.PieChart
+        android:layout_marginTop="@dimen/_5sdp"
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
 
-        android:layout_gravity="left"/>
+       />
 
 
 
@@ -78,26 +119,22 @@
 
             <com.google.android.material.tabs.TabLayout
 
-                android:background="@color/background"
-                app:tabBackground="@drawable/custom_indicator"
                 android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="408dp"
+                android:layout_height="50dp"
+                android:background="@color/background"
                 android:elevation="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/custom_indicator">
 
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_grap1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="그래프1" >
-
-
-
-
+                    android:text="그래프1">
 
 
                 </com.google.android.material.tabs.TabItem>

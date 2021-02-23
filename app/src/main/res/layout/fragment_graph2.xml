@@ -10,5 +10,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="그래프 들어갈 페이지2" />
-
 </FrameLayout>

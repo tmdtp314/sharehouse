@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,11 +26,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.tabs.TabLayout;
 
@@ -109,36 +112,50 @@ public class fragment_elect extends Fragment {
 
                     pieChart.setUsePercentValues(true);
                     pieChart.getDescription().setEnabled(false);
-                    pieChart.setExtraOffsets(5, 5, 5, 5);
+                    pieChart.setExtraOffsets(5, 5, 5, 0);
                     pieChart.setDrawHoleEnabled(true);
-                    pieChart.setHoleColor(Color.parseColor("#F8F9FE"));
-                    pieChart.setTransparentCircleRadius(21f);
+
+                    pieChart.setTransparentCircleRadius(22f);
 
 
                     ArrayList<PieEntry> yValues = new ArrayList<>();
-                    yValues.add(new PieEntry(Float.parseFloat(user1),"roomA"));
-                    yValues.add(new PieEntry(Float.parseFloat(user2),"roomB"));
-                    yValues.add(new PieEntry(Float.parseFloat(user3),"roomC"));
+                    yValues.add(new PieEntry(Float.parseFloat(user1), "roomA"));
+                    yValues.add(new PieEntry(Float.parseFloat(user2), "roomB"));
+                    yValues.add(new PieEntry(Float.parseFloat(user3), "roomC"));
+
+//                    Description description=new Description();
+//                    description.setText("실시간 전력 사용량 : "+user1);
+//                    description.setTextSize(17);
+//
+//                    description.setTextColor(Color.parseColor("#2D7DF6"));
+//                    pieChart.setDescription(description);
+//pieChart.highlightValue(1,0,false);
+
+                    pieChart.setHoleRadius(65);
 
                     pieChart.animateY(1000, Easing.EaseInCubic);
 
-                    PieDataSet dataSet = new PieDataSet(yValues,"");
+                    PieDataSet dataSet = new PieDataSet(yValues, "   '방 별 사용현황'");
                     dataSet.setSliceSpace(1f);
                     dataSet.setSelectionShift(5f);
 
                     dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
                     PieData data = new PieData((dataSet));
-                    data.setValueTextSize(20f);
-                    data.setValueTextColor(Color.parseColor("#2D7DF6"));
+                    data.setValueTextSize(14f);
+                    data.setValueTextColor(Color.parseColor("black"));
 
                     data.setValueFormatter(new PercentFormatter(pieChart));
                     pieChart.setUsePercentValues(true);
 
                     Legend l = pieChart.getLegend();
-                    l.setTextSize(20f);
+                    l.setTextSize(16f);
                     l.setForm(Legend.LegendForm.CIRCLE);
+                    pieChart.setCenterText(user1 + "kwh");
+                    pieChart.setCenterTextSize(19);
+                    pieChart.setCenterTextColor(Color.parseColor("#713993"));
 
 
+                    pieChart.setHoleColor(Color.parseColor("#F8F9FE"));
                     pieChart.setData(data);
 
 
@@ -164,7 +181,7 @@ public class fragment_elect extends Fragment {
                 //서버에 전송하고 싶은 데이터를 key값, value값으로 저장하여 return
                 Map<String, String> data = new HashMap<>();
 
-                data.put("go", "go");
+                data.put("circle", "1");
 
                 return data;
             }

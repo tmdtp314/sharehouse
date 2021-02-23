@@ -14,4 +14,12 @@
     <color name="primary_text">#0B0D0C</color>
     <color name="secondary_text">#7D818A</color>
     <color name="background">#E4EBF5</color>
+    <color name="empty">#ffc1c1</color>
+    <color name="progress">#8c9eff</color>
+    <color name="progress_click">#bbdefb</color>
+    <color name="pin_background">#2c2c65</color>
+    <color name="pin_text">#8c8c8c</color>
+    <color name="bar_title_color">#000000</color>
+    <color name="bar_title_txt_selected_color">#eaa</color>
+    <color name="progress_disable">@android:color/darker_gray</color>
 </resources>
