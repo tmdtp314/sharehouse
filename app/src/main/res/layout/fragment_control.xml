@@ -126,7 +126,7 @@
                     android:background="@color/background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="blueloading.json"
                     app:lottie_loop="true" />
 
@@ -186,7 +186,7 @@
                     android:background="@color/background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="blueloading.json"
                     app:lottie_loop="true" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -243,7 +243,7 @@
                     android:background="@color/background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="blueloading.json"
                     app:lottie_loop="true" />
 
@@ -302,7 +302,7 @@
                     android:background="@color/background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="blueloading.json"
                     app:lottie_loop="true" />
 
@@ -360,7 +360,7 @@
                     android:background="@color/background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="blueloading.json"
                     app:lottie_loop="true" />
 

@@ -39,12 +39,11 @@ public class fragment_control extends Fragment {
     TextView tvAll;
     private int number = 6;
     AppCompatImageView img_display, img_bulb, img_plug1, img_plug2, img_plug3, img_lock;
-    NeumorphCardView cardView;
+    NeumorphCardView allOffBtn;
     //display,plug1,allOff,plug2,plug3,bulb,lock;
-    LottieAnimationView allOffBtn, lottie_All, lottie_allOff;
+    LottieAnimationView lottie_All, lottie_allOff;
     LottieAnimationView lottieView;
     //lottie_Display,lottie_bulb,lottie_plug1,lottie_plug2,lottie_plug3,lottie_lock;
-
 
     int[] imgID = {R.id.img_display, R.id.img_bulb, R.id.img_plug1, R.id.img_plug2, R.id.img_plug3, R.id.img_lock};
     int[] cardID = {R.id.display, R.id.bulb, R.id.plug1, R.id.plug2, R.id.plug3, R.id.lock};
@@ -54,10 +53,10 @@ public class fragment_control extends Fragment {
     RequestQueue requestQueue;
 
     StringRequest stringRequest, stringRequest2, stringRequest3;
-    boolean switchOnAll = false;
+    boolean switchOffAll = false;
     boolean checkSr1 = false;
-    boolean switchOnOff = false;
     boolean switchOn1, switchOn2, switchOn3, switchOn4, switchOn5, switchOn6 = false;
+    //  boolean[] switches={switchOn1,switchOn2,switchOn3,switchOn4,switchOn5,switchOn6};
 
 
     String roomID;
@@ -70,8 +69,9 @@ public class fragment_control extends Fragment {
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         tvAll = fragment.findViewById(R.id.tvAll);
-
+        lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
         lottie_All = fragment.findViewById(R.id.lottie_all);
+        allOffBtn = fragment.findViewById(R.id.allOff);
         roomID = getArguments().getString("room");
         tvAll.bringToFront();
 
@@ -83,6 +83,7 @@ public class fragment_control extends Fragment {
                 AppCompatImageView imgView = fragment.findViewById(imgID[number - 1]);
                 LottieAnimationView lottieView = fragment.findViewById(lottieID[number - 1]);
                 LottieAnimationView lottieView2 = fragment.findViewById(R.id.lottie_all);
+
                 NeumorphCardView cardView = fragment.findViewById(cardID[number - 1]);
                 TextView tvAll = fragment.findViewById(R.id.tvAll);
 
@@ -95,6 +96,9 @@ public class fragment_control extends Fragment {
                     lottieView.playAnimation();
                     cardView.setShapeType(1);
                     tvAll.setText(responses[2] + " Devices On..");
+                    lottie_allOff.setMinAndMaxProgress(0.0f, 0.0f);
+                    lottie_All.setMinAndMaxProgress(0.0f,1.0f);
+                    lottie_All.playAnimation();
 
 
                 } else if (responses[1].equals("off")) {
@@ -108,11 +112,15 @@ public class fragment_control extends Fragment {
                         tvAll.setText("All OFF");
                         lottieView2.setMinAndMaxProgress(0.0f, 0.0f);
                         lottieView2.playAnimation();
+                        lottie_allOff.setMinAndMaxProgress(0.0f, 0.5f);
+                        lottie_allOff.playAnimation();
+
 
                     } else {
-                        tvAll.setText(responses[2] + "Devices On...");
+                        tvAll.setText(responses[2] + " Devices On...");
                         lottieView2.setMinAndMaxProgress(0.0f, 1.0f);
                         lottieView2.playAnimation();
+
                     }
 
                 }
@@ -130,7 +138,7 @@ public class fragment_control extends Fragment {
                 if (checkSr1 == true) {
                     sensor.put("onOff", "on");
                     sensor.put("sr", "sr" + String.valueOf(number));
-                } else if (checkSr1 == false) {
+                } else {
                     sensor.put("onOff", "off");
                     sensor.put("sr", "sr" + String.valueOf(number));
                 }
@@ -143,20 +151,43 @@ public class fragment_control extends Fragment {
         stringRequest2 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) { //여기를 개선하자. !!!!!!!!!!!!!!!!
-                int result = Integer.parseInt(response);
+                String[] responses = response.split("/");
+
+
                 TextView tvAll = fragment.findViewById(R.id.tvAll);
                 LottieAnimationView lottieView = fragment.findViewById(R.id.lottie_all);
-                if (result > 0) {
+                LottieAnimationView lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
 
-                    tvAll.setText(result + " Devices on");
-                    tvAll.bringToFront();
-                } else {
+                for (int i = 0; i < responses.length; i++) {
+                    if (!responses[i].equals("")) {
+                        int result = responses.length;
+                        int chogi = Integer.parseInt(responses[i].substring(2));
 
-                    tvAll.setText("All OFF");
-                    tvAll.bringToFront();
-                    lottieView.setMinAndMaxProgress(0.0f, 0.0f);
-                    lottieView.playAnimation();
+
+                        Toast.makeText(getContext(), String.valueOf(chogi), Toast.LENGTH_SHORT).show();
+
+                        LottieAnimationView lottieViewChogi = fragment.findViewById(lottieID[chogi - 1]);
+
+                        lottieViewChogi.playAnimation();
+                        tvAll.setText(result + " Devices On..");
+
+
+                        AppCompatImageView imgChogi = fragment.findViewById(imgID[chogi - 1]);
+                        imgChogi.setColorFilter(Color.parseColor("#2D7DF6"));
+                        NeumorphCardView cardViewChogi = fragment.findViewById(cardID[chogi - 1]);
+                        cardViewChogi.setShapeType(1);
+                    } else {
+                        tvAll.setText("All OFF");
+                        tvAll.bringToFront();
+                        lottieView.pauseAnimation();
+                        lottie_allOff.setMinAndMaxProgress(0.5f, 0.5f);
+                        lottie_allOff.playAnimation();
+
+                    }
+
+
                 }
+
 
             }
         }, new Response.ErrorListener() {
@@ -178,18 +209,32 @@ public class fragment_control extends Fragment {
 
 
         requestQueue.add(stringRequest2);
-
-        String url3="on인 사람의 sr가지고 오기. ";
-        stringRequest3 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
+        String url3 = "http://172.30.1.49:8083/LoginServer/allOff";
+        stringRequest3 = new StringRequest(Request.Method.POST, url3, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                String[] responses = response.split("/");
-//                String sr = responses[0].substring(2);
-//
-//                int result = Integer.parseInt(sr);
-//                NeumorphCardView cardView=fragment.findViewById(cardID[result-1]);
+                int result = Integer.parseInt(response);
+                if (result > 0) {
+                    for (int i = 0; i < 6; i++) {
+                        LottieAnimationView lottie = fragment.findViewById(lottieID[i]);
+                        NeumorphCardView cardView = fragment.findViewById(cardID[i]);
+                        AppCompatImageView img = fragment.findViewById(imgID[i]);
+                        lottie.setMinAndMaxProgress(0.0f,0.0f);
+                        lottie.playAnimation();
+                        cardView.setShapeType(0);
+                        img.setColorFilter(Color.parseColor("#7D818A"));
+                        tvAll.setText("All OFF");
+                       lottie_All.setMinAndMaxProgress(0.0f,0.0f);
+                       lottie_All.playAnimation();
+                        lottie_allOff.setMinAndMaxProgress(0.0f, 0.5f);
+                        lottie_allOff.playAnimation();
+
+                    }
 
 
+                } else {
+                    Toast.makeText(getContext(), "전원 off실패", Toast.LENGTH_SHORT).show();
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -202,7 +247,7 @@ public class fragment_control extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> sensor = new HashMap<>();
 
-                sensor.put("how", "how");
+                sensor.put("alloff", "a"); //a는 방 아이디
 
 
                 return sensor;
@@ -213,12 +258,11 @@ public class fragment_control extends Fragment {
         for (int i = 0; i < cardID.length; i++) {
             NeumorphCardView cardView;
             AppCompatImageView imgView;
-            // LottieAnimationView lottieView;
+
             imgView = fragment.findViewById(imgID[i]);
-            //  lottieView=fragment.findViewById(lottieID[i]);
+
             cardView = fragment.findViewById(cardID[i]);
-            //   lottieView.setMinAndMaxProgress(0.0f,0.0f);
-            //   lottieView.playAnimation();
+
             cardView.setTag(i + 1);
 
 
@@ -228,10 +272,7 @@ public class fragment_control extends Fragment {
 
 
                     number = (Integer) cardView.getTag();
-//                    if (checkSr1 == true)
-//                        cardView.setShapeType(0);
-//                    else
-//                        cardView.setShapeType(1);
+
                     switch (number) {
                         case 1:
                             switchOn1 = !switchOn1;
@@ -268,8 +309,20 @@ public class fragment_control extends Fragment {
 
                 }
             });
+
+            allOffBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    requestQueue.add(stringRequest3);
+
+
+
+
+                }
+            });
         }
-        requestQueue.add(stringRequest3);
+
         return fragment;
     }
 }
