@@ -5,51 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment_elect">
-<RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frag_graph2"
+            android:layout_width="0dp"
+            android:layout_height="278dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+<soup.neumorphism.NeumorphCardView
+    android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+
+    app:neumorph_shapeType="flat"
+
+    >
+<!--<at.grabner.circleprogress.CircleProgressView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:id="@+id/circle_graph"-->
+<!--    android:padding="10dp"-->
+<!--   android:layout_margin="30dp"-->
+<!--    android:layout_gravity="left"-->
+<!--    app:cpv_barColor="@color/primary"-->
+
+
+<!--    app:cpv_barWidth="20dp"-->
+<!--    app:cpv_outerContourSize="0dp"-->
+<!--    app:cpv_rimWidth="20dp"-->
+<!--    app:cpv_showUnit="true"-->
+<!--    app:cpv_textColor="@color/black"-->
+<!--    app:cpv_textScale="1"-->
+<!--    app:cpv_autoTextSize="true"-->
+<!--    app:cpv_innerContourSize="0dp"-->
+<!--    app:cpv_rimColor="@color/dark_shadow"-->
+
+<!--    app:cpv_seekMode="false"-->
+<!--    app:cpv_maxValue="100"-->
+<!--    ></at.grabner.circleprogress.CircleProgressView>-->
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-      >
-
-        <TextView
-            android:id="@+id/tv_json"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="s1"
-            android:textSize="36sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_json2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="TextView"
-            android:textSize="36sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_new"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_height="match_parent"
 
 
-            android:background="#80000000"
-            android:text="Button"
+        android:layout_gravity="left"/>
+
+
+
+</soup.neumorphism.NeumorphCardView>
+
+
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_vp2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frag_graph2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="400dp"
+            <com.google.android.material.tabs.TabLayout
 
-        android:orientation="vertical" />
-</RelativeLayout>
+                android:background="@color/background"
+                app:tabBackground="@drawable/custom_indicator"
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_grap1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그래프1" >
+
+
+
+
+
+
+                </com.google.android.material.tabs.TabItem>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_grap2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그래프2" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/Viewpager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
