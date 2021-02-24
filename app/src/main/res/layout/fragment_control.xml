@@ -464,7 +464,7 @@ app:blk_blurRadius="6"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_25sdp"
-                    android:text="x Devices on"
+                    android:text="All OFF"
 
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -483,7 +483,7 @@ app:blk_blurRadius="6"
                     app:layout_constraintStart_toStartOf="parent"
 
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lottie_autoPlay="true"
+                    app:lottie_autoPlay="false"
                     app:lottie_fileName="dotload.json"
                     app:lottie_loop="true" />
 
