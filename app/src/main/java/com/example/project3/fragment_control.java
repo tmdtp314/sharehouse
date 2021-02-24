@@ -91,6 +91,9 @@ public class fragment_control extends Fragment {
 //        l4=fragment.findViewById(lottieID[3]);
 //        l5=fragment.findViewById(lottieID[4]);
 
+        lottie_allOff.setMinAndMaxProgress(0.5f, 0.5f);
+        lottie_allOff.playAnimation();
+
         for(int i=0;i<lottieID.length;i++){
 
             fragment.findViewById(lottieID[i]).setVisibility(View.INVISIBLE);
