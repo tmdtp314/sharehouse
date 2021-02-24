@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -47,7 +48,7 @@ import at.grabner.circleprogress.CircleProgressView;
 
 
 public class fragment_elect extends Fragment {
-
+    MyPagerAdapter adapter;
     private FragmentPagerAdapter fragmentPagerAdapter;
     View frag_grap1_2;
     ViewPager viewPager;
@@ -82,7 +83,7 @@ public class fragment_elect extends Fragment {
 
         viewPager.setOffscreenPageLimit(2);
 
-        MyPagerAdapter adapter = new MyPagerAdapter((getActivity().getSupportFragmentManager()), 2);
+         adapter = new MyPagerAdapter((getChildFragmentManager()));
 
 
         // ViewPage 바꿔줄 그래프 Fragment ( Fragment_Grap1_1, Fragment_Grap1_2)
@@ -92,6 +93,10 @@ public class fragment_elect extends Fragment {
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+
+
         pieChart = fragment.findViewById(R.id.pieChart);
 
 
@@ -153,8 +158,6 @@ public class fragment_elect extends Fragment {
                     pieChart.setCenterText(user1 + "kwh");
                     pieChart.setCenterTextSize(19);
                     pieChart.setCenterTextColor(Color.parseColor("#713993"));
-
-
                     pieChart.setHoleColor(Color.parseColor("#F8F9FE"));
                     pieChart.setData(data);
 
@@ -212,8 +215,9 @@ public class fragment_elect extends Fragment {
 
         ArrayList<Fragment> items = new ArrayList<Fragment>();
 
-        public MyPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-            super(fm, behavior);
+        public MyPagerAdapter(@NonNull FragmentManager fm) {
+
+            super(fm);
         }
 
         public void addItem(Fragment item) {
@@ -223,6 +227,9 @@ public class fragment_elect extends Fragment {
         @NonNull
         @Override
         public Fragment getItem(int position) {
+
+            if(position==0){return new fragment_graph1();}
+            else if(position==1){}
             return items.get(position);
         }
 
@@ -231,5 +238,8 @@ public class fragment_elect extends Fragment {
             return items.size();
         }
     }
+public void refresh(){
+        adapter.notifyDataSetChanged();//이것은 원그래프 갱신누를 때,,,,쓰기.
 
+}
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     StringRequest stringRequest;
 
+    ImageView login_img;
     String id;
     String name; // frag1 사용자정보 이름
     String tel; // frag1 사용자정보 연락처
@@ -45,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         edt_id = findViewById(R.id.edt_id);
         edt_pw = findViewById(R.id.edt_pw);
-        btn_login = findViewById(R.id.btn_login);
 
+        login_img=findViewById(R.id.login_img);
         requestQueue = Volley.newRequestQueue(this);
         String url="http://172.30.1.49:8083/LoginServer/AllSelectServlet";
 
@@ -102,9 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
         stringRequest.setTag("MAIN");
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        login_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this,"눌러는진다",Toast.LENGTH_SHORT).show();
                 requestQueue.add(stringRequest); // requestQueu2 통로로 AllSelect 데이터 요청
             }
         });

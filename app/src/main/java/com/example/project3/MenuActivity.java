@@ -3,8 +3,10 @@ package com.example.project3;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,13 +45,13 @@ public class MenuActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.tab1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_mypage).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_mypage,"frag_Tag_Mypage").commit();
                         break;
                     case R.id.tab2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_control).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_control,"frag_Tag_Con").commit();
                         break;
                     case R.id.tab3:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_elec).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_elec,"frag_Tag_Elec").commit();
                         break;
                 }
 
@@ -80,5 +82,7 @@ public class MenuActivity extends AppCompatActivity {
         bundle3.putStringArrayList("data2",data2);
         frag_elec.setArguments(bundle3);
 
+
     }
+
 }

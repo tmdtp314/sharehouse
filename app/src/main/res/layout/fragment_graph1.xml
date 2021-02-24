@@ -93,7 +93,10 @@
 
                 <soup.neumorphism.NeumorphCardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:neumorph_shadowColorDark="@color/dark_shadow"
+                    app:neumorph_shadowColorLight="@color/light_shadow"
+                    >
 
                     <TextView
                         android:layout_margin="@dimen/_3sdp"

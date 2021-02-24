@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab1"
+        android:elevation="@dimen/_7sdp"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="내정보" />
     <item
