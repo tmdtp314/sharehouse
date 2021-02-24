@@ -40,6 +40,9 @@ import soup.neumorphism.NeumorphCardView;
 public class fragment_control extends Fragment {
 
 
+    private int gaesu;
+    private String room;
+    //***************
     TextView tvAll;
     private int number = 6;
     AppCompatImageView img_display, img_bulb, img_plug1, img_plug2, img_plug3, img_lock;
@@ -47,6 +50,7 @@ public class fragment_control extends Fragment {
     //display,plug1,allOff,plug2,plug3,bulb,lock;
     LottieAnimationView lottie_All, lottie_allOff;
     LottieAnimationView lottieView;
+
     //lottie_Display,lottie_bulb,lottie_plug1,lottie_plug2,lottie_plug3,lottie_lock;
 
     int[] imgID = {R.id.img_display, R.id.img_bulb, R.id.img_plug1, R.id.img_plug2, R.id.img_plug3, R.id.img_lock};
@@ -72,6 +76,8 @@ public class fragment_control extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
+        int temp=6;
+        room = "a";
         tvAll = fragment.findViewById(R.id.tvAll);
         lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
         lottie_All = fragment.findViewById(R.id.lottie_all);
@@ -103,7 +109,7 @@ public class fragment_control extends Fragment {
                     cardView.setShapeType(1);
                     tvAll.setText(responses[2] + " Devices On..");
                     lottie_allOff.setMinAndMaxProgress(0.0f, 0.0f);
-                    lottie_All.setMinAndMaxProgress(0.0f,1.0f);
+                    lottie_All.setMinAndMaxProgress(0.0f, 1.0f);
                     lottie_All.playAnimation();
 
 
@@ -116,9 +122,9 @@ public class fragment_control extends Fragment {
                     tvAll.setText(responses[2] + " Devices On..");
                     if (responses[2].equals("0")) {
                         tvAll.setText("All OFF");
-                        lottieView2.setMinAndMaxProgress(0.0f,0.0f);
+                        lottieView2.setMinAndMaxProgress(0.0f, 0.0f);
                         lottieView2.playAnimation();
-                        lottieView.setMinAndMaxProgress(0.0f,0.0f);
+                        lottieView.setMinAndMaxProgress(0.0f, 0.0f);
                         lottieView.playAnimation();
 
                         lottie_allOff.setMinAndMaxProgress(0.0f, 0.5f);
@@ -147,9 +153,11 @@ public class fragment_control extends Fragment {
                 if (checkSr1 == true) {
                     sensor.put("onOff", "on");
                     sensor.put("sr", "sr" + String.valueOf(number));
+                    sensor.put("roomId", room);
                 } else {
                     sensor.put("onOff", "off");
                     sensor.put("sr", "sr" + String.valueOf(number));
+                    sensor.put("roomId", room);
                 }
 
                 return sensor;
@@ -161,19 +169,15 @@ public class fragment_control extends Fragment {
             @Override
             public void onResponse(String response) { //여기를 개선하자. !!!!!!!!!!!!!!!!
                 String[] responses = response.split("/");
-
-
+                gaesu = Integer.parseInt(responses[0]);
                 TextView tvAll = fragment.findViewById(R.id.tvAll);
                 LottieAnimationView lottieView = fragment.findViewById(R.id.lottie_all);
                 LottieAnimationView lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
 
-                for (int i = 0; i < responses.length; i++) {
-                    if (!responses[i].equals("")) {
-                        int result = responses.length;
+                for (int i = 1; i < responses.length+1; i++) {
+                    if (responses.length>2) {
+                        int result = responses.length-2;
                         int chogi = Integer.parseInt(responses[i].substring(2));
-
-
-                        Toast.makeText(getContext(), String.valueOf(chogi), Toast.LENGTH_SHORT).show();
 
                         LottieAnimationView lottieViewChogi = fragment.findViewById(lottieID[chogi - 1]);
 
@@ -188,7 +192,8 @@ public class fragment_control extends Fragment {
                     } else {
                         tvAll.setText("All OFF");
                         tvAll.bringToFront();
-                        lottieView.pauseAnimation();
+                        lottieView.setMinAndMaxProgress(0.0f,0.0f);
+                        lottieView.playAnimation();
                         lottie_allOff.setMinAndMaxProgress(0.5f, 0.5f);
                         lottie_allOff.playAnimation();
 
@@ -209,7 +214,7 @@ public class fragment_control extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> sensor = new HashMap<>();
 
-                sensor.put("how", "how");
+                sensor.put("roomId", room);
 
 
                 return sensor;
@@ -228,13 +233,13 @@ public class fragment_control extends Fragment {
                         LottieAnimationView lottie = fragment.findViewById(lottieID[i]);
                         NeumorphCardView cardView = fragment.findViewById(cardID[i]);
                         AppCompatImageView img = fragment.findViewById(imgID[i]);
-                        lottie.setMinAndMaxProgress(0.0f,0.0f);
+                        lottie.setMinAndMaxProgress(0.0f, 0.0f);
                         lottie.playAnimation();
                         cardView.setShapeType(0);
                         img.setColorFilter(Color.parseColor("#7D818A"));
                         tvAll.setText("All OFF");
-                       lottie_All.setMinAndMaxProgress(0.0f,0.0f);
-                       lottie_All.playAnimation();
+                        lottie_All.setMinAndMaxProgress(0.0f, 0.0f);
+                        lottie_All.playAnimation();
                         lottie_allOff.setMinAndMaxProgress(0.0f, 0.5f);
                         lottie_allOff.playAnimation();
 
@@ -264,11 +269,11 @@ public class fragment_control extends Fragment {
         };
 
 
-        for (int i = 0; i < cardID.length; i++) {
+        for (int i = 0; i < temp; i++) {
             NeumorphCardView cardView;
-            AppCompatImageView imgView;
-LottieAnimationView lottieView;
-            imgView = fragment.findViewById(imgID[i]);
+//            AppCompatImageView imgView;
+//            LottieAnimationView lottieView;
+//            imgView = fragment.findViewById(imgID[i]);
 
             cardView = fragment.findViewById(cardID[i]);
 
@@ -326,12 +331,11 @@ LottieAnimationView lottieView;
                     requestQueue.add(stringRequest3);
 
 
-
-
                 }
             });
 
         }
+        temp=gaesu;
         return fragment;
     }
 
