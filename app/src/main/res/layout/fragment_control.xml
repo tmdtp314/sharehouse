@@ -11,14 +11,14 @@
         android:id="@+id/controlWelcome"
         android:layout_width="match_parent"
         android:layout_height="115dp"
-        android:layout_marginStart="20dp"
-app:blk_blurRadius="6"
+
+app:blk_blurRadius="8"
         app:blk_downscaleFactor="0.12"
-        android:layout_marginEnd="20dp"
+
 
         android:elevation="10dp"
         android:foregroundGravity="center_vertical|center|center_horizontal"
-        android:paddingTop="20dp"
+        android:paddingTop="15dp"
 
 
         android:paddingBottom="20dp"
@@ -47,7 +47,9 @@ app:blk_blurRadius="6"
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp">
+        android:padding="@dimen/_11sdp"
+
+        android:layout_marginTop="80dp">
 
 
         <androidx.constraintlayout.helper.widget.Flow

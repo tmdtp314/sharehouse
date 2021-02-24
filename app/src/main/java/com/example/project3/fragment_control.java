@@ -95,6 +95,7 @@ public class fragment_control extends Fragment {
 
             fragment.findViewById(lottieID[i]).setVisibility(View.INVISIBLE);
         }
+        lottie_All.setVisibility(View.INVISIBLE);
 
         String url2 = "http://172.30.1.49:8083/LoginServer/howMany";
         stringRequest2 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
@@ -118,7 +119,10 @@ public class fragment_control extends Fragment {
                         lottieViewChogi.playAnimation();
                         lottieViewChogi.setVisibility(View.VISIBLE);
                         tvAll.setText(result + " Devices On..");
+
+                        lottie_All.setMinAndMaxProgress(0.0f,1.0f);
                         lottie_All.playAnimation();
+                        lottie_All.setVisibility(View.VISIBLE);
 
                         AppCompatImageView imgChogi = fragment.findViewById(imgID[chogi - 1]);
                         imgChogi.setColorFilter(Color.parseColor("#2D7DF6"));
@@ -215,7 +219,7 @@ public class fragment_control extends Fragment {
                     String[] responses = response.split("/");
                     AppCompatImageView imgView = fragment.findViewById(imgID[number - 1]);
                     LottieAnimationView lottieView = fragment.findViewById(lottieID[number - 1]);
-                    LottieAnimationView lottieView2 = fragment.findViewById(R.id.lottie_all);
+                  //  LottieAnimationView lottieView2 = fragment.findViewById(R.id.lottie_all);
 
 
                     NeumorphCardView cardView = fragment.findViewById(cardID[number - 1]);
@@ -234,6 +238,7 @@ public class fragment_control extends Fragment {
                         lottie_allOff.setMinAndMaxProgress(0.0f, 0.0f);
                         lottie_All.setMinAndMaxProgress(0.0f, 1.0f);
                         lottie_All.playAnimation();
+                        lottie_All.setVisibility(View.VISIBLE);
 
 
                     } else if (responses[1].equals("off")) {
@@ -245,8 +250,8 @@ public class fragment_control extends Fragment {
                         tvAll.setText(responses[2] + " Devices On..");
                         if (responses[2].equals("0")) {
                             tvAll.setText("All OFF");
-                            lottieView2.setMinAndMaxProgress(0.0f, 0.0f);
-                            lottieView2.playAnimation();
+
+                            lottie_All.setVisibility(View.INVISIBLE);
                             lottieView.setMinAndMaxProgress(0.0f, 0.0f);
                             lottieView.playAnimation();
 
@@ -256,8 +261,9 @@ public class fragment_control extends Fragment {
 
                         } else {
                             tvAll.setText(responses[2] + " Devices On...");
-                            lottieView2.setMinAndMaxProgress(0.0f, 1.0f);
-                            lottieView2.playAnimation();
+                            lottie_All.setMinAndMaxProgress(0.0f, 1.0f);
+                            lottie_All.playAnimation();
+                            lottie_All.setVisibility(View.VISIBLE);
 
                         }
 
