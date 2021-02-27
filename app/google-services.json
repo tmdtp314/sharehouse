@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540954844983",
+    "project_id": "sharehouse-dcaab",
+    "storage_bucket": "sharehouse-dcaab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540954844983:android:3ec97c696beed98a64c4b2",
+        "android_client_info": {
+          "package_name": "com.example.project3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540954844983-3osg0jvn2hqnlegds30l7vp96ki5la83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7eQZONgkXbc0wT-aKTigBaNb6s5b61zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540954844983-3osg0jvn2hqnlegds30l7vp96ki5la83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
