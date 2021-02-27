@@ -4,33 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backcontrol"
+    android:background="@drawable/roomback"
     tools:context=".fragment_control">
 
-    <io.alterac.blurkit.BlurLayout
+    <LinearLayout
         android:id="@+id/controlWelcome"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
+        android:layout_height="90dp"
 
-app:blk_blurRadius="8"
-        app:blk_downscaleFactor="0.12"
+        android:layout_marginTop="10dp"
 
-
+               android:background="@drawable/transparenttitle"
         android:elevation="10dp"
         android:foregroundGravity="center_vertical|center|center_horizontal"
-        android:paddingTop="15dp"
 
-
-        android:paddingBottom="20dp"
-        app:blk_cornerRadius="@dimen/_14sdp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginTop="10dp"
+
 
             android:layout_marginEnd="@dimen/_15sdp"
 
@@ -41,15 +36,15 @@ app:blk_blurRadius="8"
             android:textSize="@dimen/_30sdp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
-    </io.alterac.blurkit.BlurLayout>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_11sdp"
+        android:padding="@dimen/_5sdp"
 
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="90dp">
 
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -452,7 +447,7 @@ app:blk_blurRadius="8"
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_8sdp"
+            app:neumorph_shadowElevation="@dimen/_5sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -478,7 +473,7 @@ app:blk_blurRadius="8"
                 <com.airbnb.lottie.LottieAnimationView
 
                     android:id="@+id/lottie_all"
-                    android:layout_width="@dimen/_90sdp"
+                    android:layout_width="@dimen/_95sdp"
                     android:layout_height="@dimen/_70sdp"
                     android:layout_marginStart="@dimen/_70sdp"
                     android:background="@color/background"

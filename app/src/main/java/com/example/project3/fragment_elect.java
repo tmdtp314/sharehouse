@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,12 +41,17 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import at.grabner.circleprogress.CircleProgressView;
+import soup.neumorphism.NeumorphCardView;
 
 
 public class fragment_elect extends Fragment {
@@ -52,28 +59,35 @@ public class fragment_elect extends Fragment {
     private FragmentPagerAdapter fragmentPagerAdapter;
     View frag_grap1_2;
     ViewPager viewPager;
+    private String room;
+    NeumorphCardView reload;
+    LottieAnimationView lottie_reload;
+    TextView tv1, room_col;
     TabLayout tabLayout;
     Fragment frame_2;
     //CircleProgressView circle;
     PieChart pieChart;
-
+    private String result;
     RequestQueue requestQueue;
     StringRequest stringRequest;
     Button btn_new;
 
     ArrayList<String> data2 = new ArrayList<>();
 
-    public static fragment_elect newInstance() {
-        fragment_elect fragment_elect = new fragment_elect();
 
-
-        return fragment_elect;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+room=getArguments().getStringArrayList("data").get(2);
 
+
+
+
+
+        adapter = new MyPagerAdapter(getChildFragmentManager(),room);
+        adapter.addItem(new fragment_graph1());
+        adapter.addItem(new fragment_graph2());
 
         View fragment = inflater.inflate(R.layout.fragment_elect, container, false);
 
@@ -83,18 +97,32 @@ public class fragment_elect extends Fragment {
 
         viewPager.setOffscreenPageLimit(2);
 
-         adapter = new MyPagerAdapter((getChildFragmentManager()));
+
+        Toast.makeText(getContext(), room, Toast.LENGTH_SHORT).show();
+
+        tv1 = fragment.findViewById(R.id.date);
+        result = "";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("M월 dd일");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+
+        result = sdf.format(timestamp);
+        tv1.setText(result);
+
+        reload = fragment.findViewById(R.id.reload);
+        reload.bringToFront();
+
+        room_col = fragment.findViewById(R.id.room_col);
+        room_col.setBackgroundColor(Color.parseColor("#C2FFF8"));
 
 
-        // ViewPage 바꿔줄 그래프 Fragment ( Fragment_Grap1_1, Fragment_Grap1_2)
-        adapter.addItem(new fragment_graph1());
-        adapter.addItem(new fragment_graph2());
 
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
+        // ViewPage 바꿔줄 그래프 Fragment ( Fragment_Grap1_1, Fragment_Grap1_2)
 
 
         pieChart = fragment.findViewById(R.id.pieChart);
@@ -140,7 +168,7 @@ public class fragment_elect extends Fragment {
 
                     pieChart.animateY(1000, Easing.EaseInCubic);
 
-                    PieDataSet dataSet = new PieDataSet(yValues, "   '방 별 사용현황'");
+                    PieDataSet dataSet = new PieDataSet(yValues, " '방 별 누적 사용현황'");
                     dataSet.setSliceSpace(1f);
                     dataSet.setSelectionShift(5f);
 
@@ -189,38 +217,35 @@ public class fragment_elect extends Fragment {
                 return data;
             }
         };//여기까지가 생성자 호출
-//        //1.첫번째 매개변수, Method(get?post?service)
-//        //2번째 매개변수:url
-//        //3번째 매개변수: 응답을 감지하는 리스너
-//        //4번째 매개변수 : 에러 감지하는 리스너
-//
-//
-//        //태그 달아주기
 
-//        btn_new.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                stringRequest.setTag("MAIN");
-//                requestQueue.add(stringRequest);
-//            }
-//        });
 
-        //   data2 = getArguments().getStringArrayList("data2");
         stringRequest.setTag("MAIN");
         requestQueue.add(stringRequest);
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+           //     Toast.makeText(getContext(), "들어오나", Toast.LENGTH_SHORT).show();
+                requestQueue.add(stringRequest);
+            }
+        });
+
         return fragment;
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {
 
         ArrayList<Fragment> items = new ArrayList<Fragment>();
+     String room;
 
-        public MyPagerAdapter(@NonNull FragmentManager fm) {
-
+        public MyPagerAdapter(@NonNull FragmentManager fm,String room) {
             super(fm);
+            this.room = room;
+           // Toast.makeText(getContext(), "어댑터 안"+arg, Toast.LENGTH_SHORT).show();
         }
 
+
         public void addItem(Fragment item) {
+
             items.add(item);
         }
 
@@ -228,9 +253,15 @@ public class fragment_elect extends Fragment {
         @Override
         public Fragment getItem(int position) {
 
-            if(position==0){return new fragment_graph1();}
-            else if(position==1){}
-            return items.get(position);
+            if (position == 0) {
+                fragment_graph1 fr = (fragment_graph1) items.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("room",room);
+                fr.setArguments(bundle);
+                return fr;
+            } else  {
+
+            return items.get(position);}
         }
 
         @Override
@@ -238,8 +269,5 @@ public class fragment_elect extends Fragment {
             return items.size();
         }
     }
-public void refresh(){
-        adapter.notifyDataSetChanged();//이것은 원그래프 갱신누를 때,,,,쓰기.
 
-}
 }

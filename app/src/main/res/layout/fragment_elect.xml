@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment_elect">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <FrameLayout
             android:id="@+id/frag_graph2"
@@ -19,92 +20,119 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-<soup.neumorphism.NeumorphCardView
-    android:background="@color/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:neumorph_shadowColorLight="@color/light_shadow"
-    app:neumorph_shadowColorDark="@color/dark_shadow"
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
 
-    app:neumorph_shapeType="flat"
-    app:neumorph_shadowElevation="@dimen/_7sdp"
+                app:neumorph_shadowElevation="@dimen/_7sdp"
+                app:neumorph_shapeType="flat"
 
-    >
-<!--<at.grabner.circleprogress.CircleProgressView-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:id="@+id/circle_graph"-->
-<!--    android:padding="10dp"-->
-<!--   android:layout_margin="30dp"-->
-<!--    android:layout_gravity="left"-->
-<!--    app:cpv_barColor="@color/primary"-->
+                >
 
+                <soup.neumorphism.NeumorphCardView
+                    android:id="@+id/reload"
 
-<!--    app:cpv_barWidth="20dp"-->
-<!--    app:cpv_outerContourSize="0dp"-->
-<!--    app:cpv_rimWidth="20dp"-->
-<!--    app:cpv_showUnit="true"-->
-<!--    app:cpv_textColor="@color/black"-->
-<!--    app:cpv_textScale="1"-->
-<!--    app:cpv_autoTextSize="true"-->
-<!--    app:cpv_innerContourSize="0dp"-->
-<!--    app:cpv_rimColor="@color/dark_shadow"-->
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom|right"
 
-<!--    app:cpv_seekMode="false"-->
-<!--    app:cpv_maxValue="100"-->
-<!--    ></at.grabner.circleprogress.CircleProgressView>-->
-    <soup.neumorphism.NeumorphCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:neumorph_shadowColorDark="@color/dark_shadow"
-        app:neumorph_shadowColorLight="@color/light_shadow"
-        android:background="@color/background"
-        >
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/background"
+                    android:outlineAmbientShadowColor="@color/dark_shadow">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_margin="@dimen/_3sdp"
-            android:padding="@dimen/_5sdp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold"
-            android:text="2월"/>
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie_reload"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="reload.json"
+                        app:lottie_loop="true" />
 
-    </soup.neumorphism.NeumorphCardView>
-    <soup.neumorphism.NeumorphCardView
-        android:layout_marginLeft="265dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:neumorph_shadowColorDark="@color/dark_shadow"
-        app:neumorph_shadowColorLight="@color/light_shadow"
-        android:background="@color/background"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_margin="@dimen/_3sdp"
-            android:padding="@dimen/_2sdp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold"
-            android:text="room A"/>
-
-    </soup.neumorphism.NeumorphCardView>
+                </soup.neumorphism.NeumorphCardView>
+                <!--<at.grabner.circleprogress.CircleProgressView-->
+                <!--    android:layout_width="match_parent"-->
+                <!--    android:layout_height="match_parent"-->
+                <!--    android:id="@+id/circle_graph"-->
+                <!--    android:padding="10dp"-->
+                <!--   android:layout_margin="30dp"-->
+                <!--    android:layout_gravity="left"-->
+                <!--    app:cpv_barColor="@color/primary"-->
 
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:layout_marginTop="@dimen/_5sdp"
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+                <!--    app:cpv_barWidth="20dp"-->
+                <!--    app:cpv_outerContourSize="0dp"-->
+                <!--    app:cpv_rimWidth="20dp"-->
+                <!--    app:cpv_showUnit="true"-->
+                <!--    app:cpv_textColor="@color/black"-->
+                <!--    app:cpv_textScale="1"-->
+                <!--    app:cpv_autoTextSize="true"-->
+                <!--    app:cpv_innerContourSize="0dp"-->
+                <!--    app:cpv_rimColor="@color/dark_shadow"-->
+
+                <!--    app:cpv_seekMode="false"-->
+                <!--    app:cpv_maxValue="100"-->
+                <!--    ></at.grabner.circleprogress.CircleProgressView>-->
+                <soup.neumorphism.NeumorphCardView
+                    android:id="@+id/test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    app:neumorph_shadowColorDark="@color/dark_shadow"
+                    app:neumorph_shadowColorLight="@color/light_shadow">
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:text="2월"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                </soup.neumorphism.NeumorphCardView>
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="265dp"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@color/background"
+                    app:neumorph_shadowColorDark="@color/dark_shadow"
+                    app:neumorph_shadowColorLight="@color/light_shadow">
+
+                    <TextView
+
+                        android:id="@+id/room_col"
+                        android:layout_width="90dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="@dimen/_3sdp"
+android:paddingLeft="@dimen/_7sdp"
+                        android:text="room A"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
 
 
-       />
+                </soup.neumorphism.NeumorphCardView>
 
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
 
-</soup.neumorphism.NeumorphCardView>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
 
+
+                    />
+
+
+            </soup.neumorphism.NeumorphCardView>
 
 
         </FrameLayout>

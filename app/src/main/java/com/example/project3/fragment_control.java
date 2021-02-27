@@ -40,6 +40,7 @@ import soup.neumorphism.NeumorphCardView;
 public class fragment_control extends Fragment {
 
 
+    fragment_elect fr_elct;
     private int gaesu;
     private String room;
     //***************
@@ -77,19 +78,14 @@ public class fragment_control extends Fragment {
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         int temp = 6;
-        room = "a";
+       // room = "a";//room = getArguments().getString("room");
         tvAll = fragment.findViewById(R.id.tvAll);
         lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
         lottie_All = fragment.findViewById(R.id.lottie_all);
         allOffBtn = fragment.findViewById(R.id.allOff);
-        roomID = getArguments().getString("room");
+        room = getArguments().getString("room");
+        Toast.makeText(getContext(),room,Toast.LENGTH_SHORT).show();
         tvAll.bringToFront();
-
-//        l1=fragment.findViewById(lottieID[0]);
-//        l2=fragment.findViewById(lottieID[1]);
-//        l3=fragment.findViewById(lottieID[2]);
-//        l4=fragment.findViewById(lottieID[3]);
-//        l5=fragment.findViewById(lottieID[4]);
 
         lottie_allOff.setMinAndMaxProgress(0.5f, 0.5f);
         lottie_allOff.playAnimation();
@@ -232,7 +228,7 @@ public class fragment_control extends Fragment {
 //
                     if (responses[1].equals("on")) {
 
-                        imgView.setColorFilter(Color.parseColor("#2D7DF6"));
+                        imgView.setColorFilter(Color.parseColor("#0368FF"));
                         lottieView.setMinAndMaxProgress(0.0f, 1.0f);
                         lottieView.playAnimation();
                         lottieView.setVisibility(View.VISIBLE);
@@ -346,10 +342,7 @@ public class fragment_control extends Fragment {
             allOffBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     requestQueue.add(stringRequest3);
-
-
                 }
             });
 

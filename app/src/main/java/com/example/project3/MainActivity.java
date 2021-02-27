@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         login_img=findViewById(R.id.login_img);
         requestQueue = Volley.newRequestQueue(this);
         String url="http://172.30.1.49:8083/LoginServer/AllSelectServlet";
-
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -66,17 +65,17 @@ public class MainActivity extends AppCompatActivity {
                     tel = array.getJSONObject(0).getString("tel");
                     Toast.makeText(MainActivity.this, name + "넘어오니?", Toast.LENGTH_SHORT).show();
                     room = array.getJSONObject(0).getString("room");
-                    count1 = array.getJSONObject(0).getString("count1");
-                    count2 = array.getJSONObject(0).getString("count2");
-                    count3 = array.getJSONObject(0).getString("count3");
+//                    count1 = array.getJSONObject(0).getString("count1");
+//                    count2 = array.getJSONObject(0).getString("count2");
+//                    count3 = array.getJSONObject(0).getString("count3");
 
                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                     intent.putExtra("name", name);
                     intent.putExtra("tel", tel);
                     intent.putExtra("room", room);
-                    intent.putExtra("count1", count1);
-                    intent.putExtra("count2", count2);
-                    intent.putExtra("count3", count3);
+//                    intent.putExtra("count1", count1);
+//                    intent.putExtra("count2", count2);
+//                    intent.putExtra("count3", count3);
                     startActivity(intent);
                     finish();
                 } catch (JSONException | UnsupportedEncodingException e) {

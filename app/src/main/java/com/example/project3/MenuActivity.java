@@ -1,13 +1,10 @@
 package com.example.project3;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,6 +16,9 @@ public class MenuActivity extends AppCompatActivity {
     fragment_mypage frag_mypage;
     fragment_control frag_control;
     fragment_elect frag_elec;
+
+    fragment_graph1 fragment_graph1;
+    fragment_graph2 fragment_graph2;
 
     String room;
     ArrayList<String> data = new ArrayList<>(3); // fragment1 유저정보를 띄워줄 데이터 저장 list (name, tel, room)
@@ -62,25 +62,23 @@ public class MenuActivity extends AppCompatActivity {
         data.add(getIntent().getStringExtra("name"));
         data.add(getIntent().getStringExtra("tel"));
         data.add(getIntent().getStringExtra("room"));
+      //  room = data.get(2);
 
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("data",data);
         frag_mypage.setArguments(bundle);
+        frag_elec.setArguments(bundle);
+
 
         // frag2 기기제어에 갈 data저장 (room)
         room = data.get(2);
-        Bundle bundle2 = new Bundle();
-        bundle2.putString("room",room);
-        frag_control.setArguments(bundle2);
 
-        // frag3 전력량에 갈 data저장 (count1, count2, count3)
-        data2.add(getIntent().getStringExtra("count1"));
-        data2.add(getIntent().getStringExtra("count2"));
-        data2.add(getIntent().getStringExtra("count3"));
 
-        Bundle bundle3 = new Bundle();
-        bundle3.putStringArrayList("data2",data2);
-        frag_elec.setArguments(bundle3);
+        Bundle bundle_control = new Bundle();
+        bundle_control.putString("room",room);
+        frag_control.setArguments(bundle_control);
+
+
 
 
     }
