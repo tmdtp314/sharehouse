@@ -106,7 +106,6 @@ VS=fragment.findViewById(R.id.VS);
                             break;
                     }
 
-                    Toast.makeText(getContext(), (array.getJSONObject(4).getString("use")) + "graph1", Toast.LENGTH_SHORT).show();
                     BarData data = new BarData(dayname[0], Float.parseFloat(array.getJSONObject(6).getString("use")), array.getJSONObject(6).getString("use") + "wh");
                     dataList.add(data);
 

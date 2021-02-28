@@ -19,18 +19,32 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
+import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.ValueLinePoint;
+import org.eazegraph.lib.models.ValueLineSeries;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,10 +56,10 @@ import static com.github.mikephil.charting.utils.ColorTemplate.LIBERTY_COLORS;
 
 public class fragment_graph2 extends Fragment {
     private String roomID;
-    BarChart barChart;
+    ValueLineChart mCubicValueLineChart;
+    RadarChart radarChart;
     StringRequest stringRequest;
     RequestQueue requestQueue;
-    String[] dayname;
 
 
     @Override
@@ -54,8 +68,8 @@ public class fragment_graph2 extends Fragment {
         //  roomID=getArguments().getString("room_graph2");
         View fragment = inflater.inflate(R.layout.fragment_graph2, container, false);
         requestQueue = Volley.newRequestQueue(getContext());
-        barChart = fragment.findViewById(R.id.barChart);
-        String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
+        String url = "http://172.30.1.49:8083/LoginServer/graph2Servlet";
+        mCubicValueLineChart = (ValueLineChart) fragment.findViewById(R.id.cubiclinechart);
 
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -63,74 +77,33 @@ public class fragment_graph2 extends Fragment {
 
                 JSONArray array = null;
                 try {
-
                     array = new JSONArray(response);
-                    barChart.setDrawBarShadow(false);
-                    barChart.setDrawValueAboveBar(true);
-                    // barChart.setMaxVisibleValueCount();
-                    barChart.setPinchZoom(false);
-                    barChart.setDrawGridBackground(true);
-//                    String before2 = array.getJSONObject(0).getString("use");
+                    ValueLineSeries series = new ValueLineSeries();
+                    series.setColor(0xFF56B7F1);
 
-                    ArrayList<BarEntry> barEntryArrayList;
+                    for (int k = 0; k < 24; k++) {
 
+                        for (int i = 0; i < array.length(); i++) {
+                            String[] time_ = new String[array.length()];
+                            time_[i] = array.getJSONObject(i).getString("value_time");
+                            if (k == Integer.parseInt(time_[i])) {
+                                series.addPoint(new ValueLinePoint(time_[i] + "시", Integer.parseInt(array.getJSONObject(i).getString("value_num"))));
+                            } else {
+                                series.addPoint(new ValueLinePoint(k + "시", 0));
+                            }
 
-                    Toast.makeText(getContext(), "graph2" + array.getJSONObject(0).getString("use"), Toast.LENGTH_SHORT).show();
-                    barEntryArrayList = new ArrayList<>();
-                    barEntryArrayList.add(new BarEntry(1, Float.parseFloat(array.getJSONObject(0).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(2, Float.parseFloat(array.getJSONObject(1).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(3, Float.parseFloat(array.getJSONObject(2).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(4, Float.parseFloat(array.getJSONObject(3).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(5, Float.parseFloat(array.getJSONObject(4).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(6, Float.parseFloat(array.getJSONObject(5).getString("use"))));
-                    barEntryArrayList.add(new BarEntry(7, 27f));
-
-
-                    BarDataSet barDataSet = new BarDataSet(barEntryArrayList, "Data set1");
-                    barDataSet.setColor(Color.parseColor("#2D7DF6"));
-                    BarData data = new BarData(barDataSet);
-                    data.setBarWidth(0.8f);
-                    barChart.setData(data);
-
-                    String result = "";
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    SimpleDateFormat sdf = new SimpleDateFormat("EEE");
-                    sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-                    result = sdf.format(timestamp);
-
-                    switch (result) {
-                        case "Mon":
-                            dayname = new String[]{"화", "수", "목", "금", "토", "일", "오늘"};
-                            break;
-                        case "Tue":
-                            dayname = new String[]{"수", "목", "금", "토", "일", "월", "오늘"};
-                            break;
-                        case "Wed":
-                            dayname = new String[]{"목", "금", "토", "일", "월", "화", "오늘"};
-                            break;
-                        case "Thu":
-                            dayname = new String[]{"금", "토", "일", "월", "화", "수", "오늘"};
-                            break;
-                        case "Fri":
-                            dayname = new String[]{"토", "일", "월", "화", "수", "목", "오늘"};
-                            break;
-                        case "Sat":
-                            dayname = new String[]{"일", "월", "화", "수", "목", "금", "오늘"};
-                            break;
-                        case "Sun":
-                            dayname = new String[]{"월", "화", "수", "목", "금", "토", "오늘"};
-                            break;
+                        }
                     }
 
-                    XAxis xAxis = barChart.getXAxis();
-                    xAxis.setValueFormatter(new MyXAxisValueFormatter(dayname));
-                    xAxis.setPosition(XAxis.XAxisPosition.TOP);
-                    xAxis.setAxisMinimum(1);
-                    xAxis.setCenterAxisLabels(true);
-                    xAxis.setGranularity(1);
+
+                    mCubicValueLineChart.addSeries(series);
+                    mCubicValueLineChart.startAnimation();
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -144,7 +117,7 @@ public class fragment_graph2 extends Fragment {
                 Map<String, String> data = new HashMap<>();
 
                 roomID = "a";
-                data.put("id", roomID); //roomID
+                data.put("roomId", roomID); //roomID
                 return data;
             }
         };
@@ -154,17 +127,5 @@ public class fragment_graph2 extends Fragment {
         return fragment;
     }
 
-    public class MyXAxisValueFormatter extends IndexAxisValueFormatter {
 
-        private String[] mValues;
-
-        public MyXAxisValueFormatter(String[] values) {
-            this.mValues = values;
-        }
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-            return mValues[(int) value];
-        }
-    }
 }
