@@ -13,27 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/linear1"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:layout_constraintTop_toTopOf="@+id/full">-->
+        <TextView
+            android:id="@+id/preVS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="30dp"
+            android:text="지난 주 대비 "
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <soup.neumorphism.NeumorphTextView
+            android:id="@+id/VS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="30dp"
+            android:text="23%🔻"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/preVS"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!--                <TextView-->
-        <!--                    android:elevation="@dimen/_8sdp"-->
-        <!--                    android:textStyle="bold"-->
-
-        <!--                    android:layout_marginLeft="@dimen/_20sdp"-->
-        <!--                    android:layout_marginTop="@dimen/_10sdp"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="월 별 전력 사용량 비율"-->
-        <!--                    android:textSize="@dimen/_14sdp"/>-->
-
-
-        <!--        </LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="350dp"
@@ -41,16 +44,6 @@
 
             app:layout_constraintTop_toTopOf="@+id/full">
 
-
-            <!--            <soup.neumorphism.NeumorphCardView-->
-            <!--                android:padding="@dimen/_5sdp"-->
-            <!--                android:layout_width="380dp"-->
-            <!--                android:layout_height="340dp"-->
-            <!--                app:neumorph_shapeType="flat"-->
-            <!--                android:layout_margin="@dimen/_5sdp"-->
-            <!--                android:layout_marginTop="0dp"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" -->
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -68,57 +61,85 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-
+                    android:layout_marginBottom="30dp"
                     android:gravity="center"
                     app:hdBarCanBeClick="true"
                     app:hdBarCanBeToggle="true"
-                    app:hdBarHeight="170dp"
-                    app:hdBarRadius="10dp"
+                    app:hdBarHeight="165dp"
+                    app:hdBarRadius="5dp"
                     app:hdBarTitleColor="@color/bar_title_color"
-                    app:hdBarTitleMarginTop="9dp"
+                    app:hdBarTitleMarginTop="4dp"
                     app:hdBarTitleSelectedColor="@color/white"
-                    app:hdBarTitleTxtSize="15sp"
-                    app:hdBarWidth="@dimen/_20sdp"
-                    app:hdEmptyColor="@color/progress_disable"
-                    app:hdMaxValue="100"
+                    app:hdBarTitleTxtSize="16sp"
+                    app:hdBarWidth="@dimen/_15sdp"
+                    app:hdEmptyColor="@color/background"
+                    app:hdMaxValue="80"
                     app:hdPinBackgroundColor="@color/pin_background"
                     app:hdPinDrawable="@drawable/ic_pin"
                     app:hdPinMarginBottom="20dp"
-                    app:hdPinMarginEnd="30dp"
+                    app:hdPinMarginEnd="10dp"
                     app:hdPinPaddingBottom="5dp"
                     app:hdPinTextColor="@color/progress_disable"
                     app:hdPinTxtSize="16sp"
                     app:hdProgressClickColor="@color/progress_click"
                     app:hdProgressColor="@color/primary"
-                    app:hdProgressDisableColor="@color/progress_disable" />
+                    app:hdProgressDisableColor="#30B68E" />
 
 
                 <soup.neumorphism.NeumorphCardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_gravity="bottom"
                     app:neumorph_shadowColorDark="@color/dark_shadow"
                     app:neumorph_shadowColorLight="@color/light_shadow">
 
-                    <TextView
-                        android:id="@+id/tv_bundle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="room"
-                        android:textColor="#E4EBF5"
-                        />
-
-/>
 
                     <TextView
-                        android:id="@+id/tv_month"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_margin="@dimen/_3sdp"
-                        android:text="개인 전력 사용량비율(%)"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="오늘 "
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
+
+                    <soup.neumorphism.NeumorphTextView
+                        android:id="@+id/tv_today"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="8dp"
+                        android:text="23wh"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="@dimen/_29sdp"
+                        android:text="일일 평균"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <soup.neumorphism.NeumorphTextView
+                        android:id="@+id/tv_avg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="105dp"
+                        android:layout_marginTop="37dp"
+                        android:text="23wh"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
                 </soup.neumorphism.NeumorphCardView>
 
             </soup.neumorphism.NeumorphCardView>

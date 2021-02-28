@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,19 +28,23 @@ import org.json.JSONException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
+import soup.neumorphism.NeumorphTextView;
+
 public class fragment_graph1 extends Fragment {
     ChartProgressBar mChart;
+    NeumorphTextView VS;
     RequestQueue requestQueue;
+    TextView tv_today,tv_avg;
     StringRequest stringRequest;
     String result;
-
+    String[] dayname;
     String roomID;
-
-
 
 
     @Override
@@ -50,11 +55,14 @@ public class fragment_graph1 extends Fragment {
 
         Toast.makeText(getContext(), roomID, Toast.LENGTH_SHORT).show();
         requestQueue = Volley.newRequestQueue(getContext()); //현재 페이지 정보 보내주는것
-        String url = "http://172.30.1.49:8083/LoginServer/graph1Servlet";
 
+        String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
 
-roomID=getArguments().getString("room");
-        Toast.makeText(getContext(), roomID+" graph1", Toast.LENGTH_SHORT).show();
+tv_avg=fragment.findViewById(R.id.tv_avg);
+tv_today=fragment.findViewById(R.id.tv_today);
+VS=fragment.findViewById(R.id.VS);
+        roomID = getArguments().getString("room");
+
 
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -63,31 +71,61 @@ roomID=getArguments().getString("room");
                 JSONArray array = null;
                 try {
                     array = new JSONArray(response);
-                    String month = array.getJSONObject(0).getString("month");
-
 
                     ArrayList<BarData> dataList = new ArrayList<>();
 
                     result = "";
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     SimpleDateFormat sdf = new SimpleDateFormat("EEE");
+
                     sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-
                     result = sdf.format(timestamp);
-                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-                    BarData data = new BarData("1월", Float.parseFloat(array.getJSONObject(0).getString("mon_per")), array.getJSONObject(0).getString("mon_per") + "%");
+
+
+                    switch (result) {
+                        case "Mon":
+                            dayname = new String[]{"화", "수", "목", "금", "토", "일", "오늘"};
+                            break;
+                        case "Tue":
+                            dayname = new String[]{"수", "목", "금", "토", "일", "월", "오늘"};
+                            break;
+                        case "Wed":
+                            dayname = new String[]{"목", "금", "토", "일", "월", "화", "오늘"};
+                            break;
+                        case "Thu":
+                            dayname = new String[]{"금", "토", "일", "월", "화", "수", "오늘"};
+                            break;
+                        case "Fri":
+                            dayname = new String[]{"토", "일", "월", "화", "수", "목", "오늘"};
+                            break;
+                        case "Sat":
+                            dayname = new String[]{"일", "월", "화", "수", "목", "금", "오늘"};
+                            break;
+                        case "Sun":
+                            dayname = new String[]{"월", "화", "수", "목", "금", "토", "오늘"};
+                            break;
+                    }
+
+                    Toast.makeText(getContext(), (array.getJSONObject(4).getString("use")) + "graph1", Toast.LENGTH_SHORT).show();
+                    BarData data = new BarData(dayname[0], Float.parseFloat(array.getJSONObject(6).getString("use")), array.getJSONObject(6).getString("use") + "wh");
                     dataList.add(data);
 
-                    data = new BarData("2월", Float.parseFloat(array.getJSONObject(1).getString("mon_per")), array.getJSONObject(1).getString("mon_per") + "%");
+                    data = new BarData(dayname[1], Float.parseFloat(array.getJSONObject(5).getString("use")), array.getJSONObject(5).getString("use") + "wh");
                     dataList.add(data);
 
-                    data = new BarData("3월", Float.parseFloat(array.getJSONObject(2).getString("mon_per")), array.getJSONObject(2).getString("mon_per") + "%");
+                    data = new BarData(dayname[2], Float.parseFloat(array.getJSONObject(4).getString("use")), array.getJSONObject(4).getString("use") + "wh");
                     dataList.add(data);
 
-                    data = new BarData("4월", Float.parseFloat(array.getJSONObject(3).getString("mon_per")), array.getJSONObject(3).getString("mon_per") + "%");
+                    data = new BarData(dayname[3], Float.parseFloat(array.getJSONObject(3).getString("use")), array.getJSONObject(3).getString("use") + "wh");
                     dataList.add(data);
 
-                    data = new BarData("5월", Float.parseFloat(array.getJSONObject(4).getString("mon_per")), array.getJSONObject(4).getString("mon_per") + "%");
+                    data = new BarData(dayname[4], Float.parseFloat(array.getJSONObject(2).getString("use")), array.getJSONObject(2).getString("use") + "wh");
+                    dataList.add(data);
+
+                    data = new BarData(dayname[5], Float.parseFloat(array.getJSONObject(1).getString("use")), array.getJSONObject(1).getString("use") + "wh");
+                    dataList.add(data);
+
+                    data = new BarData("오늘",Float.parseFloat(array.getJSONObject(0).getString("use")),array.getJSONObject(0).getString("use") + "wh");
                     dataList.add(data);
 
 
@@ -98,6 +136,25 @@ roomID=getArguments().getString("room");
 
                     mChart.disableBar(dataList.size() - 1);
 
+
+                    tv_today.setText(array.getJSONObject(0).getString("use")+"wh");
+                    float sum=0;
+                    for(int i=0;i<7;i++){
+                       sum+= Float.parseFloat(array.getJSONObject(i).getString("use"));
+                    }
+                   String sum_=String.format("%.2f",sum/7);
+                    tv_avg.setText(sum_+" wh");
+
+                    float lastWeek=0;
+                    for(int i=7;i<14;i++){
+                        lastWeek+= Float.parseFloat(array.getJSONObject(i).getString("use"));
+                    }
+                    Toast.makeText(getContext(),String.valueOf(lastWeek),Toast.LENGTH_SHORT).show();
+                    float result= ((sum - lastWeek) / sum) ;
+                    if(result>0)
+                        VS.setText(String.format("%.2f",result*100)+"% 🔺");
+                    else
+                        VS.setTag(String.format("%.2f",result*100)+"% 🔻");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -122,13 +179,12 @@ roomID=getArguments().getString("room");
                 Map<String, String> data = new HashMap<>();
 
 
-                data.put("room", roomID); //roomID
+                data.put("id", roomID); //roomID
 
                 return data;
             }
         };
-
-        requestQueue.add(stringRequest);
+requestQueue.add(stringRequest);
         return fragment;
     }
 }
