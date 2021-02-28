@@ -52,7 +52,7 @@ public class fragment_graph1 extends Fragment {
                              Bundle savedInstanceState) {
         View fragment = inflater.inflate(R.layout.fragment_graph1, container, false);
 
-
+        roomID = getArguments().getString("room");
         Toast.makeText(getContext(), roomID, Toast.LENGTH_SHORT).show();
         requestQueue = Volley.newRequestQueue(getContext()); //현재 페이지 정보 보내주는것
 
@@ -61,7 +61,7 @@ public class fragment_graph1 extends Fragment {
 tv_avg=fragment.findViewById(R.id.tv_avg);
 tv_today=fragment.findViewById(R.id.tv_today);
 VS=fragment.findViewById(R.id.VS);
-        roomID = getArguments().getString("room");
+
 
 
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

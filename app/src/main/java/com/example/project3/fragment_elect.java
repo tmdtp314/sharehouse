@@ -259,9 +259,14 @@ room=getArguments().getStringArrayList("data").get(2);
                 bundle.putString("room",room);
                 fr.setArguments(bundle);
                 return fr;
-            } else  {
-
-            return items.get(position);}
+            } else if(position==1) {
+                fragment_graph2 fr2 = (fragment_graph2) items.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("room",room);
+                fr2.setArguments(bundle);
+                return fr2;
+            }
+            return items.get(position);
         }
 
         @Override

@@ -70,7 +70,7 @@ public class fragment_graph2 extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
         String url = "http://172.30.1.49:8083/LoginServer/graph2Servlet";
         mCubicValueLineChart = (ValueLineChart) fragment.findViewById(R.id.cubiclinechart);
-
+        roomID = getArguments().getString("room");
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -116,7 +116,7 @@ public class fragment_graph2 extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
 
-                roomID = "a";
+
                 data.put("roomId", roomID); //roomID
                 return data;
             }
