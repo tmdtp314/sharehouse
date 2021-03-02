@@ -42,17 +42,9 @@ public class fragment_mypage extends Fragment {
         user_room.setText(getArguments().getStringArrayList("data").get(2));
         user_tel = getArguments().getStringArrayList("data").get(1);
 
-
         settingAlarm=fragment.findViewById(R.id.settingAlarm);
         btn_start2 = fragment.findViewById(R.id.btn_start2);
         btn_stop2 = fragment.findViewById(R.id.btn_stop2);
-
-
-
-
-
-
-
 
         btn_start2.setOnClickListener(new View.OnClickListener() {
             @Override

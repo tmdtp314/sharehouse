@@ -22,4 +22,12 @@
     <color name="bar_title_color">#000000</color>
     <color name="bar_title_txt_selected_color">#eaa</color>
     <color name="progress_disable">@android:color/darker_gray</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="gradientStartColor">#BF4A4DD0</color>
+    <color name="gradientEndColor">#ADC34DD0</color>
+    <color name="gradientStartColor2">#A9304FFE</color>
+    <color name="gradientEndColor2">#DA1976D2</color>
 </resources>

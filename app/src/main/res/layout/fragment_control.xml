@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/roomback"
+    android:background="@drawable/controlbackground"
     tools:context=".fragment_control">
 
     <LinearLayout
         android:id="@+id/controlWelcome"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="85dp"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
 
-               android:background="@drawable/transparenttitle"
-        android:elevation="10dp"
+        android:background="@drawable/transparenttitle"
+
         android:foregroundGravity="center_vertical|center|center_horizontal"
 
         app:layout_constraintTop_toTopOf="parent">
@@ -25,11 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_15sdp"
-
-
             android:layout_marginEnd="@dimen/_15sdp"
-
-            android:elevation="30dp"
             android:gravity="center|center_horizontal|center_vertical"
             android:text="Control"
             android:textColor="@color/white"
@@ -41,10 +37,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
 
-        android:layout_marginTop="90dp">
+        android:padding="@dimen/_5sdp">
 
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -56,7 +52,7 @@
             app:constraint_referenced_ids="display,bulb,plug1,plug2,plug3,lock"
             app:flow_horizontalGap="@dimen/_3sdp"
             app:flow_maxElementsWrap="2"
-            app:flow_verticalGap="@dimen/_3sdp"
+            app:flow_verticalGap="@dimen/_2sdp"
             app:flow_wrapMode="aligned"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +65,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,7 +135,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard"
             tools:ignore="MissingConstraints">
 
@@ -176,6 +172,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_bulb"
                     android:layout_width="40dp"
@@ -198,7 +195,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard"
             tools:ignore="MissingConstraints">
 
@@ -233,6 +230,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_plug3"
                     android:layout_width="40dp"
@@ -256,7 +254,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard"
             tools:ignore="MissingConstraints">
 
@@ -292,6 +290,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_plug1"
                     android:layout_width="40dp"
@@ -315,7 +314,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard"
             tools:ignore="MissingConstraints">
 
@@ -350,6 +349,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_plug2"
                     android:layout_width="40dp"
@@ -373,7 +373,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard"
             tools:ignore="MissingConstraints">
 
@@ -408,6 +408,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_lock"
                     android:layout_width="40dp"
@@ -447,7 +448,7 @@
             app:neumorph_backgroundColor="@color/background"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
-            app:neumorph_shadowElevation="@dimen/_5sdp"
+            app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout

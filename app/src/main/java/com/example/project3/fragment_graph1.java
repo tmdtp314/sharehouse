@@ -74,7 +74,7 @@ VS=fragment.findViewById(R.id.VS);
 
                     ArrayList<BarData> dataList = new ArrayList<>();
 
-                    result = "";
+                    result = "Tue";
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     SimpleDateFormat sdf = new SimpleDateFormat("EEE");
 

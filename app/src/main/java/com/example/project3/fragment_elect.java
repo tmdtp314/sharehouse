@@ -98,8 +98,6 @@ room=getArguments().getStringArrayList("data").get(2);
         viewPager.setOffscreenPageLimit(2);
 
 
-        Toast.makeText(getContext(), room, Toast.LENGTH_SHORT).show();
-
         tv1 = fragment.findViewById(R.id.date);
         result = "";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -113,7 +111,17 @@ room=getArguments().getStringArrayList("data").get(2);
         reload.bringToFront();
 
         room_col = fragment.findViewById(R.id.room_col);
-        room_col.setBackgroundColor(Color.parseColor("#C2FFF8"));
+        if(room.equals("a")){
+        room_col.setBackgroundColor(Color.parseColor("#C9FFF8"));
+        room_col.setText("room A");}
+        else if(room.equals("b")){
+            room_col.setBackgroundColor(Color.parseColor("#86C7BF"));
+            room_col.setText("room B");
+        }
+        else{
+            room_col.setBackgroundColor(Color.parseColor("#8FA19F"));
+            room_col.setText("room C");
+        }
 
 
 
@@ -137,7 +145,7 @@ room=getArguments().getStringArrayList("data").get(2);
                 //응답 받아오는것
                 //jin성공
                 try {
-                    //여기서 roomID bundle값 받아와서 a면 0, b면 1 c면 2 이런거 해줄예정.
+
                     JSONArray array = new JSONArray(response);
                     String user1 = array.getJSONObject(0).getString("value");
                     String user2 = array.getJSONObject(1).getString("value");
@@ -152,9 +160,9 @@ room=getArguments().getStringArrayList("data").get(2);
 
 
                     ArrayList<PieEntry> yValues = new ArrayList<>();
-                    yValues.add(new PieEntry(Float.parseFloat(user1), "roomA"));
-                    yValues.add(new PieEntry(Float.parseFloat(user2), "roomB"));
-                    yValues.add(new PieEntry(Float.parseFloat(user3), "roomC"));
+                    yValues.add(new PieEntry(Float.parseFloat(user1), "roomA")); //여기다가 기존거 더해주자.
+                    yValues.add(new PieEntry(Float.parseFloat(user2), "roomB")); //여기다가 가데이터 기존 양 더해주기.
+                    yValues.add(new PieEntry(Float.parseFloat(user3), "roomC")); //+ 가데이터
 
 //                    Description description=new Description();
 //                    description.setText("실시간 전력 사용량 : "+user1);
