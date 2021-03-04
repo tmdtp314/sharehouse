@@ -34,10 +34,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
+import ru.vladlin.linechart.LineChart;
 import soup.neumorphism.NeumorphTextView;
 
 public class fragment_graph1 extends Fragment {
-    ChartProgressBar mChart;
+    ChartProgressBar mChart,mChart2,mChart3,mChart4,mChart5,mChart6;
     NeumorphTextView VS;
     RequestQueue requestQueue;
     TextView tv_today,tv_avg;
@@ -63,7 +64,8 @@ tv_today=fragment.findViewById(R.id.tv_today);
 VS=fragment.findViewById(R.id.VS);
 
 
-
+        LineChart lineChart = fragment.findViewById(R.id.linechart);
+        lineChart.setDataChart(new float[] { 9, 6, 15, 2, 12, 9, 14, 6, 12, 8, 13, 10 });
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -16,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
@@ -42,15 +45,27 @@ import org.eazegraph.lib.models.ValueLineSeries;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.TimeZone;
+
+import soup.neumorphism.NeumorphTextView;
+
+import static java.lang.System.currentTimeMillis;
 
 public class fragment_graph2 extends Fragment {
     private String roomID;
-AnimatedProgressBar progressBar2;
-    TextRoundCornerProgressBar progressBar;
+    NeumorphTextView tv_updown,tv_premonth,tv_thismonth,premonth,thismonth;
+    ImageView img_updown;
+    int[] month_temp = new int[28];
+    private int pre_sum;
+
+    TextRoundCornerProgressBar progressBar_VS;
     ValueLineChart mCubicValueLineChart;
     private LineChart mChart;
     StringRequest stringRequest;
@@ -63,121 +78,133 @@ AnimatedProgressBar progressBar2;
 
         View fragment = inflater.inflate(R.layout.fragment_graph2, container, false);
         requestQueue = Volley.newRequestQueue(getContext());
-        String url = "http://172.30.1.49:8083/LoginServer/graph2Servlet";
+
+        String url = "http://172.30.1.49:8083/LoginServer/newgraph2Con";
 
 
 
-        progressBar = fragment.findViewById(R.id.progress_bar_test);
-        progressBar.setProgress(160);
-        progressBar.setMax(200);
-        progressBar.setSecondaryProgress(125);
+        progressBar_VS = fragment.findViewById(R.id.progress_bar_VS);
+        tv_updown=fragment.findViewById(R.id.tv_updown);
+        img_updown=fragment.findViewById(R.id.img_updown);
+        tv_premonth=fragment.findViewById(R.id.tv_premonth);
+        tv_thismonth=fragment.findViewById(R.id.tv_thismonth);
 
-progressBar2=fragment.findViewById(R.id.progressbar2);
-        progressBar2.setMax(100);
-        progressBar2.setProgress(75);
 
-//        progressBar2.setTrackColor(Color.GRAY);
-//        progressBar2.setProgressColor(Color.GREEN);
-//        progressBar2.setProgressTipEnabled(true);
-//        progressBar2.setProgressTipColor(Color.RED);
-//        progressBar2.setAnimDuration(1200);
-//        progressBar2.setProgressStyle(AnimatedProgressBar.ProgressStyle.WAVE);
-//        progressBar2.setLineWidth(dpToPx(5, this).toInt());
 
-        //  mCubicValueLineChart = (ValueLineChart) fragment.findViewById(R.id.cubiclinechart);
-//mChart=fragment.findViewById(R.id.char1);
-//                    mChart.animateX(1000);
-//                    ArrayList<Entry> yVals1 = new ArrayList<>();
-//                    for(int i=0;i<24;i++){
-//                        float val = (float)(Math.random()*60)+150;
-//                        yVals1.add(new Entry(i,val));
-//                    }
-//                    ArrayList<Entry> yVals2 = new ArrayList<>();
-//                    for(int i=0;i<24;i++){
-//                        float val = (float)(Math.random()*60)+100;
-//                        yVals2.add(new Entry(i,val));
-//                    }
-//                    ArrayList<Entry> yVals3 = new ArrayList<>();
-//                    for(int i=0;i<24;i++){
-//                        float val = (float)(Math.random()*60)+50;
-//                        yVals3.add(new Entry(i,val));
-//                    }
-//
-//
-//                    LineDataSet set1,set2,set3;
-//                    set1=new LineDataSet(yVals1,"data set1");
-//                    set1.setColor(Color.RED);
-//
-//                    set1.setCubicIntensity(0.8f);
-//                    set1.setDrawFilled(true);
-//                    set1.setCircleRadius(10f);
-//                    set1.setHighLightColor(Color.parseColor("yellow"));
-//                    set1.setDrawCircles(false);
-//                    set1.setLineWidth(3f);
-//                    set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-//                    //to enable the cubic density : if 1 then it will be sharp curve
-//                    set1.setCubicIntensity(0.2f);
-//                    set1.setFillAlpha(80);
-//                    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.gradiant_blue);
-//                    set1.setFillDrawable(drawable);
-//
-//
-//                    set2=new LineDataSet(yVals2,"data set2");
-//                    set2.setCubicIntensity(0.8f);
-//                    set2.setDrawFilled(true);
-//                    set2.setCircleRadius(10f);
-//                    set2.setHighLightColor(Color.parseColor("yellow"));
-//                    set2.setDrawCircles(false);
-//                    set2.setLineWidth(3f);
-//                    set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-//                    //to enable the cubic density : if 1 then it will be sharp curve
-//                    set2.setCubicIntensity(0.2f);
-//                    set2.setFillAlpha(80);
-//                    Drawable drawable2 = ContextCompat.getDrawable(getContext(), R.drawable.gradiant_purple);
-//                    set1.setFillDrawable(drawable);
-//                    set3 = new LineDataSet(yVals3,"Data Set 3");
-//
-//                    LineData data = new LineData(set2,set3);
-//                    mChart.setData(data);
-//
-//
 
-//            mChart = fragment.findViewById(R.id.char1);
+
         roomID = getArguments().getString("room");
+        Toast.makeText(getContext(),"roomID 들어옴"+roomID,Toast.LENGTH_SHORT).show();
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+
+
                 JSONArray array = null;
+
                 try {
-                    array = new JSONArray(response);
+                    Random rd = new Random();
 
-
-                    ValueLineSeries series = new ValueLineSeries();
-                    series.setColor(0xFF56B7F1);
-
-                    for (int k = 0; k < 24; k++) {
-
-                        for (int i = 0; i < array.length(); i++) {
-                            String[] time_ = new String[array.length()];
-                            time_[i] = array.getJSONObject(i).getString("value_time");
-                            if (k == Integer.parseInt(time_[i])) {
-                                series.addPoint(new ValueLinePoint(time_[i] + "시", Integer.parseInt(array.getJSONObject(i).getString("value_num"))));
-                            } else {
-                                series.addPoint(new ValueLinePoint(k + "시", 0));
-                            }
-
-                        }
+                    for (int i = 0; i < month_temp.length; i++) {
+                        month_temp[i] = (int) rd.nextInt(50);
                     }
 
-//
-//                    mCubicValueLineChart.addSeries(series);
-//                    mCubicValueLineChart.startAnimation();
+
+                    array = new JSONArray(response);
+
+                    int today_value_sum=Integer.parseInt(array.getJSONObject(0).getString("Value"));
+
+                    Toast.makeText(getContext(),"today sum"+array.getJSONObject(0).getString("Value"),Toast.LENGTH_SHORT);
+
+                    java.sql.Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis());
+
+                    SimpleDateFormat sdf = new SimpleDateFormat( "dd");
+                    sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+                    int result=Integer.parseInt(sdf.format(timestamp));
+
+                    pre_sum=0;
+                    for(int i=0;i<result;i++){
+
+                        pre_sum+=month_temp[i];
+                    }
+
+                    Toast.makeText(getContext(),month_temp[0]+"pre_sum",Toast.LENGTH_SHORT).show();
+
+                    if(today_value_sum>pre_sum){ //오늘치가 전월을 초과해버렸을 때
+                        progressBar_VS.setMax(100);
+                        progressBar_VS.setProgress(today_value_sum);
+                        progressBar_VS.setSecondaryProgress(pre_sum);
+
+                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#65CCB9")); //지난 달것 투명처리
+                        progressBar_VS.setProgressColor(Color.parseColor("#FBBC1C"));
+                        progressBar_VS.setProgressText(today_value_sum+"wh");
+
+
+                        tv_premonth.setText(pre_sum+"wh");
+                        tv_thismonth.setText(today_value_sum+"wh");
+                        tv_thismonth.setTextColor(Color.parseColor("#F34D42"));
+
+
+                        int VS=((today_value_sum-pre_sum)/pre_sum)*100;
+                        img_updown.setImageResource(R.drawable.up);
+                        tv_updown.setText(VS+"% 더 쓰는 중");
+                        tv_updown.setTextColor(Color.parseColor("#F34D42"));
+
+
+
+                    } else{ // 저번달 보다 적게 쓰고 있을 때
+
+                        progressBar_VS.setProgress(today_value_sum);
+                        progressBar_VS.setSecondaryProgress(pre_sum);
+                        progressBar_VS.setProgressColor(Color.parseColor("#A4CE6F"));
+                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#D2E2BD"));
+                        progressBar_VS.setMax(100);
+                        progressBar_VS.setProgressText(today_value_sum+"wh");
+
+                        tv_premonth.setText(pre_sum+"wh");
+                        tv_thismonth.setText(today_value_sum+"wh");
+                        tv_thismonth.setTextColor(Color.parseColor("#A4CE6F"));
+
+
+                        float VS=-1*(today_value_sum-pre_sum/pre_sum)*100;
+                        img_updown.setImageResource(R.drawable.down);
+                        tv_updown.setText(VS+"% 덜 쓰는 중");
+                        tv_updown.setTextColor(Color.parseColor("#A1C84F"));
+
+                    }
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+//
+////
+////                    ValueLineSeries series = new ValueLineSeries();
+////                    series.setColor(0xFF56B7F1);
+////
+////                    for (int k = 0; k < 24; k++) {
+////
+////                        for (int i = 0; i < array.length(); i++) {
+////                            String[] time_ = new String[array.length()];
+////                            time_[i] = array.getJSONObject(i).getString("value_time");
+////                            if (k == Integer.parseInt(time_[i])) {
+////                                series.addPoint(new ValueLinePoint(time_[i] + "시", Integer.parseInt(array.getJSONObject(i).getString("value_num"))));
+////                            } else {
+////                                series.addPoint(new ValueLinePoint(k + "시", 0));
+////                            }
+//
+//                        }
+//                    }
+//
+////
+////                    mCubicValueLineChart.addSeries(series);
+////                    mCubicValueLineChart.startAnimation();
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         }, new Response.ErrorListener() {
@@ -196,8 +223,7 @@ progressBar2=fragment.findViewById(R.id.progressbar2);
                 return data;
             }
         };
-        //    requestQueue.add(stringRequest);
-
+           requestQueue.add(stringRequest);
 
         return fragment;
     }

@@ -88,14 +88,15 @@ room=getArguments().getStringArrayList("data").get(2);
         adapter = new MyPagerAdapter(getChildFragmentManager(),room);
         adapter.addItem(new fragment_graph1());
         adapter.addItem(new fragment_graph2());
+        adapter.addItem(new fragment_graph3());
 
         View fragment = inflater.inflate(R.layout.fragment_elect, container, false);
 
-        frag_grap1_2 = fragment.findViewById(R.id.frag_graph2);
+       // frag_grap1_2 = fragment.findViewById(R.id.frag_graph2);
         viewPager = (ViewPager) (fragment.findViewById(R.id.Viewpager));
         tabLayout = fragment.findViewById(R.id.tab_layout);
 
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
 
 
         tv1 = fragment.findViewById(R.id.date);
@@ -164,13 +165,7 @@ room=getArguments().getStringArrayList("data").get(2);
                     yValues.add(new PieEntry(Float.parseFloat(user2), "roomB")); //여기다가 가데이터 기존 양 더해주기.
                     yValues.add(new PieEntry(Float.parseFloat(user3), "roomC")); //+ 가데이터
 
-//                    Description description=new Description();
-//                    description.setText("실시간 전력 사용량 : "+user1);
-//                    description.setTextSize(17);
-//
-//                    description.setTextColor(Color.parseColor("#2D7DF6"));
-//                    pieChart.setDescription(description);
-//pieChart.highlightValue(1,0,false);
+
 
                     pieChart.setHoleRadius(65);
 
@@ -180,7 +175,10 @@ room=getArguments().getStringArrayList("data").get(2);
                     dataSet.setSliceSpace(1f);
                     dataSet.setSelectionShift(5f);
 
-                    dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+
+                    int[] myColors={Color.parseColor("#0085FF"),Color.parseColor("#BEBEBE"),Color.parseColor("#8D8D8D")};
+                    dataSet.setColors(myColors);
+                    dataSet.setHighlightEnabled(true);
                     PieData data = new PieData((dataSet));
                     data.setValueTextSize(14f);
                     data.setValueTextColor(Color.parseColor("black"));
@@ -273,6 +271,12 @@ room=getArguments().getStringArrayList("data").get(2);
                 bundle.putString("room",room);
                 fr2.setArguments(bundle);
                 return fr2;
+            } else if(position==2){
+                fragment_graph3 fr3 = (fragment_graph3) items.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("room",room);
+                fr3.setArguments(bundle);
+                return fr3;
             }
             return items.get(position);
         }

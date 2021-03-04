@@ -27,5 +27,10 @@
         <attr name="hdPinDrawable" format="integer"/>
         <attr name="hdBarTitleSelectedColor" format="color"/>
         <attr name="hdBarCanBeToggle" format="boolean"/>
+        <attr name="lc_lineСolor" format="string" />
+        <attr name="lc_cursorColor" format="string" />
+        <attr name="lc_lineWidth" format="integer" />
+        <attr name="lc_cursorWidth" format="integer" />
+        <attr name="lc_circleRadius" format="integer" />
     </declare-styleable>
 </resources>

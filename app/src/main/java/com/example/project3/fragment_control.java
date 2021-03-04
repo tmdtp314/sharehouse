@@ -54,9 +54,9 @@ public class fragment_control extends Fragment {
 
    LottieAnimationView l1,l2,l3,l4,l5,l6;
 
-    int[] imgID = {R.id.img_display, R.id.img_bulb, R.id.img_plug1, R.id.img_plug2, R.id.img_plug3, R.id.img_lock};
-    int[] cardID = {R.id.display, R.id.bulb, R.id.plug1, R.id.plug2, R.id.plug3, R.id.lock};
-    int[] lottieID = {R.id.lottie_Display, R.id.lottie_bulb, R.id.lottie_plug1, R.id.lottie_plug2, R.id.lottie_plug3, R.id.lottie_lock};
+    int[] imgID = {R.id.img_display, R.id.img_bulb, R.id.img_plug1, R.id.img_lock}; //R.id.img_plug2, R.id.img_plug3,
+    int[] cardID = {R.id.display, R.id.bulb, R.id.plug1, R.id.lock}; // R.id.plug2, R.id.plug3,
+    int[] lottieID = {R.id.lottie_Display, R.id.lottie_bulb, R.id.lottie_plug1, R.id.lottie_lock}; //, R.id.lottie_plug2, R.id.lottie_plug3
 
 
     RequestQueue requestQueue;
@@ -77,7 +77,7 @@ public class fragment_control extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        int temp = 6;
+        int temp = 3;
        // room = "a";//room = getArguments().getString("room");
         tvAll = fragment.findViewById(R.id.tvAll);
         lottie_allOff = fragment.findViewById(R.id.lottie_allOff);
@@ -299,7 +299,7 @@ public class fragment_control extends Fragment {
                 public void onResponse(String response) {
                     int result = Integer.parseInt(response);
                     if (result > 0) {
-                        for (int i = 0; i < 6; i++) {
+                        for (int i = 0; i < 3; i++) {
                             LottieAnimationView lottie = fragment.findViewById(lottieID[i]);
                             NeumorphCardView cardView = fragment.findViewById(cardID[i]);
                             AppCompatImageView img = fragment.findViewById(imgID[i]);

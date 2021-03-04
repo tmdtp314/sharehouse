@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_icon">#212121</color>
+    <color name="teal_300">#B6E9E0</color>
+    <color name="light_blue">#85C4FF</color>
     <color name="primary">#2D7DF6</color>
     <color name="light_shadow">#F8F9FE</color>
     <color name="dark_shadow">#CDD5EA</color>
@@ -25,6 +27,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="Orange">#FFC803</color>
+<color name="less_use_Color_pre">#D2E2BD</color>
+    <color name="less_use_Color_this">#A4CE6F</color>
+    <color name="over_use_Color_this">#FBBC1C</color>
+    <color name="over_use_Color_pre">#00FBBC1C</color>
+
+
 
     <color name="gradientStartColor">#BF4A4DD0</color>
     <color name="gradientEndColor">#ADC34DD0</color>

@@ -12,6 +12,7 @@
         android:layout_height="350dp"
         android:orientation="vertical"
 
+
         app:layout_constraintTop_toTopOf="@+id/full2">
 
         <soup.neumorphism.NeumorphCardView
@@ -26,12 +27,14 @@
             app:neumorph_shadowElevation="@dimen/_6sdp">
 
             <soup.neumorphism.NeumorphCardView
-                android:layout_width="255dp"
+                android:layout_width="180dp"
                 android:layout_height="55dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 app:neumorph_shadowColorDark="@color/dark_shadow"
                 app:neumorph_shadowColorLight="@color/light_shadow"
-                app:neumorph_shadowElevation="3dp">
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeType="basin">
 
 
                 <soup.neumorphism.NeumorphTextView
@@ -39,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="전월 동기간 대비 누적 사용추이"
+                    android:text="전월 동기간 비교"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -66,11 +69,11 @@
 
             <!--            </com.github.mikephil.charting.charts.LineChart>-->
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                android:id="@+id/progress_bar_test"
-                android:layout_width="230dp"
+                android:id="@+id/progress_bar_VS"
+                android:layout_width="300dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="85dp"
                 app:rcAnimationEnable="true"
                 app:rcBackgroundColor="#0A000000"
                 app:rcBackgroundPadding="2dp"
@@ -83,165 +86,73 @@
                 app:rcTextProgress="40"
                 app:rcTextProgressColor="#111111" />
 
-            <soup.neumorphism.NeumorphImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:padding="@dimen/_13sdp"
-                android:src="@drawable/smile"
-                android:layout_marginStart="265dp"
-                android:layout_marginTop="45dp"
-                app:neumorph_shadowColorDark="@color/dark_shadow"
-                app:neumorph_shadowColorLight="@color/light_shadow"
-                app:neumorph_shadowElevation="@dimen/_3sdp" >
+            <ImageView
+                android:id="@+id/img_updown"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="135dp"
+                android:src="@drawable/down" />
 
 
-
-
-
-            </soup.neumorphism.NeumorphImageView>
-
-            <soup.neumorphism.NeumorphTextView
+            <TextView
                 android:id="@+id/preMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="145dp"
                 android:text="전 월 사용량"
-                android:textSize="@dimen/_10sdp"/>
+                android:textSize="@dimen/_13sdp" />
 
 
             <soup.neumorphism.NeumorphTextView
-                android:id="@+id/preMonth2"
-                android:textSize="@dimen/_10sdp"
+                android:id="@+id/tv_premonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:text="25wh / 2000 원"
-                android:layout_marginTop="100dp"
-                android:layout_marginStart="140dp"
-                />
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/nowMonth"
+                android:layout_marginStart="155dp"
+                android:layout_marginTop="145dp"
+                android:text="25wh"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/thisMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="195dp"
                 android:text="이번 달 사용량"
-                android:textSize="@dimen/_10sdp"/>
+
+                android:textSize="@dimen/_13sdp" />
 
 
             <soup.neumorphism.NeumorphTextView
-                android:id="@+id/nowMonth2"
-                android:textSize="@dimen/_10sdp"
+                android:id="@+id/tv_thismonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="25wh / 2000 원"
-                android:layout_marginTop="120dp"
-                android:layout_marginStart="140dp"
-                />
+                android:layout_marginStart="155dp"
+                android:layout_marginTop="195dp"
+                android:text="25wh"
+                android:textSize="@dimen/_13sdp" />
+
             <soup.neumorphism.NeumorphTextView
-                android:id="@+id/updownTxt"
+                android:id="@+id/tv_updown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="195dp"
+
+                android:text="    전월 보다\n 20% 덜 사용중 "
                 android:textColor="#37D21E"
                 android:textSize="@dimen/_12sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="25wh "
-                android:layout_marginTop="115dp"
-                android:layout_marginStart="270dp"
-                />
-            <ImageView
-                android:id="@+id/updownImg"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/down"
-                android:layout_marginTop="115dp"
-                android:layout_marginLeft="315dp"
-                />
-
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="80dp"
-               android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="140dp"
-                android:layout_height="55dp"
-                app:neumorph_shadowColorDark="@color/dark_shadow"
-                app:neumorph_shadowColorLight="@color/light_shadow"
-                app:neumorph_shadowElevation="3dp">
-
-
-                <soup.neumorphism.NeumorphTextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="오늘"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-            </soup.neumorphism.NeumorphCardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="200dp"
-                android:layout_marginLeft="30dp"
-                android:layout_height="wrap_content"
-                android:text="내 방"/>
-            <com.mckrpk.animatedprogressbar.AnimatedProgressBar
-                android:id="@+id/progressbar2"
-                android:layout_width="230dp"
-                android:layout_marginLeft="90dp"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="187dp"
-                app:animationDurationInMs="1600"
-                app:animationStyle="wave"
-                app:lineWidth="15dp"
-                app:max="1000"
-                app:progress="750"
-                app:progressColor="@color/colorPrimary"
-                app:progressTipColor="@color/colorAccent"
-                app:progressTipEnabled="true"
-                app:trackColor="@color/dark_shadow" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="245dp"
-                android:layout_marginLeft="30dp"
-                android:layout_height="wrap_content"
-                android:text="House \n전체"/>
-            <com.mckrpk.animatedprogressbar.AnimatedProgressBar
-                android:id="@+id/progressbar2_2"
-                android:layout_width="230dp"
-                android:layout_marginLeft="90dp"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="245dp"
-                app:animationDurationInMs="1600"
-                app:animationStyle="wave"
-                app:lineWidth="15dp"
-                app:max="1000"
-                app:progress="750"
-                app:progressColor="@color/colorPrimary"
-                app:progressTipColor="@color/colorAccent"
-                app:progressTipEnabled="true"
-                app:trackColor="@color/dark_shadow" />
-            <TextView
-                android:id="@+id/houseTotalUse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="55wh / 80wh"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="225dp"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                android:id="@+id/myRoomUse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="55wh / 80wh"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="225dp"
-                android:layout_marginBottom="85dp"/>
-
-
+                android:textStyle="bold" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/updownImg"-->
+            <!--                android:layout_width="20dp"-->
+            <!--                android:layout_height="20dp"-->
+            <!--                android:src="@drawable/down"-->
+            <!--                android:layout_marginTop="115dp"-->
+            <!--                android:layout_marginLeft="315dp"-->
+            <!--                />-->
 
 
         </soup.neumorphism.NeumorphCardView>
