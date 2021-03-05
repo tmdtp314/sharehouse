@@ -56,6 +56,10 @@ dependencies {
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.1'
     implementation 'com.github.mckrpk:AnimatedProgressBar:0.1.0'
 
-    implementation 'com.github.VladlinMoiseenko:linechart:0.0.1'
+
+
+
+
+
 
 }

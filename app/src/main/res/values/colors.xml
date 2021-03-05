@@ -32,9 +32,11 @@
     <color name="less_use_Color_this">#A4CE6F</color>
     <color name="over_use_Color_this">#FBBC1C</color>
     <color name="over_use_Color_pre">#00FBBC1C</color>
+<color name="redorange">#FBA21C</color>
+    <color name="jade">#30B670</color>
+    <color name="lightjade">#9CEEC6</color>
 
-
-
+<color name="whitetransparent">#0DFFFFFF</color>
     <color name="gradientStartColor">#BF4A4DD0</color>
     <color name="gradientEndColor">#ADC34DD0</color>
     <color name="gradientStartColor2">#A9304FFE</color>

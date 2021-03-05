@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:background="@color/background"
+            android:background="@color/whitetransparent"
             android:baselineAligned="false"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
@@ -29,8 +29,8 @@
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="180dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="10dp"
                 app:neumorph_shadowColorDark="@color/dark_shadow"
                 app:neumorph_shadowColorLight="@color/light_shadow"
                 app:neumorph_shadowElevation="3dp"
@@ -68,83 +68,157 @@
             <!--                android:id="@+id/char1">-->
 
             <!--            </com.github.mikephil.charting.charts.LineChart>-->
-            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                android:id="@+id/progress_bar_VS"
-                android:layout_width="300dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="85dp"
-                app:rcAnimationEnable="true"
-                app:rcBackgroundColor="#0A000000"
-                app:rcBackgroundPadding="2dp"
-                app:rcProgressColor="#34A88C"
-                app:rcRadius="80dp"
-                app:rcReverse="false"
-                app:rcSecondaryProgress="60"
-                app:rcSecondaryProgressColor="#B5CDC7"
-                app:rcTextPositionPriority="outside"
-                app:rcTextProgress="40"
-                app:rcTextProgressColor="#111111" />
 
             <ImageView
-                android:id="@+id/img_updown"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="250dp"
-                android:layout_marginTop="135dp"
-                android:src="@drawable/down" />
-
-
-            <TextView
-                android:id="@+id/preMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="145dp"
-                android:text="전 월 사용량"
-                android:textSize="@dimen/_13sdp" />
-
-
+                android:id="@+id/pin_premonth"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="75dp"
+                android:src="@drawable/premonth" />
             <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_premonth"
+                android:id="@+id/tv_small_pre"
+                android:layout_marginTop="65dp"
+                android:layout_marginLeft="22dp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="145dp"
-                android:text="25wh"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="10dp"
+                android:text="2월"/>
 
-            <TextView
-                android:id="@+id/thisMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="195dp"
-                android:text="이번 달 사용량"
+            <ImageView
+                android:id="@+id/pin_thismonth"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
 
-                android:textSize="@dimen/_13sdp" />
-
-
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="75dp"
+                android:src="@drawable/thismonth" />
             <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_thismonth"
+                android:id="@+id/tv_small_this"
+                android:layout_marginTop="65dp"
+                android:layout_marginLeft="22dp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="195dp"
-                android:text="25wh"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="10dp"
+                android:text="2월"/>
 
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_updown"
+
+            <soup.neumorphism.NeumorphCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="230dp"
-                android:layout_marginTop="195dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="105dp"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
+                app:neumorph_shadowElevation="@dimen/_3sdp">
 
-                android:text="    전월 보다\n 20% 덜 사용중 "
-                android:textColor="#37D21E"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold" />
+                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                    android:id="@+id/progress_bar_VS"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+
+                    app:rcAnimationEnable="true"
+                    app:rcBackgroundColor="#0A000000"
+                    app:rcBackgroundPadding="2dp"
+                    app:rcProgressColor="#34A88C"
+                    app:rcRadius="50dp"
+                    app:rcReverse="false"
+                    app:rcSecondaryProgress="60"
+                    app:rcSecondaryProgressColor="#B5CDC7"
+                    app:rcTextPositionPriority="outside"
+
+                    app:rcTextProgressColor="#111111" />
+            </soup.neumorphism.NeumorphCardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="170dp"
+                app:cardBackgroundColor="#F3F8FF"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="5dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/img_speed"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-15dp"
+                    app:lottie_autoPlay="true"
+
+                    app:lottie_fileName="speed.json"
+                    app:lottie_loop="true" />
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/tv_updown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="20dp"
+
+
+                    android:text="20% 덜 사용중 "
+                    android:textColor="#37D21E"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="170dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="170dp"
+                app:cardBackgroundColor="#F3F8FF"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="5dp">
+
+                <TextView
+                    android:id="@+id/tv_preMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="2월 1일 ~ 2월 5일까지"
+                    android:textSize="@dimen/_10sdp" />
+
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/tv_premonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+
+                    android:text="누적 25wh사용"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/thisMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="70dp"
+                    android:text="3월 1일 ~ 3월 5일 까지"
+                    android:textSize="@dimen/_10sdp" />
+
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/tv_thismonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_marginTop="90dp"
+                    android:text="누적 25wh사용"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_10sdp" />
+            </androidx.cardview.widget.CardView>
+
             <!--            <ImageView-->
             <!--                android:id="@+id/updownImg"-->
             <!--                android:layout_width="20dp"-->

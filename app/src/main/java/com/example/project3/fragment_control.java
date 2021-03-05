@@ -119,6 +119,7 @@ public class fragment_control extends Fragment {
                         lottieViewChogi.setVisibility(View.VISIBLE);
                         tvAll.setText(result + " Devices On..");
 
+
                         lottie_All.setMinAndMaxProgress(0.0f,1.0f);
                         lottie_All.playAnimation();
                         lottie_All.setVisibility(View.VISIBLE);

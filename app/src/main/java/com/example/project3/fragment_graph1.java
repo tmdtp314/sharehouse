@@ -1,5 +1,6 @@
 package com.example.project3;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hadiidbouk.charts.BarData;
@@ -31,21 +33,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import ru.vladlin.linechart.LineChart;
+
 import soup.neumorphism.NeumorphTextView;
 
+import static android.graphics.Color.parseColor;
+
 public class fragment_graph1 extends Fragment {
-    ChartProgressBar mChart,mChart2,mChart3,mChart4,mChart5,mChart6;
+    ChartProgressBar mChart, mChart2, mChart3, mChart4, mChart5, mChart6;
     NeumorphTextView VS;
     RequestQueue requestQueue;
-    TextView tv_today,tv_avg;
+    TextView tv_today, tv_avg;
     StringRequest stringRequest;
     String result;
     String[] dayname;
     String roomID;
+
 
 
     @Override
@@ -59,13 +65,11 @@ public class fragment_graph1 extends Fragment {
 
         String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
 
-tv_avg=fragment.findViewById(R.id.tv_avg);
-tv_today=fragment.findViewById(R.id.tv_today);
-VS=fragment.findViewById(R.id.VS);
+        tv_avg = fragment.findViewById(R.id.tv_avg);
+        tv_today = fragment.findViewById(R.id.tv_today);
+        VS = fragment.findViewById(R.id.VS);
 
 
-        LineChart lineChart = fragment.findViewById(R.id.linechart);
-        lineChart.setDataChart(new float[] { 9, 6, 15, 2, 12, 9, 14, 6, 12, 8, 13, 10 });
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -126,7 +130,7 @@ VS=fragment.findViewById(R.id.VS);
                     data = new BarData(dayname[5], Float.parseFloat(array.getJSONObject(1).getString("use")), array.getJSONObject(1).getString("use") + "wh");
                     dataList.add(data);
 
-                    data = new BarData("오늘",Float.parseFloat(array.getJSONObject(0).getString("use")),array.getJSONObject(0).getString("use") + "wh");
+                    data = new BarData("오늘", Float.parseFloat(array.getJSONObject(0).getString("use")), array.getJSONObject(0).getString("use") + "wh");
                     dataList.add(data);
 
 
@@ -138,24 +142,24 @@ VS=fragment.findViewById(R.id.VS);
                     mChart.disableBar(dataList.size() - 1);
 
 
-                    tv_today.setText(array.getJSONObject(0).getString("use")+"wh");
-                    float sum=0;
-                    for(int i=0;i<7;i++){
-                       sum+= Float.parseFloat(array.getJSONObject(i).getString("use"));
+                    tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
+                    float sum = 0;
+                    for (int i = 0; i < 7; i++) {
+                        sum += Float.parseFloat(array.getJSONObject(i).getString("use"));
                     }
-                   String sum_=String.format("%.2f",sum/7);
-                    tv_avg.setText(sum_+" wh");
+                    String sum_ = String.format("%.2f", sum / 7);
+                    tv_avg.setText(sum_ + " wh");
 
-                    float lastWeek=0;
-                    for(int i=7;i<14;i++){
-                        lastWeek+= Float.parseFloat(array.getJSONObject(i).getString("use"));
+                    float lastWeek = 0;
+                    for (int i = 7; i < 14; i++) {
+                        lastWeek += Float.parseFloat(array.getJSONObject(i).getString("use"));
                     }
-                    Toast.makeText(getContext(),String.valueOf(lastWeek),Toast.LENGTH_SHORT).show();
-                    float result= ((sum - lastWeek) / sum) ;
-                    if(result>0)
-                        VS.setText(String.format("%.2f",result*100)+"% 🔺");
+                    Toast.makeText(getContext(), String.valueOf(lastWeek), Toast.LENGTH_SHORT).show();
+                    float result = ((sum - lastWeek) / sum);
+                    if (result > 0)
+                        VS.setText(String.format("%.2f", result * 100) + "% 🔺");
                     else
-                        VS.setTag(String.format("%.2f",result*100)+"% 🔻");
+                        VS.setTag(String.format("%.2f", result * 100) + "% 🔻");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -185,7 +189,7 @@ VS=fragment.findViewById(R.id.VS);
                 return data;
             }
         };
-requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest);
         return fragment;
     }
 }

@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Project3">
+<!--        <service-->
+<!--            android:name=".MyService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"></service>-->
         <activity android:name=".MenuActivity"
             android:theme="@style/FullScreen">
             <intent-filter>

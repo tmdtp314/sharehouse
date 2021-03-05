@@ -57,19 +57,7 @@
 
                 >
 
-                <ru.vladlin.linechart.LineChart
-                    android:id="@+id/linechart"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="16dp"
-                    android:background="#ECF2F8"
-                    attrs:lc_lineСolor="#D5008DC7"
-                    attrs:lc_lineWidth="6"
-                    attrs:lc_cursorColor="#D5018BF8"
-                    attrs:lc_cursorWidth="4"
-                    attrs:lc_circleRadius="11"
-                    />
+
 
                 <com.hadiidbouk.charts.ChartProgressBar
                     android:id="@+id/ChartProgressBar"
@@ -100,6 +88,7 @@
                     app:hdProgressClickColor="@color/purple_200"
                     app:hdProgressColor="@color/teal_700"
                     app:hdProgressDisableColor="#30B68E" />
+
 
 
                 <soup.neumorphism.NeumorphCardView
