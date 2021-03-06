@@ -116,19 +116,19 @@ public class fragment_graph3 extends Fragment {
                         progressBar_room.setMax(100); //어제
                         cardview1.setVisibility(View.VISIBLE);
 //                        show_room_over.setText(" "+myroom_yesterday+"wh");
-                        progressBar_room.setProgress(myroom_today);
+                        progressBar_room.setProgress(myroom_today - myroom_yesterday);
                         progressBar_room.setProgressColor(Color.parseColor("#E8976A"));
 
                         progressBar_room.setProgressTipColor(Color.parseColor("#EF6315"));
                         tv_myroom_today.setText("어제 보다 더 사용");
                         tv_myroom_today.setTextColor(Color.parseColor("#CF6809"));
-                        tv_myroom_today_imogi.setText("☹");
+                        tv_myroom_today_imogi.setText("🙁");
                         yesterday_right_myroom.setVisibility(View.INVISIBLE);
-                        yesterday_left_myroom.setText("+"+String.valueOf(myroom_yesterday) + "kwh");
+                        yesterday_left_myroom.setText(String.valueOf(myroom_yesterday) + "kwh");
 
-                        Move.setText(String.valueOf(myroom_yesterday - myroom_today));
+                        Move.setText("+"+String.valueOf(myroom_today - myroom_yesterday)+"kwh");
                         Move.animate()
-                                .translationX((float) (myroom_today * 5.8))
+                                .translationX((float) ((myroom_today - myroom_yesterday) * 5.8))
                                 .translationY(0)
                                 .setDuration(1500);
 
@@ -157,14 +157,14 @@ public class fragment_graph3 extends Fragment {
                         progressBar_house.setMax(100); //어제
                         cardview3.setVisibility(View.VISIBLE);
                         //  show_house_over.setText(array.getJSONObject(0).getString("Value4")+"wh");
-                        progressBar_house.setProgress(house_today);
+                        progressBar_house.setProgress(house_today - house_yesterday);
                         progressBar_house.setProgressColor(Color.parseColor("#E8976A"));
                         progressBar_house.setProgressTipColor(Color.parseColor("#EF6315"));
 
                         //오늘 집 전체
                         tv_house_today.setText("어제 보다 더 사용");
                         tv_house_today.setTextColor(Color.parseColor("#CF6809"));
-                        tv_house_today_imogi.setText("☹");
+                        tv_house_today_imogi.setText("🙁");
 
                         yesterday_right_house.setVisibility(View.INVISIBLE);
                         yesterday_left_house.setText(String.valueOf(house_yesterday) + " kwh");
@@ -172,7 +172,7 @@ public class fragment_graph3 extends Fragment {
 
                         Move2.setText("+ " + String.valueOf(house_today - house_yesterday) + "kwh");
                         Move2.animate()
-                                .translationX((float) (house_today * 5.8))
+                                .translationX((float) ((house_today - house_yesterday)* 5.8))
                                 .translationY(0)
                                 .setDuration(1500);
 

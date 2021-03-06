@@ -49,9 +49,10 @@ public class fragment_graph1 extends Fragment {
     TextView tv_today, tv_avg;
     StringRequest stringRequest;
     String result;
+    BarData bardata;
     String[] dayname;
-    String roomID;
 
+    String roomID;
 
 
     @Override
@@ -63,54 +64,61 @@ public class fragment_graph1 extends Fragment {
         Toast.makeText(getContext(), roomID, Toast.LENGTH_SHORT).show();
         requestQueue = Volley.newRequestQueue(getContext()); //현재 페이지 정보 보내주는것
 
-        String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
+
+
 
         tv_avg = fragment.findViewById(R.id.tv_avg);
-      //  tv_today = fragment.findViewById(R.id.tv_today);
+        //  tv_today = fragment.findViewById(R.id.tv_today);
         VS = fragment.findViewById(R.id.VS);
 
-
+        String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                JSONArray array = null;
+
+                result = "Tue";
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE");
+
+
+
+                sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+              //  result = sdf.format(timestamp);
+                result="Sat";
+
+
+                switch (result) {
+                    case "Mon":
+                        dayname = new String[]{"화", "수", "목", "금", "토", "일", "오늘"};
+                        break;
+                    case "Tue":
+                        dayname = new String[]{"수", "목", "금", "토", "일", "월", "오늘"};
+                        break;
+                    case "Wed":
+                        dayname = new String[]{"목", "금", "토", "일", "월", "화", "오늘"};
+                        break;
+                    case "Thu":
+                        dayname = new String[]{"금", "토", "일", "월", "화", "수", "오늘"};
+                        break;
+                    case "Fri":
+                        dayname = new String[]{"토", "일", "월", "화", "수", "목", "오늘"};
+                        break;
+                    case "Sat":
+                        dayname = new String[]{"일", "월", "화", "수", "목", "금", "오늘"};
+                        break;
+                    case "Sun":
+                        dayname = new String[]{"월", "화", "수", "목", "금", "토", "오늘"};
+                        break;
+                }
+
+                JSONArray array =null;
                 try {
+
                     array = new JSONArray(response);
 
                     ArrayList<BarData> dataList = new ArrayList<>();
 
-                    result = "Tue";
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    SimpleDateFormat sdf = new SimpleDateFormat("EEE");
-
-                    sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-                    result = sdf.format(timestamp);
-
-
-                    switch (result) {
-                        case "Mon":
-                            dayname = new String[]{"화", "수", "목", "금", "토", "일", "오늘"};
-                            break;
-                        case "Tue":
-                            dayname = new String[]{"수", "목", "금", "토", "일", "월", "오늘"};
-                            break;
-                        case "Wed":
-                            dayname = new String[]{"목", "금", "토", "일", "월", "화", "오늘"};
-                            break;
-                        case "Thu":
-                            dayname = new String[]{"금", "토", "일", "월", "화", "수", "오늘"};
-                            break;
-                        case "Fri":
-                            dayname = new String[]{"토", "일", "월", "화", "수", "목", "오늘"};
-                            break;
-                        case "Sat":
-                            dayname = new String[]{"일", "월", "화", "수", "목", "금", "오늘"};
-                            break;
-                        case "Sun":
-                            dayname = new String[]{"월", "화", "수", "목", "금", "토", "오늘"};
-                            break;
-                    }
 
                     BarData data = new BarData(dayname[0], Float.parseFloat(array.getJSONObject(6).getString("use")), array.getJSONObject(6).getString("use") + "wh");
                     dataList.add(data);
@@ -139,10 +147,11 @@ public class fragment_graph1 extends Fragment {
                     mChart.setDataList(dataList);
                     mChart.build();
 
-                    mChart.disableBar(dataList.size() - 1);
+
+                    //     mChart.disableBar(dataList.size() - 1);
 
 
-                 //   tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
+                    //   tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
                     float sum = 0;
                     for (int i = 0; i < 7; i++) {
                         sum += Float.parseFloat(array.getJSONObject(i).getString("use"));

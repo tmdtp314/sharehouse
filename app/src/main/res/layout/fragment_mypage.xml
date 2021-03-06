@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <soup.neumorphism.NeumorphCardView
@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:foregroundGravity="center"
                 android:gravity="center"
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
 
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:orientation="vertical">
                     I
 
@@ -58,7 +58,7 @@
                         android:id="@+id/firstcard"
                         android:layout_width="280dp"
                         android:layout_height="120dp"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="54dp"
                         android:layout_marginTop="@dimen/_20sdp"
 
                         app:cardBackgroundColor="#4378DB"
@@ -122,11 +122,12 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card1"
-                        android:layout_width="370dp"
+                        android:layout_width="365dp"
                         android:layout_height="80dp"
 
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="35dp"
+
                         android:foregroundGravity="center"
                         app:cardCornerRadius="@dimen/_1sdp"
                         app:cardElevation="5dp"
@@ -179,10 +180,11 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card2"
-                        android:layout_width="370dp"
+                        android:layout_width="365dp"
                         android:layout_height="80dp"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:foregroundGravity="center"
                         app:cardCornerRadius="@dimen/_1sdp"
                         app:cardElevation="5dp"
@@ -234,10 +236,10 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card3"
-                        android:layout_width="370dp"
-                        android:layout_height="230dp"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_width="365dp"
+                        android:layout_height="240dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
                         android:foregroundGravity="center"
                         app:cardCornerRadius="@dimen/_1sdp"
 

@@ -2,8 +2,11 @@ package com.example.project3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edt_pw;
     Button btn_login;
     RequestQueue requestQueue;
+    //StringRequest stringRequest;
     StringRequest stringRequest;
 
     ImageView login_img;
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         login_img=findViewById(R.id.login_img);
         requestQueue = Volley.newRequestQueue(this);
         String url="http://172.30.1.49:8083/LoginServer/AllSelectServlet";
-        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        stringRequest  = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.equals("false")) {
@@ -63,11 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     name = array.getJSONObject(0).getString("name"); // 필요한 데이터 저장, 필요 데이터 종류에 따라 리스트 생성해주기
                     name = new String(name.getBytes("8859_1"), "utf-8");
                     tel = array.getJSONObject(0).getString("tel");
-                    Toast.makeText(MainActivity.this, name + "넘어오니?", Toast.LENGTH_SHORT).show();
+
                     room = array.getJSONObject(0).getString("room");
-//                    count1 = array.getJSONObject(0).getString("count1");
-//                    count2 = array.getJSONObject(0).getString("count2");
-//                    count3 = array.getJSONObject(0).getString("count3");
+
 
                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                     intent.putExtra("name", name);

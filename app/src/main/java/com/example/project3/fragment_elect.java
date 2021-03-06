@@ -137,7 +137,7 @@ room=getArguments().getStringArrayList("data").get(2);
 
         // ViewPage 바꿔줄 그래프 Fragment ( Fragment_Grap1_1, Fragment_Grap1_2)
 
-
+        adapter.notifyDataSetChanged();//*********************************************************
         pieChart = fragment.findViewById(R.id.pieChart);
 
 
@@ -291,6 +291,7 @@ room=getArguments().getStringArrayList("data").get(2);
                 Bundle bundle = new Bundle();
                 bundle.putString("room",room);
                 fr.setArguments(bundle);
+
                 return fr;
             } else if(position==1) {
                 fragment_graph2 fr2 = (fragment_graph2) items.get(position);
@@ -311,6 +312,11 @@ room=getArguments().getStringArrayList("data").get(2);
         @Override
         public int getCount() {
             return items.size();
+        }
+
+        @Override
+        public int getItemPosition(@NonNull Object object) {
+            return POSITION_NONE;
         }
     }
 

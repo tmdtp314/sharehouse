@@ -49,14 +49,10 @@ public class fragment_mypage extends Fragment {
         }
 
 
-        try {
-            encode = URLDecoder.decode(getArguments().getStringArrayList("data").get(0), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
 
 
-        user_name.setText(encode + "님 환영합니다");
+
+        user_name.setText(getArguments().getStringArrayList("data").get(0) + "님 환영합니다");
         user_room.setText(room_name);
 
         user_tel = getArguments().getStringArrayList("data").get(1);
