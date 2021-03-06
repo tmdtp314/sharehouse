@@ -66,7 +66,7 @@ public class fragment_graph1 extends Fragment {
         String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
 
         tv_avg = fragment.findViewById(R.id.tv_avg);
-        tv_today = fragment.findViewById(R.id.tv_today);
+      //  tv_today = fragment.findViewById(R.id.tv_today);
         VS = fragment.findViewById(R.id.VS);
 
 
@@ -142,7 +142,7 @@ public class fragment_graph1 extends Fragment {
                     mChart.disableBar(dataList.size() - 1);
 
 
-                    tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
+                 //   tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
                     float sum = 0;
                     for (int i = 0; i < 7; i++) {
                         sum += Float.parseFloat(array.getJSONObject(i).getString("use"));

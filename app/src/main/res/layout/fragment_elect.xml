@@ -78,42 +78,48 @@
                 <!--    app:cpv_maxValue="100"-->
                 <!--    ></at.grabner.circleprogress.CircleProgressView>-->
                 <soup.neumorphism.NeumorphCardView
-                    android:id="@+id/test"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
+                    android:layout_width="105dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="10dp"
                     app:neumorph_shadowColorDark="@color/dark_shadow"
-                    app:neumorph_shadowColorLight="@color/light_shadow">
+                    app:neumorph_shadowColorLight="@color/light_shadow"
+                    app:neumorph_shadowElevation="3dp"
+                    app:neumorph_shapeType="basin">
 
-                    <TextView
+
+                    <soup.neumorphism.NeumorphTextView
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_3sdp"
-                        android:padding="@dimen/_5sdp"
-                        android:text="2월"
-                        android:textSize="@dimen/_15sdp"
+                        android:layout_gravity="center"
+                        android:text="3월 6일"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/room_color"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="100dp"
+                    android:layout_height="55dp"
                     android:layout_marginLeft="265dp"
                     android:padding="@dimen/_5sdp"
                     android:background="@color/background"
+                    app:neumorph_shadowElevation="3dp"
+                    app:neumorph_shapeType="flat"
                     app:neumorph_shadowColorDark="@color/dark_shadow"
                     app:neumorph_shadowColorLight="@color/light_shadow">
 
                     <TextView
 
                         android:id="@+id/room_col"
-                        android:layout_width="90dp"
-                        android:layout_height="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_margin="@dimen/_3sdp"
-android:paddingLeft="@dimen/_7sdp"
+
                         android:text="room A"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold" />
@@ -165,7 +171,7 @@ android:paddingLeft="@dimen/_7sdp"
                     android:id="@+id/tab_grap1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="그래프1"/>
+                    android:text="WEEK"/>
 
 
 
@@ -174,14 +180,14 @@ android:paddingLeft="@dimen/_7sdp"
                     android:id="@+id/tab_grap2_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="그래프2" />
+                    android:text="MONTH" />
 
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_graph3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="그래프2" />
+                    android:text="DAY" />
 
             </com.google.android.material.tabs.TabLayout>
 

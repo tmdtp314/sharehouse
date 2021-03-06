@@ -62,7 +62,7 @@ import static java.lang.System.currentTimeMillis;
 public class fragment_graph2 extends Fragment {
     private String roomID;
     NeumorphTextView tv_updown, tv_premonth, tv_thismonth, premonth, thismonth, small_pre, small_this;
-    LottieAnimationView img_updown;
+    LottieAnimationView img_updown, img_slow;
     int[] month_temp = new int[28];
     private int pre_sum;
     ImageView pin_premonth, pin_thismonth;
@@ -90,7 +90,7 @@ public class fragment_graph2 extends Fragment {
         tv_thismonth = fragment.findViewById(R.id.tv_thismonth);
         pin_premonth = fragment.findViewById(R.id.pin_premonth);
         pin_thismonth = fragment.findViewById(R.id.pin_thismonth);
-
+        img_slow = fragment.findViewById(R.id.img_slow);
         small_pre = fragment.findViewById(R.id.tv_small_pre);
         small_this = fragment.findViewById(R.id.tv_small_this);
 
@@ -120,9 +120,11 @@ public class fragment_graph2 extends Fragment {
                     java.sql.Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis());
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd");
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("MM");
                     sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+                    sdf2.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
                     int result = Integer.parseInt(sdf.format(timestamp));
-
+                    int thismonth = Integer.parseInt(sdf2.format(timestamp));
                     pre_sum = 0;
                     for (int i = 0; i < result; i++) {
 
@@ -137,14 +139,17 @@ public class fragment_graph2 extends Fragment {
                         progressBar_VS.setProgress(today_value_sum);
                         progressBar_VS.setSecondaryProgress(pre_sum);
 
-                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#D2D2D2"));
+                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#AAAAAA"));
                         progressBar_VS.setProgressColor(Color.parseColor("#BA147BDB"));
 
 
                         tv_premonth.setText(pre_sum + "kwh 사용");
                         tv_thismonth.setText(today_value_sum + "kwh 사용");
                         tv_thismonth.setTextColor(Color.parseColor("#3A6CB2"));
-
+                        img_slow.setVisibility(View.INVISIBLE);
+                        img_updown.setMinAndMaxProgress(0.0f, 1.0f);
+                        img_updown.playAnimation();
+                        img_updown.setVisibility(View.VISIBLE);
 
                         float VS = Float.valueOf(today_value_sum - pre_sum) / Float.valueOf(pre_sum);
 
@@ -178,9 +183,12 @@ public class fragment_graph2 extends Fragment {
                         progressBar_VS.setProgress(today_value_sum);
                         progressBar_VS.setSecondaryProgress(pre_sum);
                         progressBar_VS.setProgressColor(Color.parseColor("#BA147BDB"));
-                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#D2D2D2"));
+                        progressBar_VS.setSecondaryProgressColor(Color.parseColor("#AAAAAA"));
 
-
+                        img_updown.setVisibility(View.INVISIBLE);
+                        img_slow.setMinAndMaxProgress(0.0f, 1.0f);
+                        img_slow.playAnimation();
+                        img_slow.setVisibility(View.VISIBLE);
                         tv_premonth.setText(pre_sum + "kwh 사용");
                         tv_thismonth.setText(today_value_sum + "kwh 사용");
                         tv_thismonth.setTextColor(Color.parseColor("#3A6CB2"));
@@ -188,6 +196,7 @@ public class fragment_graph2 extends Fragment {
 
                         float VS = Float.valueOf(pre_sum - today_value_sum) / Float.valueOf(pre_sum);
                         img_updown.setImageResource(R.drawable.down);
+
                         tv_updown.setText(" " + String.format("%.2f", VS * 100) + "%\n 더 천천히 소모 중");
                         tv_updown.setTextColor(Color.parseColor("#A1C84F"));
 
@@ -212,7 +221,10 @@ public class fragment_graph2 extends Fragment {
                                 .setDuration(1000);
                     }
 
-
+                    small_this.setText(thismonth + "월");
+                    small_this.setTextColor(Color.parseColor("#1562D1"));
+                    small_pre.setTextColor(Color.parseColor("#AAAAAA"));
+                    small_pre.setText(thismonth - 1 + "월");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

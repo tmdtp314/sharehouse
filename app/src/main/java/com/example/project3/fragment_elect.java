@@ -1,6 +1,7 @@
 package com.example.project3;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -60,16 +61,18 @@ public class fragment_elect extends Fragment {
     View frag_grap1_2;
     ViewPager viewPager;
     private String room;
-    NeumorphCardView reload;
+    NeumorphCardView reload,room_color;
     LottieAnimationView lottie_reload;
     TextView tv1, room_col;
     TabLayout tabLayout;
     Fragment frame_2;
     //CircleProgressView circle;
     PieChart pieChart;
+    String total;
     private String result;
     RequestQueue requestQueue;
     StringRequest stringRequest;
+
     Button btn_new;
 
     ArrayList<String> data2 = new ArrayList<>();
@@ -98,7 +101,7 @@ room=getArguments().getStringArrayList("data").get(2);
 
         viewPager.setOffscreenPageLimit(3);
 
-
+        room_color=fragment.findViewById(R.id.room_color);
         tv1 = fragment.findViewById(R.id.date);
         result = "";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -113,7 +116,8 @@ room=getArguments().getStringArrayList("data").get(2);
 
         room_col = fragment.findViewById(R.id.room_col);
         if(room.equals("a")){
-        room_col.setBackgroundColor(Color.parseColor("#C9FFF8"));
+        room_col.setTextColor(Color.WHITE);
+        room_color.setBackgroundColor(Color.parseColor("#0085FF"));
         room_col.setText("room A");}
         else if(room.equals("b")){
             room_col.setBackgroundColor(Color.parseColor("#86C7BF"));
@@ -152,12 +156,29 @@ room=getArguments().getStringArrayList("data").get(2);
                     String user2 = array.getJSONObject(1).getString("value");
                     String user3 = array.getJSONObject(2).getString("value");
 
+
+                    float user1_=Float.parseFloat(user1);
+                    float user2_=Float.parseFloat(user2);
+                    float user3_=Float.parseFloat(user3);
+                    float sum=user1_+user2_+user3_;
+
+                  if(sum>200&&sum<400){
+                      total="누적 1단계";
+                  }else if(sum>400){
+                      total="누적 2단계";
+                  }
+
+
+
+
+
+
                     pieChart.setUsePercentValues(true);
                     pieChart.getDescription().setEnabled(false);
                     pieChart.setExtraOffsets(5, 5, 5, 0);
                     pieChart.setDrawHoleEnabled(true);
 
-                    pieChart.setTransparentCircleRadius(22f);
+                    pieChart.setTransparentCircleRadius(40f);
 
 
                     ArrayList<PieEntry> yValues = new ArrayList<>();
@@ -167,7 +188,7 @@ room=getArguments().getStringArrayList("data").get(2);
 
 
 
-                    pieChart.setHoleRadius(65);
+                    pieChart.setHoleRadius(45);
 
                     pieChart.animateY(1000, Easing.EaseInCubic);
 
@@ -189,10 +210,16 @@ room=getArguments().getStringArrayList("data").get(2);
                     Legend l = pieChart.getLegend();
                     l.setTextSize(16f);
                     l.setForm(Legend.LegendForm.CIRCLE);
-                    pieChart.setCenterText(user1 + "kwh");
-                    pieChart.setCenterTextSize(19);
-                    pieChart.setCenterTextColor(Color.parseColor("#713993"));
-                    pieChart.setHoleColor(Color.parseColor("#F8F9FE"));
+                    pieChart.setCenterText(total);
+                    pieChart.setCenterTextSize(14);
+                    pieChart.setCenterTextTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+
+                    if(total.contains("1단계")){
+                    pieChart.setCenterTextColor(Color.parseColor("#099527"));}
+                    else if(total.contains("2단계")){
+                        pieChart.setCenterTextColor(Color.parseColor("#CF8009"));
+                    }
+                    pieChart.setHoleColor(Color.parseColor("#E4EBF5"));
                     pieChart.setData(data);
 
 
