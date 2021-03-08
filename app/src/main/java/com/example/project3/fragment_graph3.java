@@ -42,12 +42,10 @@ import soup.neumorphism.NeumorphTextView;
 public class fragment_graph3 extends Fragment {
     private String roomID;
     StringRequest stringRequest2;
-    ImageView cardview1, cardview3, cardview2, cardview4;
-    NeumorphTextView yesterday_right_house, yesterday_right_myroom, yesterday_left_myroom, yesterday_left_house;
-    TextView show_room_over, show_room_under, show_house_over, show_house_under, Move, Move2;
+    ImageView Move,Move2,Move_today,Move2_today;
+    NeumorphTextView tv_move_today;
     RequestQueue requestQueue;
-    TextView tv_myroom_today, tv_house_today, tv_myroom_today_imogi, tv_house_today_imogi;
-    AnimatedProgressBar progressBar_room, progressBar_house;
+    AnimatedProgressBar progressBar_room_yesterday, progressBar_house_yesterday,progressbar_room_today,progressbar_house_today;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,37 +54,19 @@ public class fragment_graph3 extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
 
         roomID = getArguments().getString("room");
-        Toast.makeText(getContext(), "roomID 들어옴" + roomID, Toast.LENGTH_SHORT).show();
-        progressBar_house = fragment.findViewById(R.id.progressbar_house);
-        progressBar_room = fragment.findViewById(R.id.progressbar_room);
-        tv_house_today = fragment.findViewById(R.id.tv_house_today_text);
-        tv_house_today_imogi = fragment.findViewById(R.id.tv_house_today_imogi);
-        tv_myroom_today = fragment.findViewById(R.id.tv_myroom_today_text);
-        tv_myroom_today_imogi = fragment.findViewById(R.id.tv_myroom_today_imogi);
 
-        yesterday_left_myroom = fragment.findViewById(R.id.tv_yesterday_left_myroom);
-        yesterday_left_house = fragment.findViewById(R.id.tv_yesterday_left_house);
-        yesterday_right_house = fragment.findViewById(R.id.tv_yesterday_right_house);
-        yesterday_right_myroom = fragment.findViewById(R.id.tv_yesterday_right_myroom);
+        progressBar_house_yesterday = fragment.findViewById(R.id.progressbar_house_yesterday);
+        progressBar_room_yesterday = fragment.findViewById(R.id.progressbar_room_yesterday);
+        progressbar_house_today=fragment.findViewById(R.id.progressbar_house_today);
+        progressbar_room_today=fragment.findViewById(R.id.progressbar_room_today);
 
-
-        cardview1 = fragment.findViewById(R.id.cardview1);
-        cardview2 = fragment.findViewById(R.id.cardview2);
-        cardview3 = fragment.findViewById(R.id.cardview3);
-        cardview4 = fragment.findViewById(R.id.cardview4);
-
-        cardview1.setVisibility(View.INVISIBLE);
-        cardview2.setVisibility(View.INVISIBLE);
-        cardview3.setVisibility(View.INVISIBLE);
-        cardview4.setVisibility(View.INVISIBLE);
 
         Move = fragment.findViewById(R.id.move);
         Move2 = fragment.findViewById(R.id.move2);
+        Move_today=fragment.findViewById(R.id.move_today);
+        Move2_today=fragment.findViewById(R.id.move2_today);
 
-
-        int[] image = new int[2];
-        cardview1.getLocationOnScreen(image);
-        Toast.makeText(getContext(), image[0] + "," + image[1], Toast.LENGTH_LONG).show();
+        tv_move_today=fragment.findViewById(R.id.tv_move_today);
 
 
         String url = "http://172.30.1.49:8083/LoginServer/graph2_MyRoom";
@@ -104,98 +84,74 @@ public class fragment_graph3 extends Fragment {
                     int house_today = Integer.parseInt(array.getJSONObject(0).getString("Value2"));
                     int myroom_yesterday = Integer.parseInt(array.getJSONObject(0).getString("Value3"));
                     int house_yesterday = Integer.parseInt(array.getJSONObject(0).getString("Value4"));
+                    progressBar_room_yesterday.setMax(45); //어제
+                    progressBar_room_yesterday.setProgress(myroom_yesterday);
+                    progressBar_room_yesterday.setProgressColor(Color.parseColor("#A1A1A1"));
+                    progressBar_room_yesterday.setProgressTipColor(Color.parseColor("#797979"));
+
+                    progressBar_house_yesterday.setMax(45); //어제
+                    progressBar_house_yesterday.setProgress(house_yesterday);
+                    progressBar_house_yesterday.setProgressColor(Color.parseColor("#A1A1A1"));
+                    progressBar_house_yesterday.setProgressTipColor(Color.parseColor("#797979"));
+
+                    progressbar_room_today.setMax(45); //어제
+                    progressbar_room_today.setProgress(myroom_today);
+                    progressbar_room_today.setProgressColor(Color.parseColor("#1C7FDA"));
+                    progressbar_room_today.setProgressTipColor(Color.parseColor("#10518D"));
 
 
-                    int myroom_final = (int) (((double) myroom_today / (double) myroom_yesterday) * 100);
-                    int house_final = (int) (((double) house_today / (double) house_yesterday) * 100);
+                    progressbar_house_today.setMax(45); //어제
+                    progressbar_house_today.setProgress(house_today);
+                    progressbar_house_today.setProgressColor(Color.parseColor("#61E09E"));
+                    progressbar_house_today.setProgressTipColor(Color.parseColor("#30B670"));
 
-                    Toast.makeText(getContext(), String.valueOf(house_today) + "house_today", Toast.LENGTH_SHORT).show();
 
 
-                    if (myroom_today > myroom_yesterday) { // 내 방 과다사용
-                        progressBar_room.setMax(100); //어제
-                        cardview1.setVisibility(View.VISIBLE);
-//                        show_room_over.setText(" "+myroom_yesterday+"wh");
-                        progressBar_room.setProgress(myroom_today - myroom_yesterday);
-                        progressBar_room.setProgressColor(Color.parseColor("#E8976A"));
 
-                        progressBar_room.setProgressTipColor(Color.parseColor("#EF6315"));
-                        tv_myroom_today.setText("어제 보다 더 사용");
-                        tv_myroom_today.setTextColor(Color.parseColor("#CF6809"));
-                        tv_myroom_today_imogi.setText("🙁");
-                        yesterday_right_myroom.setVisibility(View.INVISIBLE);
-                        yesterday_left_myroom.setText(String.valueOf(myroom_yesterday) + "kwh");
+                    Move2.animate() //house 어제
+                            .translationX((float)(house_yesterday*14))
+                            .translationY(0)
+                            .setDuration(1800);
 
-                        Move.setText("+"+String.valueOf(myroom_today - myroom_yesterday)+"kwh");
-                        Move.animate()
-                                .translationX((float) ((myroom_today - myroom_yesterday) * 5.8))
-                                .translationY(0)
-                                .setDuration(1500);
 
+                    Move.animate() //room 어제
+                            .translationX((float) (myroom_yesterday*14))
+                            .translationY(0)
+                            .setDuration(1800);
+
+                    Move_today.animate() //room 오늘
+                            .translationX((float) (myroom_today*14))
+                            .translationY(0)
+                            .setDuration(1800);
+
+                    Move2_today.animate() //house 오늘
+                            .translationX((float) (house_today*14))
+                            .translationY(0)
+                            .setDuration(1800);
+
+                    tv_move_today.animate()
+                            .translationX((float) (myroom_today*14))
+                            .translationY(0)
+                            .setDuration(1800);
+
+
+
+
+
+
+                    if (myroom_today > myroom_yesterday) {//내방 과다사용
+
+tv_move_today.setVisibility(View.INVISIBLE);
 
                     } else if (myroom_today < myroom_yesterday) { //내방 덜사용
-                        progressBar_room.setMax(100); //어제
-                        cardview2.setVisibility(View.VISIBLE);
-                        // show_room_under.setText(array.getJSONObject(0).getString("Value3")+"wh");
-                        progressBar_room.setProgress(myroom_final);
-                        progressBar_room.setProgressColor(Color.parseColor("#9CEEC6")); //보라
-                        tv_myroom_today.setText("어제보다 덜 사용");
-                        tv_myroom_today.setTextColor(Color.parseColor("#0EA52F"));
-                        tv_myroom_today_imogi.setText("😀");
+                        tv_move_today.setTextColor(Color.parseColor("#34D01B"));
+                        tv_move_today.setText("절감중 😀");
+         }
+                    if (house_today > house_yesterday) { //하우스 과다사용
 
-                        yesterday_left_myroom.setVisibility(View.INVISIBLE);
-                        yesterday_right_myroom.setText(String.valueOf(myroom_yesterday) + " kwh");
-                        Move.setText("-"+String.valueOf(myroom_yesterday - myroom_today)+" kwh");
-                        Move.setTextColor(Color.parseColor("#0EA52F"));
-                        Move.animate()
-                                .translationX((float) (myroom_final * 5.9))
-                                .translationY(0)
-                                .setDuration(1500);
-
-                    }
-                    if (house_today > house_yesterday) { //과다사용
-                        progressBar_house.setMax(100); //어제
-                        cardview3.setVisibility(View.VISIBLE);
-                        //  show_house_over.setText(array.getJSONObject(0).getString("Value4")+"wh");
-                        progressBar_house.setProgress(house_today - house_yesterday);
-                        progressBar_house.setProgressColor(Color.parseColor("#E8976A"));
-                        progressBar_house.setProgressTipColor(Color.parseColor("#EF6315"));
-
-                        //오늘 집 전체
-                        tv_house_today.setText("어제 보다 더 사용");
-                        tv_house_today.setTextColor(Color.parseColor("#CF6809"));
-                        tv_house_today_imogi.setText("🙁");
-
-                        yesterday_right_house.setVisibility(View.INVISIBLE);
-                        yesterday_left_house.setText(String.valueOf(house_yesterday) + " kwh");
+                    } else if (house_today < house_yesterday) {//하우스 절약
 
 
-                        Move2.setText("+ " + String.valueOf(house_today - house_yesterday) + "kwh");
-                        Move2.animate()
-                                .translationX((float) ((house_today - house_yesterday)* 5.8))
-                                .translationY(0)
-                                .setDuration(1500);
-
-
-                    } else if (house_today < house_yesterday) {
-                        progressBar_house.setMax(100); //어제//오늘 절약 집전체
-                        cardview4.setVisibility(View.VISIBLE);
-                        //   show_house_under.setText(array.getJSONObject(0).getString("Value4")+"wh");
-                        progressBar_house.setProgress(house_final);
-                        progressBar_house.setProgressColor(Color.parseColor("#9CEEC6"));
-
-                        //오늘 집 전체
-                        tv_house_today.setText("어제보다 덜 사용");
-                        tv_house_today.setTextColor(Color.parseColor("#0EA52F"));
-                        tv_house_today_imogi.setText("😀");
-                        yesterday_left_house.setVisibility(View.INVISIBLE);
-                        yesterday_right_house.setText(String.valueOf(house_yesterday) + " kwh");
-                        Move2.setText("-"+String.valueOf(house_yesterday - house_today) + "kwh");
-                        Move2.setTextColor(Color.parseColor("#0EA52F"));
-                        Move2.animate()
-                                .translationX((float)(house_final * 5.8))
-                                .translationY(0)
-                                .setDuration(1500);
 
                     }
 
@@ -223,7 +179,6 @@ public class fragment_graph3 extends Fragment {
             }
         };
         requestQueue.add(stringRequest2);
-
         return fragment;
     }
 

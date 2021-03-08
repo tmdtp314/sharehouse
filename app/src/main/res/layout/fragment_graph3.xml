@@ -23,8 +23,8 @@
             app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
             app:neumorph_shadowElevation="@dimen/_6sdp"
-            tools:layout_editor_absoluteX="26dp"
-            tools:layout_editor_absoluteY="0dp">
+            tools:layout_editor_absoluteX="-152dp"
+            tools:layout_editor_absoluteY="-25dp">
 
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="170dp"
@@ -48,82 +48,123 @@
 
             </soup.neumorphism.NeumorphCardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
+             <soup.neumorphism.NeumorphCardView
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="12dp"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeType="pressed">
+                 <soup.neumorphism.NeumorphTextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="03월 07일 9AM"
+                     android:layout_gravity="center"
+                     android:textStyle="normal"
+                     android:textColor="@color/darkgray"/>
+
+             </soup.neumorphism.NeumorphCardView>
+
+
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="75dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="100dp"
                 app:cardBackgroundColor="@color/background"
-                app:cardCornerRadius="@dimen/_6sdp"
-                app:cardElevation="@dimen/_6sdp">
+
+               >
 
                 <soup.neumorphism.NeumorphTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+
                     android:text="내 방"
-                    android:textSize="15dp" />
-            </androidx.cardview.widget.CardView>
+                    android:textSize="13dp" />
+            </soup.neumorphism.NeumorphCardView>
 
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_yesterday_left_myroom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="84dp"
-                android:layout_marginTop="55dp"
-                android:text="23 kwh"
-                android:textSize="11dp"
-                android:textStyle="bold" />
+            <!--            <soup.neumorphism.NeumorphTextView-->
+            <!--                android:id="@+id/tv_yesterday_left_myroom"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="84dp"-->
+            <!--                android:layout_marginTop="55dp"-->
+            <!--                android:text="23 kwh"-->
+            <!--                android:textSize="11dp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/cardview1"-->
+            <!--                android:layout_width="55dp"-->
+            <!--                android:layout_height="35dp"-->
+            <!--                android:layout_marginLeft="75dp"-->
+            <!--                android:layout_marginTop="70dp"-->
+            <!--                android:src="@drawable/pin" />-->
+
+
+            <!--            <soup.neumorphism.NeumorphTextView-->
+            <!--                android:id="@+id/tv_yesterday_right_house"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="314dp"-->
+            <!--                android:layout_marginTop="162dp"-->
+            <!--                android:text="23 kwh"-->
+            <!--                android:textSize="11dp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/cardview2"-->
+            <!--                android:layout_width="55dp"-->
+            <!--                android:layout_height="35dp"-->
+            <!--                android:layout_marginLeft="303dp"-->
+            <!--                android:layout_marginTop="70dp"-->
+            <!--                android:src="@drawable/pin" />-->
+
 
             <ImageView
-                android:id="@+id/cardview1"
-                android:layout_width="55dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="70dp"
-                android:src="@drawable/pin" />
-
-
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_yesterday_right_house"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="314dp"
-                android:layout_marginTop="162dp"
-                android:text="23 kwh"
-                android:textSize="11dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/cardview2"
-                android:layout_width="55dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="303dp"
-                android:layout_marginTop="70dp"
-                android:src="@drawable/pin" />
-
-
-            <soup.neumorphism.NeumorphTextView
                 android:id="@+id/move"
+                android:layout_width="50dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="145dp"
+                android:src="@drawable/yesterday"
+                />
+            <ImageView
+                android:id="@+id/move_today"
+                android:layout_width="50dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="81dp"
+                android:src="@drawable/todayblue"
+                />
+            <soup.neumorphism.NeumorphTextView
+                android:id="@+id/tv_move_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="80dp"
-                android:text="+ 0kwh"
-                android:textColor="#EF6315"
-                android:textStyle="bold" />
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="85dp"
+                android:textSize="12dp"
+               android:text="절감중"
+                />
+
+
+
+
 
 
             <com.mckrpk.animatedprogressbar.AnimatedProgressBar
-                android:id="@+id/progressbar_room"
+                android:id="@+id/progressbar_room_today"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="105dp"
                 app:animationDurationInMs="1300"
                 app:animationStyle="line"
-                app:lineWidth="20dp"
+                app:lineWidth="10dp"
                 app:max="1000"
                 app:progress="750"
                 app:progressColor="@color/Orange"
@@ -131,84 +172,130 @@
                 app:progressTipEnabled="true"
                 app:trackColor="@color/dark_shadow" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
+            <com.mckrpk.animatedprogressbar.AnimatedProgressBar
+                android:id="@+id/progressbar_room_yesterday"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="120dp"
+                app:animationDurationInMs="1300"
+                app:animationStyle="line"
+                app:lineWidth="10dp"
+                app:max="1000"
+                app:progress="750"
+                app:progressColor="@color/darkgray"
+                app:progressTipColor="@color/jade"
+                app:progressTipEnabled="true"
+                app:trackColor="@color/dark_shadow" />
+
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="75dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="200dp"
 
                 app:cardBackgroundColor="@color/background"
-                app:cardCornerRadius="@dimen/_6sdp"
-                app:cardElevation="@dimen/_6sdp">
+
+               >
 
                 <soup.neumorphism.NeumorphTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="101호"
-                    android:textSize="15dp" />
-            </androidx.cardview.widget.CardView>
+
+                    android:text="전체"
+                    android:textSize="13dp" />
+            </soup.neumorphism.NeumorphCardView>
 
 
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_yesterday_left_house"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="84dp"
-                android:layout_marginTop="162dp"
-                android:text="23 kwh"
-                android:textSize="11dp"
-                android:textStyle="bold" />
+            <!--            <soup.neumorphism.NeumorphTextView-->
+            <!--                android:id="@+id/tv_yesterday_left_house"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="84dp"-->
+            <!--                android:layout_marginTop="162dp"-->
+            <!--                android:text="23 kwh"-->
+            <!--                android:textSize="11dp"-->
+            <!--                android:textStyle="bold" />-->
 
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/cardview3"-->
+            <!--                android:layout_width="55dp"-->
+            <!--                android:layout_height="35dp"-->
+            <!--                android:layout_marginLeft="75dp"-->
+            <!--                android:layout_marginTop="177dp"-->
+            <!--                android:src="@drawable/pin" />-->
 
             <ImageView
-                android:id="@+id/cardview3"
-                android:layout_width="55dp"
-                android:layout_height="35dp"
+                android:id="@+id/move2_today"
+                android:layout_width="50dp"
+                android:layout_height="33dp"
                 android:layout_marginLeft="75dp"
-                android:layout_marginTop="177dp"
-                android:src="@drawable/pin" />
-
-            <soup.neumorphism.NeumorphTextView
+                android:layout_marginTop="181dp"
+                android:src="@drawable/today"
+                />
+            <ImageView
                 android:id="@+id/move2"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="33dp"
                 android:layout_marginLeft="75dp"
-                android:layout_marginTop="190dp"
-                android:text="+ 0kwh"
-                android:textColor="#EF6315"
-                android:textStyle="bold" />
+                android:layout_marginTop="245dp"
+                android:src="@drawable/yesterday"
+              />
 
-            <soup.neumorphism.NeumorphTextView
-                android:id="@+id/tv_yesterday_right_myroom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="314dp"
-                android:layout_marginTop="55dp"
-                android:text="23 kwh"
-                android:textSize="11dp"
-                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/cardview4"
-                android:layout_width="55dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="303dp"
-                android:layout_marginTop="177dp"
-                android:src="@drawable/pin" />
+
+
+
+            <!--            <soup.neumorphism.NeumorphTextView-->
+            <!--                android:id="@+id/tv_yesterday_right_myroom"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="314dp"-->
+            <!--                android:layout_marginTop="55dp"-->
+            <!--                android:text="23 kwh"-->
+
+            <!--                android:textSize="11dp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/cardview4"-->
+            <!--                android:layout_width="55dp"-->
+            <!--                android:layout_height="35dp"-->
+            <!--                android:layout_marginLeft="303dp"-->
+            <!--                android:layout_marginTop="177dp"-->
+            <!--                android:src="@drawable/pin" />-->
 
 
             <com.mckrpk.animatedprogressbar.AnimatedProgressBar
-                android:id="@+id/progressbar_house"
+                android:id="@+id/progressbar_house_yesterday"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
 
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="195dp"
+                android:layout_marginTop="220dp"
                 app:animationDurationInMs="1300"
                 app:animationStyle="line"
-                app:lineWidth="20dp"
+                app:lineWidth="10dp"
+                app:max="1000"
+                app:progress="750"
+                app:progressColor="@color/darkgray"
+                app:progressTipColor="@color/jade"
+                app:progressTipEnabled="true"
+                app:trackColor="@color/dark_shadow" />
+
+            <com.mckrpk.animatedprogressbar.AnimatedProgressBar
+                android:id="@+id/progressbar_house_today"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="205dp"
+                app:animationDurationInMs="1300"
+                app:animationStyle="line"
+                app:lineWidth="10dp"
                 app:max="1000"
                 app:progress="750"
                 app:progressColor="@color/colorPrimary"
@@ -216,52 +303,48 @@
                 app:progressTipEnabled="true"
                 app:trackColor="@color/dark_shadow" />
 
-            <TextView
-                android:id="@+id/tv_house_today_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="210dp"
-                android:layout_marginBottom="65dp"
-                android:textStyle="bold"
-                android:text="어제보다 덜 사용"
-                android:textSize="13dp" />
-            <TextView
-                android:id="@+id/tv_house_today_imogi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="315dp"
-                android:layout_marginBottom="65dp"
-                android:textStyle="bold"
-                android:text="😀"
-                android:textSize="15dp" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_house_today_text"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="bottom"-->
+            <!--                android:layout_marginLeft="210dp"-->
+            <!--                android:layout_marginBottom="65dp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:text="어제보다 덜 사용"-->
+            <!--                android:textSize="12dp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_house_today_imogi"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="bottom"-->
+            <!--                android:layout_marginLeft="310dp"-->
+            <!--                android:layout_marginBottom="65dp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:text="😀"-->
+            <!--                android:textSize="15dp" />-->
 
 
-
-
-            <TextView
-                android:id="@+id/tv_myroom_today_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="210dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="170dp"
-                android:text="어제보다 더 사용"
-                android:textSize="13dp" />
-            <TextView
-                android:id="@+id/tv_myroom_today_imogi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="315dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="170dp"
-                android:text="☹"
-                android:textSize="15dp" />
-
-
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_myroom_today_text"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="bottom"-->
+            <!--                android:layout_marginLeft="210dp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:layout_marginBottom="170dp"-->
+            <!--                android:text="어제보다 더 사용"-->
+            <!--                android:textSize="12dp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_myroom_today_imogi"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="bottom"-->
+            <!--                android:layout_marginLeft="310dp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:layout_marginBottom="170dp"-->
+            <!--                android:text="☹"-->
+            <!--                android:textSize="15dp" />-->
 
 
         </soup.neumorphism.NeumorphCardView>

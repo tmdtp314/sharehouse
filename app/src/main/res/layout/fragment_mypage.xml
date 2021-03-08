@@ -150,27 +150,30 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="50dp"
                             android:layout_marginTop="45dp"
-                            android:text="요금내역 확인하기"
+                            android:text="내 실시간 예상요금"
                             android:textColor="@color/primary"
                             android:textSize="@dimen/_10sdp" />
 
 
                         <soup.neumorphism.NeumorphCardView
                             android:id="@+id/check_fee_btn"
-                            android:layout_width="70dp"
+                            android:layout_width="160dp"
                             android:layout_height="70dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginRight="25dp"
                             app:neumorph_shadowColorLight="#FAF6F3"
                             app:neumorph_shadowElevation="5dp"
-                            app:neumorph_shapeType="flat">
+                            app:neumorph_shapeType="pressed">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:elevation="@dimen/_3sdp"
-                                android:src="@drawable/arrow" />
+                          <soup.neumorphism.NeumorphTextView
+                              android:id="@+id/realtime_fee"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="3250 원"
+                              android:textColor="@color/primary"
+                              android:textStyle="bold"
+                              android:textSize="20dp"
+                              android:layout_gravity="center"/>
 
 
                         </soup.neumorphism.NeumorphCardView>

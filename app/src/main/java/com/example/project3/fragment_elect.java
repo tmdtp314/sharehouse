@@ -101,6 +101,11 @@ room=getArguments().getStringArrayList("data").get(2);
 
         viewPager.setOffscreenPageLimit(3);
 
+
+
+
+
+
         room_color=fragment.findViewById(R.id.room_color);
         tv1 = fragment.findViewById(R.id.date);
         result = "";
@@ -137,7 +142,7 @@ room=getArguments().getStringArrayList("data").get(2);
 
         // ViewPage 바꿔줄 그래프 Fragment ( Fragment_Grap1_1, Fragment_Grap1_2)
 
-        adapter.notifyDataSetChanged();//*********************************************************
+        adapter.notifyDataSetChanged();
         pieChart = fragment.findViewById(R.id.pieChart);
 
 

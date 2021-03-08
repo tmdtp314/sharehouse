@@ -88,5 +88,5 @@ public class MyService extends Service {
         }
     }
 
-    ;
+
 }

@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="2월 1일 ~ 2월 5일까지"
+                    android:text="2월 1일 ~ 2월 8일까지"
                     android:textSize="@dimen/_10sdp" />
 
 
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="70dp"
-                    android:text="3월 1일 ~ 3월 5일 까지"
+                    android:text="3월 1일 ~ 3월 8일 까지"
                     android:textSize="@dimen/_10sdp" />
 
 

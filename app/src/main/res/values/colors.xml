@@ -35,7 +35,7 @@
 <color name="redorange">#FBA21C</color>
     <color name="jade">#30B670</color>
     <color name="lightjade">#9CEEC6</color>
-
+<color name="darkgray">#878788</color>
 <color name="whitetransparent">#0DFFFFFF</color>
     <color name="gradientStartColor">#BF4A4DD0</color>
     <color name="gradientEndColor">#ADC34DD0</color>
