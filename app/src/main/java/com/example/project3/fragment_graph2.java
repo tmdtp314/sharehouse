@@ -113,9 +113,9 @@ public class fragment_graph2 extends Fragment {
 
                     array = new JSONArray(response);
 
-                    int today_value_sum = Integer.parseInt(array.getJSONObject(0).getString("Value"));
+                    int today_value_sum = (int)Double.parseDouble(array.getJSONObject(0).getString("Value"));
 
-                    Toast.makeText(getContext(), "today sum" + array.getJSONObject(0).getString("Value"), Toast.LENGTH_SHORT);
+                //    Toast.makeText(getContext(), "today sum" + array.getJSONObject(0).getString("Value"), Toast.LENGTH_SHORT);
 
                     java.sql.Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis());
 
@@ -123,7 +123,7 @@ public class fragment_graph2 extends Fragment {
                     SimpleDateFormat sdf2 = new SimpleDateFormat("MM");
                     sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
                     sdf2.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-                    int result = Integer.parseInt(sdf.format(timestamp));
+                    int result = Integer.parseInt(sdf.format(timestamp)); //오늘 날짜
                     int thismonth = Integer.parseInt(sdf2.format(timestamp));
                     pre_sum = 0;
                     for (int i = 0; i < result; i++) {

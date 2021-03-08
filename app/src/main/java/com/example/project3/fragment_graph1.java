@@ -46,13 +46,14 @@ public class fragment_graph1 extends Fragment {
     ChartProgressBar mChart, mChart2, mChart3, mChart4, mChart5, mChart6;
     NeumorphTextView VS;
     RequestQueue requestQueue;
-    TextView tv_today, tv_avg ,house_avg;
-    StringRequest stringRequest,stringRequest2;
+    TextView tv_today, tv_avg, house_avg;
+    StringRequest stringRequest, stringRequest2;
     String result;
     BarData bardata;
     String[] dayname;
     float[] total;
-
+    float[] use;
+    float[] result2;
     String roomID;
 
 
@@ -64,60 +65,12 @@ public class fragment_graph1 extends Fragment {
         roomID = getArguments().getString("room");
         Toast.makeText(getContext(), roomID, Toast.LENGTH_SHORT).show();
         requestQueue = Volley.newRequestQueue(getContext()); //현재 페이지 정보 보내주는것
-house_avg=fragment.findViewById(R.id.house_avg);
+        house_avg = fragment.findViewById(R.id.house_avg);
 
         tv_avg = fragment.findViewById(R.id.tv_avg);
         //  tv_today = fragment.findViewById(R.id.tv_today);
         VS = fragment.findViewById(R.id.VS);
 
-        String url2 = "http://172.30.1.49:8083/LoginServer/weeTotal";
-        stringRequest2 = new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                JSONArray array =null;
-                try {
-
-                    array = new JSONArray(response);
-
-                    ArrayList<BarData> dataList = new ArrayList<>();
-
-                    total = new float[array.length()];
-                    for(int i=0;i<array.length();i++){
-
-                    total[i]=Float.parseFloat(array.getJSONObject(i).getString("use"));
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-            //StringRequest 내의 메소드 오버로딩!
-
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-
-                //서버에 전송하고 싶은 데이터를 key값, value값으로 저장하여 return
-                Map<String, String> data = new HashMap<>();
-
-
-                data.put("id", roomID); //roomID
-
-                return data;
-            }
-        };
-        requestQueue.add(stringRequest2);
         String url = "http://172.30.1.49:8083/LoginServer/weekGraph";
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -129,10 +82,9 @@ house_avg=fragment.findViewById(R.id.house_avg);
                 SimpleDateFormat sdf = new SimpleDateFormat("EEE");
 
 
-
                 sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-              //  result = sdf.format(timestamp);
-                result="Sat";
+                //  result = sdf.format(timestamp);
+                result = "Mon";
 
 
                 switch (result) {
@@ -159,33 +111,42 @@ house_avg=fragment.findViewById(R.id.house_avg);
                         break;
                 }
 
-                JSONArray array =null;
+                JSONArray array = null;
                 try {
 
                     array = new JSONArray(response);
 
                     ArrayList<BarData> dataList = new ArrayList<>();
 
+                    total = new float[array.length()];
+                    use = new float[array.length()];
+                    for (int i = 0; i < array.length(); i++) {
 
-                    BarData data = new BarData(dayname[0], (Float.parseFloat(array.getJSONObject(6).getString("use"))/total[0])*100, array.getJSONObject(6).getString("use") + "wh");
+                        total[i] = Float.parseFloat(array.getJSONObject(i).getString("total"));
+                        use[i] = Float.parseFloat(array.getJSONObject(i).getString("use"));
+
+                    }
+
+
+                    BarData data = new BarData(dayname[0], ((float)use[6] / (float)total[6]) * 100, (int)(((float)use[6] / (float)total[6])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData(dayname[1], (Float.parseFloat(array.getJSONObject(5).getString("use"))/total[1])*100, array.getJSONObject(5).getString("use") + "wh");
+                    data = new BarData(dayname[1], ((float)use[5] / (float)total[5]) * 100,(int)(((float)use[5] / (float)total[5])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData(dayname[2], (Float.parseFloat(array.getJSONObject(4).getString("use"))/total[2])*100, array.getJSONObject(4).getString("use") + "wh");
+                    data = new BarData(dayname[2], ((float)use[4] / (float)total[4]) * 100, (int)(((float)use[4] / (float)total[4])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData(dayname[3], (Float.parseFloat(array.getJSONObject(3).getString("use"))/total[3])*100, array.getJSONObject(3).getString("use") + "wh");
+                    data = new BarData(dayname[3], ((float)use[3] / (float)total[3]) * 100, (int)(((float)use[3] / (float)total[3])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData(dayname[4], (Float.parseFloat(array.getJSONObject(2).getString("use"))/total[4])*100, array.getJSONObject(2).getString("use") + "wh");
+                    data = new BarData(dayname[4], ((float)use[2] / (float)total[2]) * 100, (int)(((float)use[2] / (float)total[2])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData(dayname[5], (Float.parseFloat(array.getJSONObject(1).getString("use"))/total[5])*100, array.getJSONObject(1).getString("use") + "wh");
+                    data = new BarData(dayname[5], ((float)use[1] / (float)total[1]) * 100, (int)(((float)use[1] / (float)total[1])*100) + "%");
                     dataList.add(data);
 
-                    data = new BarData("오늘", (Float.parseFloat(array.getJSONObject(0).getString("use"))/total[6])*100, array.getJSONObject(0).getString("use") + "wh");
+                    data = new BarData("오늘", ((float)use[0] / (float)total[0]) * 100, (int)(((float)use[0] / (float)total[0])*100) + "%");
                     dataList.add(data);
 
 
@@ -200,19 +161,19 @@ house_avg=fragment.findViewById(R.id.house_avg);
 
                     //   tv_today.setText(array.getJSONObject(0).getString("use") + "wh");
                     float sum = 0;
-                    float house_sum=0;
+                    float house_sum = 0;
                     for (int i = 0; i < 7; i++) {
-                        sum += Float.parseFloat(array.getJSONObject(i).getString("use"));
-                        house_sum+=total[i];
+                        sum += use[i];
+                        house_sum += total[i];
                     }
-                    String sum_ = String.format("%.2f", sum / 7);
+                    String sum_ = String.format("%.2f", (float)sum / 7);
                     tv_avg.setText(sum_ + " kwh");
-house_avg.setText(String.format("%.2f",house_sum/7)+" kwh");
+                    house_avg.setText(String.format("%.2f",(float)house_sum / 7) + " kwh");
                     float lastWeek = 0;
                     for (int i = 7; i < 14; i++) {
                         lastWeek += Float.parseFloat(array.getJSONObject(i).getString("use"));
                     }
-                    Toast.makeText(getContext(), String.valueOf(lastWeek), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), String.valueOf(lastWeek)+"지난 주 ", Toast.LENGTH_SHORT).show();
                     float result = ((sum - lastWeek) / sum);
                     if (result > 0)
                         VS.setText(String.format("%.2f", result * 100) + "% 🔺");

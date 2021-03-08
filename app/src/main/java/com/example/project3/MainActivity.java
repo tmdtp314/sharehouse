@@ -75,9 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("name", name);
                     intent.putExtra("tel", tel);
                     intent.putExtra("room", room);
-//                    intent.putExtra("count1", count1);
-//                    intent.putExtra("count2", count2);
-//                    intent.putExtra("count3", count3);
+
                     startActivity(intent);
                     finish();
                 } catch (JSONException | UnsupportedEncodingException e) {

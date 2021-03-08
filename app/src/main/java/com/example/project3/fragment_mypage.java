@@ -120,8 +120,9 @@ requestQueue.add(stringRequest);
             public void onClick(View v) {
                 Toast.makeText(getActivity().getApplicationContext(), "Service 시작", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MyService.class);
-                String alarm = String.valueOf(settingAlarm);
+                String alarm =  settingAlarm.getText().toString();
                 intent.putExtra("alarmValue", alarm);
+                intent.putExtra("user_room",roomID);
                 getActivity().startService(intent);
 
             }
@@ -138,10 +139,7 @@ requestQueue.add(stringRequest);
         });
 
 
-//        data2 = getArguments().getStringArrayList("data");
-//        user_name.setText(data2.get(0)+"");
-//
-//        user_room.setText(data2.get(2)+"");
+
 
         return fragment;
 

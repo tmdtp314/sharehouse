@@ -167,7 +167,7 @@ room=getArguments().getStringArrayList("data").get(2);
                     float user3_=Float.parseFloat(user3);
                     float sum=user1_+user2_+user3_;
 
-                  if(sum>200&&sum<400){
+                  if(sum<200&&sum<=400){
                       total="누적 1단계";
                   }else if(sum>400){
                       total="누적 2단계";
@@ -201,8 +201,13 @@ room=getArguments().getStringArrayList("data").get(2);
                     dataSet.setSliceSpace(1f);
                     dataSet.setSelectionShift(5f);
 
-
-                    int[] myColors={Color.parseColor("#0085FF"),Color.parseColor("#BEBEBE"),Color.parseColor("#8D8D8D")};
+int [] myColors = new int[3];
+                    if(room.equals("a")) {
+                        myColors = new int[]{Color.parseColor("#0085FF"), Color.parseColor("#BEBEBE"), Color.parseColor("#8D8D8D")};
+                    }
+                    else if(room.equals("b")){
+                        myColors=new int[]{Color.parseColor("#BEBEBE"), Color.parseColor("#86C7BF"), Color.parseColor("#8D8D8D")};
+                    }
                     dataSet.setColors(myColors);
                     dataSet.setHighlightEnabled(true);
                     PieData data = new PieData((dataSet));

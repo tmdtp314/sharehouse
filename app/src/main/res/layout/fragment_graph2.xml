@@ -27,7 +27,7 @@
             app:neumorph_shadowElevation="@dimen/_6sdp">
 
             <soup.neumorphism.NeumorphCardView
-                android:layout_width="180dp"
+                android:layout_width="210dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="10dp"
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="전월 동기간 비교"
+                    android:text="내 방 전월 동기간 비교"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
