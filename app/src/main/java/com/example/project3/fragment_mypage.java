@@ -28,6 +28,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.nineoldandroids.animation.ValueAnimator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,9 +45,10 @@ import soup.neumorphism.NeumorphCardView;
 public class fragment_mypage extends Fragment {
 
 
+    private int fee_2;
     StringRequest stringRequest;
     RequestQueue requestQueue;
-    NeumorphCardView btn_start2, btn_stop2;
+    NeumorphCardView btn_start2, btn_stop2, chat_btn;
     TextView user_name, realtime_fee;
     //    TextView user_tel;
     String encode;
@@ -78,9 +80,23 @@ public class fragment_mypage extends Fragment {
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                double fee_=Double.parseDouble(response);
-               String fee= String.format("%.1f", fee_);
-               realtime_fee.setText(fee+" 원");
+                double fee_ = Double.parseDouble(response);
+                String fee = String.format("%.1f", fee_);
+                realtime_fee.setText(fee + " 원");
+
+
+                fee_2 = (int) fee_;
+
+
+                ValueAnimator animator = ValueAnimator.ofInt(0, fee_2); //0 is min number, 600 is max number
+                animator.setDuration(800); //Duration is in milliseconds
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        realtime_fee.setText(animation.getAnimatedValue().toString());
+                    }
+                });
+                animator.start();
+
 
             }
         }, new Response.ErrorListener() {
@@ -105,7 +121,7 @@ public class fragment_mypage extends Fragment {
             }
         };//여기까지가 생성자 호출
 
-requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest);
         user_name.setText(getArguments().getStringArrayList("data").get(0) + "님 환영합니다");
         user_room.setText(room_name);
 
@@ -114,15 +130,25 @@ requestQueue.add(stringRequest);
         settingAlarm = fragment.findViewById(R.id.settingAlarm);
         btn_start2 = fragment.findViewById(R.id.btn_start2);
         btn_stop2 = fragment.findViewById(R.id.btn_stop2);
+        chat_btn = fragment.findViewById(R.id.chat_btn);
+
+        chat_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TalkActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_start2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getApplicationContext(), "Service 시작", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MyService.class);
-                String alarm =  settingAlarm.getText().toString();
+                String alarm = settingAlarm.getText().toString();
                 intent.putExtra("alarmValue", alarm);
-                intent.putExtra("user_room",roomID);
+                intent.putExtra("user_room", roomID);
+                intent.putExtra("fee", fee_2);
                 getActivity().startService(intent);
 
             }
@@ -139,10 +165,7 @@ requestQueue.add(stringRequest);
         });
 
 
-
-
         return fragment;
-
 
     }
 }

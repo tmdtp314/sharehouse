@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".fragment_elect">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         <FrameLayout
             android:id="@+id/frag_graph2"
             android:layout_width="0dp"
-            android:layout_height="280dp"
+            android:layout_height="300dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,12 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom|right"
-
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="25dp"
                     android:background="@color/background"
-                    android:outlineAmbientShadowColor="@color/dark_shadow">
+                    android:outlineAmbientShadowColor="@color/dark_shadow"
+                    app:neumorph_shadowColorDark="@color/dark_shadow"
+                    app:neumorph_shadowColorLight="@color/light_shadow">
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lottie_reload"
@@ -101,16 +102,16 @@
 
                 <soup.neumorphism.NeumorphCardView
                     android:id="@+id/room_color"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="100dp"
                     android:layout_height="55dp"
                     android:layout_marginLeft="265dp"
-                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/background"
-                    app:neumorph_shadowElevation="3dp"
-                    app:neumorph_shapeType="flat"
+                    android:padding="@dimen/_5sdp"
                     app:neumorph_shadowColorDark="@color/dark_shadow"
-                    app:neumorph_shadowColorLight="@color/light_shadow">
+                    app:neumorph_shadowColorLight="@color/light_shadow"
+                    app:neumorph_shadowElevation="3dp"
+                    app:neumorph_shapeType="flat">
 
                     <TextView
 
@@ -171,9 +172,7 @@
                     android:id="@+id/tab_grap1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WEEK"/>
-
-
+                    android:text="WEEK" />
 
 
                 <com.google.android.material.tabs.TabItem

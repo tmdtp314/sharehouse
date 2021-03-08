@@ -160,7 +160,7 @@
                     android:layout_marginTop="-15dp"
                     app:lottie_autoPlay="false"
 
-                    app:lottie_fileName="pig.json"
+                    app:lottie_fileName="savingmoney.json"
                     app:lottie_loop="true" />
 
                 <soup.neumorphism.NeumorphTextView

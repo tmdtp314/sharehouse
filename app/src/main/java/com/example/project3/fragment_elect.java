@@ -61,7 +61,7 @@ public class fragment_elect extends Fragment {
     View frag_grap1_2;
     ViewPager viewPager;
     private String room;
-    NeumorphCardView reload,room_color;
+    NeumorphCardView reload, room_color;
     LottieAnimationView lottie_reload;
     TextView tv1, room_col;
     TabLayout tabLayout;
@@ -78,35 +78,27 @@ public class fragment_elect extends Fragment {
     ArrayList<String> data2 = new ArrayList<>();
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-room=getArguments().getStringArrayList("data").get(2);
+        room = getArguments().getStringArrayList("data").get(2);
 
 
-
-
-
-        adapter = new MyPagerAdapter(getChildFragmentManager(),room);
+        adapter = new MyPagerAdapter(getChildFragmentManager(), room);
         adapter.addItem(new fragment_graph1());
         adapter.addItem(new fragment_graph2());
         adapter.addItem(new fragment_graph3());
 
         View fragment = inflater.inflate(R.layout.fragment_elect, container, false);
 
-       // frag_grap1_2 = fragment.findViewById(R.id.frag_graph2);
+        // frag_grap1_2 = fragment.findViewById(R.id.frag_graph2);
         viewPager = (ViewPager) (fragment.findViewById(R.id.Viewpager));
         tabLayout = fragment.findViewById(R.id.tab_layout);
 
         viewPager.setOffscreenPageLimit(3);
 
 
-
-
-
-
-        room_color=fragment.findViewById(R.id.room_color);
+        room_color = fragment.findViewById(R.id.room_color);
         tv1 = fragment.findViewById(R.id.date);
         result = "";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -120,19 +112,17 @@ room=getArguments().getStringArrayList("data").get(2);
         reload.bringToFront();
 
         room_col = fragment.findViewById(R.id.room_col);
-        if(room.equals("a")){
-        room_col.setTextColor(Color.WHITE);
-        room_color.setBackgroundColor(Color.parseColor("#0085FF"));
-        room_col.setText("room A");}
-        else if(room.equals("b")){
+        if (room.equals("a")) {
+            room_col.setTextColor(Color.WHITE);
+            room_color.setBackgroundColor(Color.parseColor("#0085FF"));
+            room_col.setText("room A");
+        } else if (room.equals("b")) {
             room_col.setBackgroundColor(Color.parseColor("#86C7BF"));
             room_col.setText("room B");
-        }
-        else{
+        } else {
             room_col.setBackgroundColor(Color.parseColor("#8FA19F"));
             room_col.setText("room C");
         }
-
 
 
         viewPager.setAdapter(adapter);
@@ -162,20 +152,16 @@ room=getArguments().getStringArrayList("data").get(2);
                     String user3 = array.getJSONObject(2).getString("value");
 
 
-                    float user1_=Float.parseFloat(user1);
-                    float user2_=Float.parseFloat(user2);
-                    float user3_=Float.parseFloat(user3);
-                    float sum=user1_+user2_+user3_;
+                    float user1_ = Float.parseFloat(user1);
+                    float user2_ = Float.parseFloat(user2);
+                    float user3_ = Float.parseFloat(user3);
+                    float sum = user1_ + user2_ + user3_;
 
-                  if(sum<200&&sum<=400){
-                      total="누적 1단계";
-                  }else if(sum>400){
-                      total="누적 2단계";
-                  }
-
-
-
-
+                    if (sum < 200 && sum <= 400) {
+                        total = "누적 1단계";
+                    } else if (sum > 400) {
+                        total = "누적 2단계";
+                    }
 
 
                     pieChart.setUsePercentValues(true);
@@ -192,7 +178,6 @@ room=getArguments().getStringArrayList("data").get(2);
                     yValues.add(new PieEntry(Float.parseFloat(user3), "roomC")); //+ 가데이터
 
 
-
                     pieChart.setHoleRadius(45);
 
                     pieChart.animateY(1000, Easing.EaseInCubic);
@@ -201,12 +186,11 @@ room=getArguments().getStringArrayList("data").get(2);
                     dataSet.setSliceSpace(1f);
                     dataSet.setSelectionShift(5f);
 
-int [] myColors = new int[3];
-                    if(room.equals("a")) {
+                    int[] myColors = new int[3];
+                    if (room.equals("a")) {
                         myColors = new int[]{Color.parseColor("#0085FF"), Color.parseColor("#BEBEBE"), Color.parseColor("#8D8D8D")};
-                    }
-                    else if(room.equals("b")){
-                        myColors=new int[]{Color.parseColor("#BEBEBE"), Color.parseColor("#86C7BF"), Color.parseColor("#8D8D8D")};
+                    } else if (room.equals("b")) {
+                        myColors = new int[]{Color.parseColor("#BEBEBE"), Color.parseColor("#86C7BF"), Color.parseColor("#8D8D8D")};
                     }
                     dataSet.setColors(myColors);
                     dataSet.setHighlightEnabled(true);
@@ -224,9 +208,9 @@ int [] myColors = new int[3];
                     pieChart.setCenterTextSize(14);
                     pieChart.setCenterTextTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
-                    if(total.contains("1단계")){
-                    pieChart.setCenterTextColor(Color.parseColor("#099527"));}
-                    else if(total.contains("2단계")){
+                    if (total.contains("1단계")) {
+                        pieChart.setCenterTextColor(Color.parseColor("#099527"));
+                    } else if (total.contains("2단계")) {
                         pieChart.setCenterTextColor(Color.parseColor("#CF8009"));
                     }
                     pieChart.setHoleColor(Color.parseColor("#E4EBF5"));
@@ -267,7 +251,7 @@ int [] myColors = new int[3];
         reload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           //     Toast.makeText(getContext(), "들어오나", Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(getContext(), "들어오나", Toast.LENGTH_SHORT).show();
                 requestQueue.add(stringRequest);
             }
         });
@@ -278,12 +262,12 @@ int [] myColors = new int[3];
     class MyPagerAdapter extends FragmentPagerAdapter {
 
         ArrayList<Fragment> items = new ArrayList<Fragment>();
-     String room;
+        String room;
 
-        public MyPagerAdapter(@NonNull FragmentManager fm,String room) {
+        public MyPagerAdapter(@NonNull FragmentManager fm, String room) {
             super(fm);
             this.room = room;
-           // Toast.makeText(getContext(), "어댑터 안"+arg, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getContext(), "어댑터 안"+arg, Toast.LENGTH_SHORT).show();
         }
 
 
@@ -299,20 +283,20 @@ int [] myColors = new int[3];
             if (position == 0) {
                 fragment_graph1 fr = (fragment_graph1) items.get(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("room",room);
+                bundle.putString("room", room);
                 fr.setArguments(bundle);
 
                 return fr;
-            } else if(position==1) {
+            } else if (position == 1) {
                 fragment_graph2 fr2 = (fragment_graph2) items.get(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("room",room);
+                bundle.putString("room", room);
                 fr2.setArguments(bundle);
                 return fr2;
-            } else if(position==2){
+            } else if (position == 2) {
                 fragment_graph3 fr3 = (fragment_graph3) items.get(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("room",room);
+                bundle.putString("room", room);
                 fr3.setArguments(bundle);
                 return fr3;
             }

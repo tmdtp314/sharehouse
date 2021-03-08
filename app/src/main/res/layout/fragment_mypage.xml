@@ -95,7 +95,7 @@
                             android:layout_marginLeft="90dp"
                             android:layout_marginTop="60dp"
                             android:shadowColor="@color/black"
-                            android:text="room ID / 1002"
+                            android:text="room ID / 101호"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
@@ -169,11 +169,23 @@
                               android:id="@+id/realtime_fee"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:text="3250 원"
+                              android:layout_gravity="center_vertical"
+                              android:text="3250"
+                              android:layout_marginLeft="35dp"
                               android:textColor="@color/primary"
                               android:textStyle="bold"
                               android:textSize="20dp"
-                              android:layout_gravity="center"/>
+                              />
+                            <soup.neumorphism.NeumorphTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 원"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="85dp"
+                                android:textSize="20dp"
+                                android:layout_gravity="center_vertical"/>
 
 
                         </soup.neumorphism.NeumorphCardView>
@@ -297,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="210dp"
                             android:layout_marginTop="100dp"
-                            android:text=" 초과 시 알람"
+                            android:text="원 초과 시 알람"
                             android:textColor="@color/primary_text"
                             android:textSize="17dp" />
 

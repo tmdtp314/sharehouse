@@ -18,11 +18,7 @@
            android:exported="true"></service>
         <activity android:name=".MenuActivity"
             android:theme="@style/FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
             android:theme="@style/FullScreen">
@@ -32,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TalkActivity"/>
+        <activity android:name=".autoLogin"/>
+        <activity android:name=".signActivity"/>
     </application>
 
 </manifest>

@@ -38,6 +38,7 @@ public class MyService extends Service {
     RequestQueue requestQueue;
     StringRequest stringRequest;
     int aram;
+    int fee;
     String user_room;
 
     @Override
@@ -53,7 +54,7 @@ public class MyService extends Service {
 
             aram = Integer.parseInt(intent.getStringExtra("alarmValue"));
             user_room = intent.getStringExtra("user_room");
-            Toast.makeText(this,aram + "뜸?" + user_room,Toast.LENGTH_SHORT).show();
+                //      Toast.makeText(this,aram + "뜸?" + user_room,Toast.LENGTH_SHORT).show();
         }
         Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         myServiceHandler handler = new myServiceHandler();
@@ -74,21 +75,13 @@ public class MyService extends Service {
         public void handleMessage(android.os.Message msg) {
 
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            String url = "http://172.30.1.49:8083/LoginServer/alarmServlet"; // 총 전력량을 받을 URL
+            String url = "http://172.30.1.49:8083/LoginServer/realtimeFeeServ"; // 총 전력량을 받을 URL
 
             stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    JSONArray array = null;
-                    try {
-                        array = new JSONArray(response);
-                        elctricity_bill =(int)Double.parseDouble(array.getJSONObject(0).getString("ses_wh"));
-                        Toast.makeText(getApplicationContext(), elctricity_bill + "뜸?", Toast.LENGTH_LONG).show();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-
-                    }
+                    double fee_ = Double.parseDouble(response);
+                  fee=(int)fee_;
 
                 }
             }, new Response.ErrorListener() {
@@ -120,10 +113,10 @@ public class MyService extends Service {
                 notificationManager.createNotificationChannel(channel);
             }
 
-            if (elctricity_bill > aram) {
+            if (fee > aram) {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, NOTIFICATION_ID)
                         .setContentTitle("전력량 경보")
-                        .setContentText("현재 누적 전력량 : " + elctricity_bill + "으로 위험입니다.")
+                        .setContentText("현재" + fee + "원으로 "+aram+"원을 초과하였습니다.")
                         .setSmallIcon(R.drawable.bulb)
                         .setVibrate(new long[]{0, 2000, 1000, 3000})
                         .setAutoCancel(true);
@@ -133,8 +126,7 @@ public class MyService extends Service {
             }
 
 
-            //토스트 띄우기
-            Toast.makeText(MyService.this, "뜸?", Toast.LENGTH_LONG).show();
+
 
         }
     }
