@@ -62,9 +62,10 @@ import static java.lang.System.currentTimeMillis;
 public class fragment_graph2 extends Fragment {
     private String roomID;
     NeumorphTextView tv_updown, tv_premonth, tv_thismonth, premonth, thismonth, small_pre, small_this;
+    TextView tv_preMonth, tv_thisMonth;
     LottieAnimationView img_updown, img_slow;
-    int[] month_temp = new int[28];
-    private int pre_sum;
+    double[] month_temp = new double[28];
+    private double pre_sum;
     ImageView pin_premonth, pin_thismonth;
     TextRoundCornerProgressBar progressBar_VS;
     ValueLineChart mCubicValueLineChart;
@@ -93,9 +94,12 @@ public class fragment_graph2 extends Fragment {
         img_slow = fragment.findViewById(R.id.img_slow);
         small_pre = fragment.findViewById(R.id.tv_small_pre);
         small_this = fragment.findViewById(R.id.tv_small_this);
+        
+        tv_thisMonth=fragment.findViewById(R.id.tv_preMonth);
+        tv_preMonth=fragment.findViewById(R.id.tv_preMonth);
 
         roomID = getArguments().getString("room");
-        Toast.makeText(getContext(), "roomID 들어옴" + roomID, Toast.LENGTH_SHORT).show();
+
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -106,16 +110,15 @@ public class fragment_graph2 extends Fragment {
                 try {
                     Random rd = new Random();
 
-                    for (int i = 0; i < month_temp.length; i++) {
-                        month_temp[i] = (int) rd.nextInt(80);
-                    }
+                    month_temp = new double[]{16.7, 6.6, 7.3, 14, 2.52, 1.43, 1.65, 1.8, 4.2, 4.8, 6.3, 3.36, 3.4, 6, 2.04, 1, 5.1, 1.9, 2.2, 2.2, 5.1, 1.87, 1, 3.6, 2.4, 5.1, 6};
+
 
 
                     array = new JSONArray(response);
 
-                    int today_value_sum = (int)Double.parseDouble(array.getJSONObject(0).getString("Value"));
+                    int today_value_sum = (int) Double.parseDouble(array.getJSONObject(0).getString("Value"));
 
-                //    Toast.makeText(getContext(), "today sum" + array.getJSONObject(0).getString("Value"), Toast.LENGTH_SHORT);
+                    //    Toast.makeText(getContext(), "today sum" + array.getJSONObject(0).getString("Value"), Toast.LENGTH_SHORT);
 
                     java.sql.Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis());
 
@@ -129,40 +132,47 @@ public class fragment_graph2 extends Fragment {
                     for (int i = 0; i < result; i++) {
 
                         pre_sum += month_temp[i];
-                    }
 
-                    Toast.makeText(getContext(), month_temp[0] + "pre_sum", Toast.LENGTH_SHORT).show();
+                    }
+                    int pre_sum2 = Math.round((float) pre_sum);
+
+                    tv_thismonth.setText(thismonth+"월 1일 ~"+thismonth+"월 "+result+"일까지");
+                 
+                    tv_preMonth.setText(thismonth-1+"월 1일 ~"+(thismonth-1)+"월 "+result+"일까지");
+                    
+
 
                     if (today_value_sum > pre_sum) { //오늘치가 전월을 초과해버렸을 때
 
                         progressBar_VS.setMax(400);
                         progressBar_VS.setProgress(today_value_sum);
-                        progressBar_VS.setSecondaryProgress(pre_sum);
+                        progressBar_VS.setSecondaryProgress((float) pre_sum);
 
                         progressBar_VS.setSecondaryProgressColor(Color.parseColor("#AAAAAA"));
                         progressBar_VS.setProgressColor(Color.parseColor("#BA147BDB"));
 
 
-                        tv_premonth.setText(pre_sum + "kwh 사용");
-                        tv_thismonth.setText(today_value_sum + "kwh 사용");
+                        tv_premonth.setText(pre_sum2 + "kwh 사용");
+                        double today2=Math.round((today_value_sum)*10/10);
+                        tv_thismonth.setText(today2 + "kwh 사용");
                         tv_thismonth.setTextColor(Color.parseColor("#3A6CB2"));
                         img_slow.setVisibility(View.INVISIBLE);
                         img_updown.setMinAndMaxProgress(0.0f, 1.0f);
                         img_updown.playAnimation();
                         img_updown.setVisibility(View.VISIBLE);
 
-                        float VS = Float.valueOf(today_value_sum - pre_sum) / Float.valueOf(pre_sum);
+                        float VS = Float.valueOf(today_value_sum - pre_sum2) / Float.valueOf(pre_sum2);
 
 
                         tv_updown.setText(" " + String.format("%.2f", VS * 100) + "%\n 더 빨리 소모중");
                         tv_updown.setTextColor(Color.parseColor("#F34D42"));
                         pin_premonth.animate()
-                                .translationX(pre_sum * 2)
+                                .translationX(pre_sum2 * 2)
                                 .translationY(0)
                                 .setDuration(1000);
 
                         small_pre.animate()
-                                .translationX(pre_sum * 2)
+                                .translationX(pre_sum2 * 2)
                                 .translationY(0)
                                 .setDuration(1000);
 
@@ -181,7 +191,7 @@ public class fragment_graph2 extends Fragment {
 
                         progressBar_VS.setMax(400);
                         progressBar_VS.setProgress(today_value_sum);
-                        progressBar_VS.setSecondaryProgress(pre_sum);
+                        progressBar_VS.setSecondaryProgress(pre_sum2);
                         progressBar_VS.setProgressColor(Color.parseColor("#BA147BDB"));
                         progressBar_VS.setSecondaryProgressColor(Color.parseColor("#AAAAAA"));
 
@@ -189,24 +199,24 @@ public class fragment_graph2 extends Fragment {
                         img_slow.setMinAndMaxProgress(0.0f, 1.0f);
                         img_slow.playAnimation();
                         img_slow.setVisibility(View.VISIBLE);
-                        tv_premonth.setText(pre_sum + "kwh 사용");
+                        tv_premonth.setText(pre_sum2 + "kwh 사용");
                         tv_thismonth.setText(today_value_sum + "kwh 사용");
                         tv_thismonth.setTextColor(Color.parseColor("#3A6CB2"));
 
 
-                        float VS = Float.valueOf(pre_sum - today_value_sum) / Float.valueOf(pre_sum);
+                        float VS = Float.valueOf(pre_sum2 - today_value_sum) / Float.valueOf(pre_sum2);
                         img_updown.setImageResource(R.drawable.down);
 
                         tv_updown.setText(" " + String.format("%.2f", VS * 100) + "%\n 더 천천히 소모 중");
                         tv_updown.setTextColor(Color.parseColor("#A1C84F"));
 
                         pin_premonth.animate()
-                                .translationX(pre_sum * 2)
+                                .translationX(pre_sum2 * 2)
                                 .translationY(0)
                                 .setDuration(100);
 
                         small_pre.animate()
-                                .translationX(pre_sum * 2)
+                                .translationX(pre_sum2 * 2)
                                 .translationY(0)
                                 .setDuration(100);
 

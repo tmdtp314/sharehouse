@@ -15,7 +15,8 @@
     <color name="dark_shadow">#CDD5EA</color>
     <color name="primary_text">#0B0D0C</color>
     <color name="secondary_text">#7D818A</color>
-    <color name="background">#E4EBF5</color>
+<color name="background">#E4EBF5</color>
+
     <color name="empty">#ffc1c1</color>
     <color name="progress">#8c9eff</color>
     <color name="progress_click">#bbdefb</color>

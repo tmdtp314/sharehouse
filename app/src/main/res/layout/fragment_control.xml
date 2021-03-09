@@ -15,7 +15,6 @@
         android:layout_marginTop="6dp"
 
 
-
         android:foregroundGravity="center_vertical|center|center_horizontal"
 
         app:layout_constraintTop_toTopOf="parent">
@@ -72,6 +71,7 @@
                 android:id="@+id/cldisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:orientation="vertical"
                 android:padding="@dimen/_15sdp">
 
@@ -446,7 +446,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             app:layout_constraintTop_toBottomOf="@+id/plug3"
             app:neumorph_backgroundColor="@color/background"
-            app:neumorph_shadowColorDark="@color/dark_shadow"
+app:neumorph_shadowColorDark="@color/dark_shadow"
             app:neumorph_shadowColorLight="@color/light_shadow"
             app:neumorph_shadowElevation="@dimen/_6sdp"
             app:neumorph_shapeAppearance="@style/NeumorphismCard">
@@ -463,10 +463,10 @@
                     android:layout_marginLeft="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_25sdp"
                     android:text="All OFF"
-android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

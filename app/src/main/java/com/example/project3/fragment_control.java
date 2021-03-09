@@ -84,7 +84,7 @@ public class fragment_control extends Fragment {
         lottie_All = fragment.findViewById(R.id.lottie_all);
         allOffBtn = fragment.findViewById(R.id.allOff);
         room = getArguments().getString("room");
-        Toast.makeText(getContext(),room,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(),room,Toast.LENGTH_SHORT).show();
         tvAll.bringToFront();
 
         lottie_allOff.setMinAndMaxProgress(0.5f, 0.5f);
@@ -203,9 +203,9 @@ public class fragment_control extends Fragment {
                     }
 
 
-                    Toast.makeText(getContext(), String.valueOf(number), Toast.LENGTH_SHORT).show();
+
                     String booleans = Boolean.toString(checkSr1);
-                    Toast.makeText(getContext(), booleans, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(), booleans, Toast.LENGTH_SHORT).show();
                     stringRequest.setTag("sr" + number + booleans);
                     requestQueue.add(stringRequest);
 

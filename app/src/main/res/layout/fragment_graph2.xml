@@ -205,7 +205,7 @@
                     android:layout_marginTop="@dimen/_25sdp"
 
                     android:text="누적 25wh사용"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <TextView
                     android:id="@+id/thisMonth"
@@ -226,7 +226,7 @@
                     android:text="누적 25wh사용"
                     android:textColor="@color/primary"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
             </androidx.cardview.widget.CardView>
 
             <!--            <ImageView-->

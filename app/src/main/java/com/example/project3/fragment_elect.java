@@ -173,10 +173,11 @@ public class fragment_elect extends Fragment {
 
 
                     ArrayList<PieEntry> yValues = new ArrayList<>();
-                    yValues.add(new PieEntry(Float.parseFloat(user1), "roomA")); //여기다가 기존거 더해주자.
-                    yValues.add(new PieEntry(Float.parseFloat(user2), "roomB")); //여기다가 가데이터 기존 양 더해주기.
-                    yValues.add(new PieEntry(Float.parseFloat(user3), "roomC")); //+ 가데이터
+                    yValues.add(new PieEntry(user1_, "roomA")); //여기다가 기존거 더해주자.
+                    yValues.add(new PieEntry(user2_, "roomB")); //여기다가 가데이터 기존 양 더해주기.
+                    yValues.add(new PieEntry(user3_, "roomC")); //+ 가데이터
 
+                    Toast.makeText(getContext(),yValues.get(0).getValue()+"",Toast.LENGTH_SHORT).show();
 
                     pieChart.setHoleRadius(45);
 

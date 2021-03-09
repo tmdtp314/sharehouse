@@ -63,7 +63,7 @@ public class fragment_graph1 extends Fragment {
         View fragment = inflater.inflate(R.layout.fragment_graph1, container, false);
 
         roomID = getArguments().getString("room");
-        Toast.makeText(getContext(), roomID, Toast.LENGTH_SHORT).show();
+
         requestQueue = Volley.newRequestQueue(getContext()); //현재 페이지 정보 보내주는것
         house_avg = fragment.findViewById(R.id.house_avg);
 
@@ -83,8 +83,8 @@ public class fragment_graph1 extends Fragment {
 
 
                 sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-                //  result = sdf.format(timestamp);
-                result = "Mon";
+
+
 
 
                 switch (result) {
@@ -173,7 +173,7 @@ public class fragment_graph1 extends Fragment {
                     for (int i = 7; i < 14; i++) {
                         lastWeek += Float.parseFloat(array.getJSONObject(i).getString("use"));
                     }
-                    Toast.makeText(getContext(), String.valueOf(lastWeek)+"지난 주 ", Toast.LENGTH_SHORT).show();
+
                     float result = ((sum - lastWeek) / sum);
                     if (result > 0)
                         VS.setText(String.format("%.2f", result * 100) + "% 🔺");

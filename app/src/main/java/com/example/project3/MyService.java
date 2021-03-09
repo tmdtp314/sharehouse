@@ -113,7 +113,7 @@ public class MyService extends Service {
                 notificationManager.createNotificationChannel(channel);
             }
 
-            if (fee > aram) {
+            if (fee > aram && fee != 0) {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, NOTIFICATION_ID)
                         .setContentTitle("전력량 경보")
                         .setContentText("현재" + fee + "원으로 "+aram+"원을 초과하였습니다.")
@@ -123,6 +123,7 @@ public class MyService extends Service {
                 notificationManager.notify(0, builder.build());
                 builder.setContentIntent(pendingIntent);
                 getApplicationContext().stopService(intent);
+                fee=0;
             }
 
 
