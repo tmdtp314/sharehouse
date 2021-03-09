@@ -177,7 +177,7 @@ public class fragment_elect extends Fragment {
                     yValues.add(new PieEntry(user2_, "roomB")); //여기다가 가데이터 기존 양 더해주기.
                     yValues.add(new PieEntry(user3_, "roomC")); //+ 가데이터
 
-                    Toast.makeText(getContext(),yValues.get(0).getValue()+"",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getContext(),yValues.get(0).getValue()+"",Toast.LENGTH_SHORT).show();
 
                     pieChart.setHoleRadius(45);
 
