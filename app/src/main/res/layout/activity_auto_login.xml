@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4EBF5 "
+    tools:context=".autoLogin">
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="210dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="34dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_text"
+        android:layout_width="225dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="msg"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listview" />
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/btn_send"
+        android:layout_width="134dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="13dp"
+        android:background="#F4D575"
+        android:text="SEND"
+        android:textAlignment="center"
+
+        app:layout_constraintBottom_toBottomOf="@+id/edt_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_text"
+        app:layout_constraintTop_toTopOf="@+id/edt_text"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="411dp"
+        android:layout_height="556dp"
+        android:layout_marginTop="20dp"
+        android:divider="@color/white"
+        android:dividerHeight="0dp"
+        android:transcriptMode="alwaysScroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="13dp"
+        android:backgroundTint="#F4D575"
+        android:text="뒤로가기"
+        app:layout_constraintBottom_toTopOf="@+id/listview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
